@@ -5,12 +5,12 @@ exports[`renders without crashing 1`] = `
   style={
     Object {
       "flex": 1,
+      "paddingTop": 22,
     }
   }
 >
-  <AppStatusBar />
-  <DeckCardList
-    decks={
+  <FlatList
+    data={
       Array [
         Object {
           "amountOfCards": 10,
@@ -26,6 +26,17 @@ exports[`renders without crashing 1`] = `
         },
       ]
     }
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
   />
 </View>
 `;
