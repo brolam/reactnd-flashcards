@@ -1,4 +1,4 @@
 
 export function isPossibleTwoPanels({ width }) {
-  return width >= 600
+  return width >= 800
 }

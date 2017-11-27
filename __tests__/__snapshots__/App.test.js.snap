@@ -1,7 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders two panels without crashing 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <AppStatusBar />
+  <DeckTwoPanel
+    decks={
+      Array [
+        Object {
+          "amountOfCards": 10,
+          "key": "one-item",
+          "title": "One Deck",
+        },
+        Object {
+          "amountOfCards": 11,
+          "key": "two-item",
+          "title": "Two Deck",
+        },
+        Object {
+          "amountOfCards": 12,
+          "key": "three-item",
+          "title": "Three Deck",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
 exports[`renders without crashing 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
