@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#b71845",
+      "height": 44,
+    }
+  }
+>
+  <StatusBar
+    animated={false}
+    barStyle="light-content"
+    showHideTransition="fade"
+    style={
+      Object {
+        "backgroundColor": "#b71845",
+      }
+    }
+  />
+</View>
+`;
