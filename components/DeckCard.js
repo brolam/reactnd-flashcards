@@ -3,12 +3,11 @@ import { StyleSheet } from 'react-native'
 import { View, Text, Platform } from 'react-native'
 import PropTypes from 'prop-types'
 import { white, gray } from '../styles/colors'
-import { width } from 'window-size';
 
 export default function DeckCard({ title, amountOfCards }) {
   return (
     <View style={[
-      styles.cardBase,
+      styles.card,
       Platform.OS === 'ios' ? styles.cardIOS : styles.cardAndroid
     ]}>
       <Text style={styles.title}>{title}</Text>
@@ -23,9 +22,10 @@ DeckCard.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  cardBase: {
+  card: {
     flexDirection: 'row',
     flex: 1,
+    justifyContent: 'space-between',
     backgroundColor: white,
     padding: 20,
     marginLeft: 10,
@@ -53,12 +53,6 @@ const styles = StyleSheet.create({
     elevation: 2,
     borderColor: '#ddd',
   },
-  title: { fontSize: 24, textAlign: 'left'},
-  amountOfCards: { fontSize: 18, textAlign: 'right' }
+  title: { fontSize: 24, textAlign: 'left', paddingTop: 8 },
+  amountOfCards: { fontSize: 32, textAlign: 'right', }
 });
-
-
-/*
-const styles = StyleSheet.create({
-  
-})*/

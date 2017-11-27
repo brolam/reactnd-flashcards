@@ -14,14 +14,17 @@ exports[`renders without crashing 1`] = `
       Array [
         Object {
           "amountOfCards": 10,
+          "id": "one-item",
           "title": "One Deck",
         },
         Object {
           "amountOfCards": 11,
+          "id": "two-item",
           "title": "Two Deck",
         },
         Object {
           "amountOfCards": 12,
+          "id": "three-item",
           "title": "Three Deck",
         },
       ]

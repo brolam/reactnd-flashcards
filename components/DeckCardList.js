@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { View, FlatList } from 'react-native'
 import PropTypes from 'prop-types'
-import DeckCard from '../components/DeckCard'
+import DeckCard from './DeckCard'
 
 export default function DeckCardList({ decks }) {
   return (
