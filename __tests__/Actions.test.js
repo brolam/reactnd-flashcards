@@ -1,6 +1,8 @@
 import {
   RECEIVE_DECKS,
-  receiveDecks
+  SELECT_DECK,
+  receiveDecks,
+  selectDeck
 } from '../actions'
 
 test('receiveDecks', () => {
@@ -11,6 +13,16 @@ test('receiveDecks', () => {
     }
   )
 });
+
+test('selectDeck', () => {
+  expect(selectDeck(deckDummies[2].id)).toEqual(
+    {
+      type: SELECT_DECK,
+      selectDeckId: deckDummies[2].id,
+    }
+  )
+});
+
 
 const deckDummies = [
   { id: 'one-item', title: 'One Deck', amountOfCards: 10 },
