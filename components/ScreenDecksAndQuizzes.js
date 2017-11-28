@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
 import PanelQuizzes from './PanelQuizzes'
 
-export default function DecksAndQuizzesPanels(
+export default function ScreenDecksAndQuizzes(
   { decks,
     quizzes = [{ question: 'New Question' }] }) {
   return (
@@ -20,7 +20,7 @@ export default function DecksAndQuizzesPanels(
   )
 }
 
-DecksAndQuizzesPanels.propTypes = {
+ScreenDecksAndQuizzes.propTypes = {
   decks: PropTypes.array.isRequired,
 }
 

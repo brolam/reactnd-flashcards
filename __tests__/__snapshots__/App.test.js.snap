@@ -10,7 +10,7 @@ exports[`renders two panels without crashing 1`] = `
   }
 >
   <AppStatusBar />
-  <DecksAndQuizzesPanels
+  <ScreenDecksAndQuizzes
     decks={
       Array [
         Object {
@@ -44,7 +44,7 @@ exports[`renders without crashing 1`] = `
   }
 >
   <AppStatusBar />
-  <DeckCardList
+  <ScreenDecks
     decks={
       Array [
         Object {

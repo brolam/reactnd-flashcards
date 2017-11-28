@@ -2,8 +2,8 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import appStyles from './styles/appStyles'
 import AppStatusBar from './components/AppStatusBar'
-import DeckList from './components/DeckCardList'
-import DecksAndQuizzesPanels from './components/DecksAndQuizzesPanels'
+import ScreenDecks from './components/ScreenDecks'
+import ScreenDecksAndQuizzes from './components/ScreenDecksAndQuizzes'
 import { isPossibleTwoPanels } from './util/ScreenHelper';
 import Dimensions from 'Dimensions';
 
@@ -23,23 +23,17 @@ export default class App extends React.Component {
         <AppStatusBar />
         {
           (this.state.isTwoPanels) ?
-            (
-              <DecksAndQuizzesPanels decks={[
-                { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
-                { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-                { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
-              ]}
-              />
-            ) :
-            (
-              <DeckList decks={[
-                { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
-                { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-                { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
-              ]} />
-            )
+            <ScreenDecksAndQuizzes decks={deckDummies} />
+            :
+            <ScreenDecks decks={deckDummies} />
         }
       </View>
     );
   }
 }
+
+const deckDummies = [
+  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
+]
