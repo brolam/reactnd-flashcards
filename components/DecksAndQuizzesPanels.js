@@ -3,12 +3,18 @@ import { StyleSheet } from 'react-native'
 import { View, FlatList } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
+import PanelQuizzes from './PanelQuizzes'
 
-export default function DecksAndQuizzesPanels({ decks }) {
+export default function DecksAndQuizzesPanels(
+  { decks,
+    quizzes = [{ question: 'New Question' }] }) {
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
         <DeckCardList decks={decks} />
+      </View>
+      <View style={styles.containerDeckQuizzes}>
+        <PanelQuizzes quizzes={quizzes} />
       </View>
     </View>
   )
@@ -25,5 +31,11 @@ const styles = StyleSheet.create({
   },
   containerDeckList: {
     width: '40%'
+  },
+  containerDeckQuizzes: {
+    marginRight: 20,
+    marginTop: 20,
+    marginBottom: 20,
+    width: '60%'
   }
 })

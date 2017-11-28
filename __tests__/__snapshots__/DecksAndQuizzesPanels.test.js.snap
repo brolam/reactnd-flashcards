@@ -37,6 +37,15 @@ exports[`renders without crashing 1`] = `
         ]
       }
     />
+    <PanelQuizzes
+      quizzes={
+        Array [
+          Object {
+            "question": "",
+          },
+        ]
+      }
+    />
   </View>
 </View>
 `;
