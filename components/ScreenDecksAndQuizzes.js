@@ -7,14 +7,18 @@ import PanelQuizzes from './PanelQuizzes'
 
 export default function ScreenDecksAndQuizzes(
   { decks,
-    quizzes = [{ question: 'New Question' }] }) {
+    quizzes = [{ question: 'New Question' }],
+    onSelectedOnDeck,
+    selectedDeck }) {
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
-        <DeckCardList decks={decks} />
+        <DeckCardList
+          decks={decks}
+          onSelectedOneDeck={onSelectedOnDeck} />
       </View>
       <View style={styles.containerDeckQuizzes}>
-        <PanelQuizzes quizzes={quizzes} />
+        <PanelQuizzes quizzes={selectedDeck ? selectedDeck.quizzes : []} />
       </View>
     </View>
   )
@@ -34,7 +38,6 @@ const styles = StyleSheet.create({
   },
   containerDeckQuizzes: {
     marginRight: 20,
-    marginTop: 20,
     marginBottom: 20,
     width: '60%'
   }

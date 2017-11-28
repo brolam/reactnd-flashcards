@@ -43,19 +43,12 @@ exports[`renders without crashing 1`] = `
       Object {
         "marginBottom": 20,
         "marginRight": 20,
-        "marginTop": 20,
         "width": "60%",
       }
     }
   >
     <PanelQuizzes
-      quizzes={
-        Array [
-          Object {
-            "question": "New Question",
-          },
-        ]
-      }
+      quizzes={Array []}
     />
   </View>
 </View>

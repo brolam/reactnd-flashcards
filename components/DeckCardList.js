@@ -1,15 +1,22 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { View, FlatList } from 'react-native'
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCard from './DeckCard'
 
-export default function DeckCardList({ decks }) {
+export default function DeckCardList({ decks, onSelectedOneDeck }) {
   return (
     <View style={styles.container}>
       <FlatList
         data={decks}
-        renderItem={({item}) => <DeckCard key={item.id} {...item} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => onSelectedOneDeck(item)}
+          >
+            <DeckCard
+              key={item.id} {...item}
+            />
+          </TouchableOpacity>
+        )}
       />
     </View>
   )
@@ -21,7 +28,6 @@ DeckCardList.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 22
+    flex: 1
   }
 })
