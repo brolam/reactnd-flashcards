@@ -10,7 +10,7 @@ exports[`renders two panels without crashing 1`] = `
   }
 >
   <AppStatusBar />
-  <DeckTwoPanel
+  <DecksAndQuizzesPanels
     decks={
       Array [
         Object {

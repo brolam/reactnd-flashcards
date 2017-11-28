@@ -1,8 +1,8 @@
 import React from 'react'
-import DeckTwoPanels from '../components/DeckTwoPanels'
+import DecksAndQuizzesPanels from '../components/DecksAndQuizzesPanels'
 
 test('renders without crashing', () => {
-  const wrapper = shallow(<DeckTwoPanels decks={deckDummies} />);
+  const wrapper = shallow(<DecksAndQuizzesPanels decks={deckDummies} />);
   expect(wrapper).toMatchSnapshot();
 });
 

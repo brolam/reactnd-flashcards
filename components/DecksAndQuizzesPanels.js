@@ -4,7 +4,7 @@ import { View, FlatList } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
 
-export default function DeckTwoPanel({ decks }) {
+export default function DecksAndQuizzesPanels({ decks }) {
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
@@ -14,7 +14,7 @@ export default function DeckTwoPanel({ decks }) {
   )
 }
 
-DeckTwoPanel.propTypes = {
+DecksAndQuizzesPanels.propTypes = {
   decks: PropTypes.array.isRequired,
 }
 
