@@ -1,22 +1,47 @@
 import reducer from '../reducers'
 import { createStore } from 'redux'
-import { receiveDecks, selectDeck } from '../actions'
+import {
+  receiveDecks,
+  selectDeck,
+  setAppState,
+  APP_STATES
+} from '../actions'
 
 test('init status', () => {
   const store = createStore(reducer)
-  expect(store.getState()).toEqual({"decks": [], "selectedDeckQuizzes": []})
+  expect(store.getState()).toEqual({
+    "decks": [],
+    "selectedDeckQuizzes": []
+  })
 });
 
 test('receiveDecks', () => {
   const store = createStore(reducer)
   store.dispatch(receiveDecks(deckDummies))
-  expect(store.getState()).toEqual({ decks: deckDummies, selectedDeckQuizzes: [] })
+  expect(store.getState()).toEqual({
+    decks: deckDummies,
+    selectedDeckQuizzes: []
+  })
 });
 
 test('selectDeck', () => {
   const store = createStore(reducer)
   store.dispatch(selectDeck(deckDummies[1].id))
-  expect(store.getState()).toEqual({ decks: [], selectedDeckId: deckDummies[1].id, selectedDeckQuizzes: quizzesDummy })
+  expect(store.getState()).toEqual({
+    decks: [],
+    selectedDeckId: deckDummies[1].id,
+    selectedDeckQuizzes: quizzesDummy
+  })
+});
+
+test('setAppState', () => {
+  const store = createStore(reducer)
+  store.dispatch(setAppState(APP_STATES.NEW_DECK))
+  expect(store.getState()).toEqual({
+    decks: [],
+    appState: APP_STATES.NEW_DECK,
+    selectedDeckQuizzes: []
+  })
 });
 
 const deckDummies = [

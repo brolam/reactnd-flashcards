@@ -1,4 +1,8 @@
-import { RECEIVE_DECKS, SELECT_DECK } from '../actions'
+import {
+  RECEIVE_DECKS,
+  SELECT_DECK,
+  SET_APP_STATE
+} from '../actions'
 
 const INIT_STATE = {
   decks: [],
@@ -17,6 +21,11 @@ function decks(state = INIT_STATE, action) {
         ...state,
         selectedDeckId: action.selectDeckId,
         selectedDeckQuizzes: quizzesDummy
+      }
+    case SET_APP_STATE:
+      return {
+        ...state,
+        appState: action.appState,
       }
     default:
       return state
