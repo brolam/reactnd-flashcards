@@ -1,8 +1,11 @@
 import {
   RECEIVE_DECKS,
   SELECT_DECK,
+  SET_APP_STATE,
+  APP_STATES,
   receiveDecks,
-  selectDeck
+  selectDeck,
+  setAppState
 } from '../actions'
 
 test('receiveDecks', () => {
@@ -19,6 +22,15 @@ test('selectDeck', () => {
     {
       type: SELECT_DECK,
       selectDeckId: deckDummies[2].id,
+    }
+  )
+});
+
+test('setAppState', () => {
+  expect(setAppState(APP_STATES.NEW_DECK)).toEqual(
+    {
+      type: SET_APP_STATE,
+      appState: APP_STATES.NEW_DECK
     }
   )
 });
