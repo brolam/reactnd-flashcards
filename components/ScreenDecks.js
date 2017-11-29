@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { View } from 'react-native'
+import { View, Button } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
 import { StackNavigator } from 'react-navigation';
@@ -43,7 +43,9 @@ export default RootNavigator = StackNavigator({
     screen: ScreenDecksConnected,
     navigationOptions: {
       headerTitle: 'Decks',
+      headerRight: <Button title="Add" onPress={() =>{ throw "Not implemented"; }} />,
     },
+    
   },
   Details: {
     screen: ScreenQuizzes,

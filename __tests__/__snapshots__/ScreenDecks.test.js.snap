@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <DeckCardList
+    decks={
+      Array [
+        Object {
+          "amountOfCards": 10,
+          "key": "one-item",
+          "title": "One Deck",
+        },
+        Object {
+          "amountOfCards": 11,
+          "key": "two-item",
+          "title": "Two Deck",
+        },
+        Object {
+          "amountOfCards": 12,
+          "key": "three-item",
+          "title": "Three Deck",
+        },
+      ]
+    }
+    onSelectedOneDeck={[Function]}
+  />
+</View>
+`;
