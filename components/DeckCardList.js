@@ -8,9 +8,8 @@ export default function DeckCardList({ decks, onSelectedOneDeck }) {
     <FlatList
       data={decks}
       renderItem={({ item }) => <DeckCard
-        key={item.id}
         {...item}
-        onSelect={onSelectedOneDeck}
+        onPress={() => onSelectedOneDeck(item)}
       />}
     />
   )

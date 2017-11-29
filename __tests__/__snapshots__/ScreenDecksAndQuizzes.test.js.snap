@@ -36,6 +36,7 @@ exports[`renders without crashing 1`] = `
           },
         ]
       }
+      onSelectedOneDeck={[Function]}
     />
   </View>
   <View
@@ -48,7 +49,19 @@ exports[`renders without crashing 1`] = `
     }
   >
     <PanelQuizzes
-      quizzes={Array []}
+      quizzes={
+        Array [
+          Object {
+            "question": "One Quetion",
+          },
+          Object {
+            "question": "Two Quetion",
+          },
+          Object {
+            "question": "Three Quetion",
+          },
+        ]
+      }
     />
   </View>
 </View>

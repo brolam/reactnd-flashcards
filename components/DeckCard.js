@@ -5,15 +5,12 @@ import PropTypes from 'prop-types'
 import cardStyle from '../styles/cardStyles'
 
 export default function DeckCard({
-  id,
   title,
   amountOfCards,
-  onSelect = (deckId) => { }
+  onPress = () => { }
   }) {
   return (
-    <TouchableOpacity
-      onPress={() => onSelect(id)}
-    >
+    <TouchableOpacity onPress={onPress}>
       <View style={cardStyle}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.amountOfCards}>{amountOfCards}</Text>
@@ -23,7 +20,6 @@ export default function DeckCard({
 }
 
 DeckCard.propTypes = {
-  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   amountOfCards: PropTypes.number.isRequired,
 }

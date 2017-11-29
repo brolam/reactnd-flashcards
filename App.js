@@ -6,11 +6,21 @@ import ScreenDecks from './components/ScreenDecks'
 import ScreenDecksAndQuizzes from './components/ScreenDecksAndQuizzes'
 import { isPossibleTwoPanels } from './util/ScreenHelper';
 import Dimensions from 'Dimensions';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import { receiveDecks } from './actions'
+import reducer from './reducers'
+
+const store = createStore(reducer)
 
 export default class App extends React.Component {
   constructor(props) {
     super();
-    this.state = { isTwoPanels: props.isTwoPanels, selectedDeck: undefined };
+    this.state = {  ...this.state, isTwoPanels: props.isTwoPanels, selectedDeck: undefined };
+  }
+
+  componentDidMount(){
+    store.dispatch(receiveDecks(deckDummies))
   }
 
   onLayoutChanged = event => {
@@ -19,33 +29,24 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={appStyles.container} onLayout={this.onLayoutChanged} >
-        <AppStatusBar />
-        {
-          (this.state.isTwoPanels) ?
-            <ScreenDecksAndQuizzes
-              decks={deckDummies}
-              selectedDeck={this.state.selectedDeck}
-              onSelectedOnDeck={ () => this.setState({
-                selectedDeck: { deck: deckDummies[0], quizzes: quizzesDummy }
-              })}
-            />
-            :
-            <ScreenDecks decks={deckDummies} />
-        }
-      </View>
+      <Provider store={store}>
+        <View style={appStyles.container} onLayout={this.onLayoutChanged} >
+          <AppStatusBar />
+          {
+            (this.state.isTwoPanels) ?
+              <ScreenDecksAndQuizzes/>
+              :
+              <ScreenDecks/>
+          }
+        </View>
+      </Provider>
     );
   }
 }
 
 const deckDummies = [
-  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
-  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
+  { key:'deck1', title: 'One Deck', amountOfCards: 10 },
+  { key:'deck2', title: 'Two Deck', amountOfCards: 11 },
+  { key:'deck3', title: 'Three Deck', amountOfCards: 12 }
 ]
 
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]

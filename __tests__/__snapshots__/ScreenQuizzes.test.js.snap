@@ -9,8 +9,20 @@ exports[`renders without crashing 1`] = `
     }
   }
 >
-  <QuizCardQuestion
-    question="One Quetion"
+  <PanelQuizzes
+    quizzes={
+      Array [
+        Object {
+          "question": "One Quetion",
+        },
+        Object {
+          "question": "Two Quetion",
+        },
+        Object {
+          "question": "Three Quetion",
+        },
+      ]
+    }
   />
 </View>
 `;

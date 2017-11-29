@@ -1,13 +1,17 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import QuizCardQuestion from './QuizCardQuestion'
 
 export default function PanelQuizzes({ quizzes }) {
   return (
     <View style={styles.container}>
-      <QuizCardQuestion {...quizzes[0]} />
+      {quizzes.length > 0 ?
+        <QuizCardQuestion {...quizzes[0]} />
+        :
+        <Text>There are not quizzes</Text>
+      }
     </View>
   )
 }

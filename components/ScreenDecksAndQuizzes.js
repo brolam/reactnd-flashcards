@@ -4,21 +4,20 @@ import { View, FlatList } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
 import PanelQuizzes from './PanelQuizzes'
+import { connect } from 'react-redux'
+import { selectDeck } from '../actions'
 
-export default function ScreenDecksAndQuizzes(
-  { decks,
-    quizzes = [{ question: 'New Question' }],
-    onSelectedOnDeck,
-    selectedDeck }) {
+export function ScreenDecksAndQuizzes(props) {
+  const { decks, selectedDeckQuizzes, dispatch } = props
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
         <DeckCardList
           decks={decks}
-          onSelectedOneDeck={onSelectedOnDeck} />
+          onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key))} />
       </View>
       <View style={styles.containerDeckQuizzes}>
-        <PanelQuizzes quizzes={selectedDeck ? selectedDeck.quizzes : []} />
+        <PanelQuizzes quizzes={selectedDeckQuizzes} />
       </View>
     </View>
   )
@@ -42,3 +41,14 @@ const styles = StyleSheet.create({
     width: '60%'
   }
 })
+
+function mapStateToProps(decks) {
+  return decks
+}
+
+const ScreenDecksAndQuizzesConnected = connect(
+  mapStateToProps,
+)(ScreenDecksAndQuizzes)
+
+
+export default ScreenDecksAndQuizzesConnected

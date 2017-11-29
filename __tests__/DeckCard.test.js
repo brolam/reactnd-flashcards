@@ -9,9 +9,8 @@ test('renders without crashing', () => {
 });
 
 test('onSelect', () => {
-  let selectedDeckId = '-1'
-  const onSelect = (deckId) => { selectedDeckId = deckId }
-  const deckCard = shallow(<DeckCard {...deckDummy}  onSelect={onSelect} />);
+  const spyOnPress = jest.fn();
+  const deckCard = shallow(<DeckCard {...deckDummy}  onPress={spyOnPress} />);
   deckCard.simulate('press')
-  expect(selectedDeckId).toBe(deckDummy.id)
+  expect(spyOnPress).toHaveBeenCalled();
 });

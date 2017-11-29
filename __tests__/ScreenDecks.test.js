@@ -1,5 +1,5 @@
 import React from 'react'
-import ScreenDecks from '../components/ScreenDecks'
+import { ScreenDecks } from '../components/ScreenDecks'
 
 test('renders without crashing', () => {
   const wrapper = shallow(<ScreenDecks decks={deckDummies} />);

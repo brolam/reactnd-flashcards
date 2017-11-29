@@ -5,27 +5,42 @@ import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
 import { StackNavigator } from 'react-navigation';
 import ScreenQuizzes from './ScreenQuizzes'
+import { connect } from 'react-redux'
+import { selectDeck } from '../actions'
 
-const deckDummies = [
-  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
-  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
-]
-
-function ScreenDecks({ navigation }) {
+export function ScreenDecks(props) {
+  const { decks, navigation, dispatch } = props
   return (
     <View style={styles.container}>
       <DeckCardList
-        decks={deckDummies}
-        onSelectedOneDeck={(deck) => navigation.navigate('Details')}
+        decks={decks}
+        onSelectedOneDeck={(deck) => {
+          dispatch(selectDeck(deck.key))
+          navigation.navigate('Details')
+        }}
       />
     </View>
   )
 }
 
-const RootNavigator = StackNavigator({
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+});
+
+function mapStateToProps(decks) {
+  return decks
+}
+
+const ScreenDecksConnected = connect(
+  mapStateToProps,
+)(ScreenDecks)
+
+export default RootNavigator = StackNavigator({
   Home: {
-    screen: ScreenDecks,
+    screen: ScreenDecksConnected,
     navigationOptions: {
       headerTitle: 'Decks',
     },
@@ -37,12 +52,3 @@ const RootNavigator = StackNavigator({
     },
   },
 });
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flex: 1,
-  },
-});
-
-export default RootNavigator;

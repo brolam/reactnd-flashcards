@@ -2,18 +2,14 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { View } from 'react-native'
 import PropTypes from 'prop-types'
-import QuizCardQuestion from './QuizCardQuestion'
+import PanelQuizzes from './PanelQuizzes'
+import { connect } from 'react-redux'
 
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]
-
-export default function ScreenQuizzes({ quizzes = quizzesDummy }) {
+export function ScreenQuizzes(props) {
+  const { quizzes } = props
   return (
     <View style={styles.container}>
-      <QuizCardQuestion {...quizzes[0]} />
+      <PanelQuizzes quizzes={quizzes} />
     </View>
   )
 }
@@ -28,3 +24,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+function mapStateToProps(decks) {
+  return {
+    quizzes: decks.selectedDeckQuizzes,
+    ...decks
+  }
+}
+
+const ScreenQuizzesConnected = connect(
+  mapStateToProps,
+)(ScreenQuizzes)
+
+export default ScreenQuizzesConnected

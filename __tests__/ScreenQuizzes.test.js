@@ -1,5 +1,5 @@
 import React from 'react'
-import ScreenQuizzes from '../components/ScreenQuizzes'
+import { ScreenQuizzes } from '../components/ScreenQuizzes'
 
 test('renders without crashing', () => {
   const quizzesDummy = [
