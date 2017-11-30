@@ -1,5 +1,10 @@
 import React from 'react'
 import { ScreenDecksAndQuizzes } from '../components/ScreenDecksAndQuizzes'
+import ScreenDecksAndQuizzesConnected from '../components/ScreenDecksAndQuizzes'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from '../reducers'
+
 
 test('renders without crashing', () => {
   const wrapper = shallow(
@@ -8,6 +13,17 @@ test('renders without crashing', () => {
       selectedDeckQuizzes={quizzesDummy}
     />);
   expect(wrapper).toMatchSnapshot();
+});
+
+test('on press add button', () => {
+  const store = createStore(reducer)
+  const screenDecksAndQuizzes = mount(
+    <Provider store={store}>
+      <ScreenDecksAndQuizzesConnected />
+    </Provider>
+  );
+  screenDecksAndQuizzes.find('TouchableOpacity [id="addFabButton"]').props().onPress()
+  expect(store.getState().appState).toBe('newDeck')
 });
 
 const deckDummies = [

@@ -7,7 +7,7 @@ import QuizCardQuestion from './QuizCardQuestion'
 export default function PanelQuizzes({ quizzes }) {
   return (
     <View style={styles.container}>
-      {quizzes.length > 0 ?
+      {quizzes && quizzes.length > 0 ?
         <QuizCardQuestion {...quizzes[0]} />
         :
         <Text>There are not quizzes</Text>

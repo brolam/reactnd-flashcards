@@ -38,6 +38,45 @@ exports[`renders without crashing 1`] = `
       }
       onSelectedOneDeck={[Function]}
     />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      id="addFabButton"
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 50,
+            "bottom": 20,
+            "height": 56,
+            "justifyContent": "center",
+            "position": "absolute",
+            "right": 20,
+            "width": 56,
+          },
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#f26f28",
+            "borderRadius": 50,
+            "elevation": 4,
+            "shadowColor": "#000000",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 0,
+            },
+            "shadowOpacity": 0.8,
+            "shadowRadius": 2,
+          },
+        ]
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        color="#fff"
+        name="md-add"
+        size={30}
+      />
+    </TouchableOpacity>
   </View>
   <View
     style={
