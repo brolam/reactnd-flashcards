@@ -6,10 +6,13 @@ import DeckCardList from './DeckCardList'
 import { StackNavigator } from 'react-navigation';
 import ScreenQuizzes from './ScreenQuizzes'
 import { connect } from 'react-redux'
-import { selectDeck } from '../actions'
+import { selectDeck, setAppState, SET_APP_STATE, APP_STATES } from '../actions'
+
+let storeDispatch = {}
 
 export function ScreenDecks(props) {
   const { decks, navigation, dispatch } = props
+  storeDispatch = dispatch
   return (
     <View style={styles.container}>
       <DeckCardList
@@ -43,9 +46,11 @@ export default RootNavigator = StackNavigator({
     screen: ScreenDecksConnected,
     navigationOptions: {
       headerTitle: 'Decks',
-      headerRight: <Button title="Add" onPress={() =>{ throw "Not implemented"; }} />,
+      headerRight: <Button title="Add" onPress={() => storeDispatch(
+        setAppState(APP_STATES.NEW_DECK)
+      )} />,
     },
-    
+
   },
   Details: {
     screen: ScreenQuizzes,

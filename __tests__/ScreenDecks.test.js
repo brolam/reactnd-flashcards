@@ -17,10 +17,8 @@ test('on press add button', () => {
       <ScreenDecksConnected />
     </Provider>
   );
-  expect(() => {
-    screenDecks.find('Button [title="Add"]').props().onPress()
-  }).toThrow();
-  
+  screenDecks.find('Button [title="Add"]').props().onPress()
+  expect(store.getState().appState).toBe('newDeck')
 });
 
 const deckDummies = [
