@@ -10,20 +10,31 @@ import { selectDeck, setAppState, SET_APP_STATE, APP_STATES } from '../actions'
 
 let storeDispatch = {}
 
-export function ScreenDecks(props) {
-  const { decks, navigation, dispatch } = props
-  storeDispatch = dispatch
-  return (
-    <View style={styles.container}>
-      <DeckCardList
-        decks={decks}
-        onSelectedOneDeck={(deck) => {
-          dispatch(selectDeck(deck.key))
-          navigation.navigate('Details')
-        }}
-      />
-    </View>
-  )
+export class ScreenDecks extends React.PureComponent {
+  constructor(props) {
+    super();
+    storeDispatch = props.dispatch
+  }
+
+  componentWillMount() {
+    const { appState, navigation } = this.props
+    if (appState === APP_STATES.NEW_DECK) navigation.navigate('Quizzes')
+  }
+
+  render() {
+    const { decks, navigation, dispatch } = this.props
+    return (
+      <View style={styles.container}>
+        <DeckCardList
+          decks={decks}
+          onSelectedOneDeck={(deck) => {
+            dispatch(selectDeck(deck.key))
+            navigation.navigate('Quizzes')
+          }}
+        />
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -44,15 +55,16 @@ const ScreenDecksConnected = connect(
 export default RootNavigator = StackNavigator({
   Home: {
     screen: ScreenDecksConnected,
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
       headerTitle: 'Decks',
-      headerRight: <Button title="Add" onPress={() => storeDispatch(
-        setAppState(APP_STATES.NEW_DECK)
-      )} />,
-    },
+      headerRight: <Button title="Add" onPress={() => {
+        storeDispatch(setAppState(APP_STATES.NEW_DECK))
+        navigation.navigate('Quizzes')
+      }} />,
+    }),
 
   },
-  Details: {
+  Quizzes: {
     screen: ScreenQuizzes,
     navigationOptions: {
       headerTitle: 'Quizzes',
