@@ -60,6 +60,7 @@ exports[`renders without crashing 1`] = `
   </Text>
   <TouchableOpacity
     activeOpacity={0.2}
+    id="buttonStart"
     onPress={[Function]}
   >
     <Text

@@ -9,7 +9,7 @@ export default function QuizCardStart({ deck, quizzes, onStart = () => { } }) {
     <View style={cardStyle}>
       <Text style={styles.temp}>{deck.title}</Text>
       <Text style={styles.temp}>{deck.amountOfCards} card(s)</Text>
-      <TouchableOpacity onPress={onStart}>
+      <TouchableOpacity  id="buttonStart" onPress={onStart}>
         <Text style={styles.temp} >Start</Text>
       </TouchableOpacity>
     </View>

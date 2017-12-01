@@ -6,6 +6,20 @@ test('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+test('onStart event', () => {
+  let onStart = jest.fn()
+  const quizCardStart = shallow(
+    <QuizCardStart
+      deck={deckDummy}
+      quizzes={quizzesDummy}
+      onStart={onStart}
+    />);
+  quizCardStart.find('TouchableOpacity [id="buttonStart"]').simulate('press')
+  expect(onStart).toHaveBeenCalled();
+});
+
+
+
 const deckDummy = { id: 'one-item', title: 'One Deck', amountOfCards: 10 }
 const quizzesDummy = [
   { question: 'One Quetion' },
