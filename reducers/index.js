@@ -1,6 +1,7 @@
 import {
   RECEIVE_DECKS,
   SELECT_DECK,
+  SELECT_QUIZ,
   SET_APP_STATE
 } from '../actions'
 
@@ -21,6 +22,11 @@ function decks(state = INIT_STATE, action) {
         ...state,
         selectedDeckKey: action.selectDeckId,
         selectedDeckQuizzes: quizzesDummy
+      }
+    case SELECT_QUIZ:
+      return {
+        ...state,
+        selectedIndexQuiz: action.selectIndexQuiz,
       }
     case SET_APP_STATE:
       return {

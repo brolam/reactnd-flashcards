@@ -3,6 +3,7 @@ import { createStore } from 'redux'
 import {
   receiveDecks,
   selectDeck,
+  selectQuiz,
   setAppState,
   APP_STATES
 } from '../actions'
@@ -41,6 +42,16 @@ test('setAppState', () => {
     decks: [],
     appState: APP_STATES.NEW_DECK,
     selectedDeckQuizzes: []
+  })
+});
+
+test('selectQuiz', () => {
+  const store = createStore(reducer)
+  store.dispatch(selectQuiz(-1))
+  expect(store.getState()).toEqual({
+    decks: [],
+    selectedDeckQuizzes: [],
+    selectedIndexQuiz: -1
   })
 });
 

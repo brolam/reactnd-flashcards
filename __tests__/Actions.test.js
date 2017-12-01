@@ -1,11 +1,13 @@
 import {
   RECEIVE_DECKS,
   SELECT_DECK,
+  SELECT_QUIZ,
   SET_APP_STATE,
   APP_STATES,
   receiveDecks,
   selectDeck,
-  setAppState
+  setAppState,
+  selectQuiz
 } from '../actions'
 
 test('receiveDecks', () => {
@@ -34,6 +36,17 @@ test('setAppState', () => {
     }
   )
 });
+
+test('selectIndexQuiz', () => {
+  expect(selectQuiz(0)).toEqual(
+    {
+      type: SELECT_QUIZ,
+      selectIndexQuiz: 0
+    }
+  )
+});
+
+
 
 
 const deckDummies = [
