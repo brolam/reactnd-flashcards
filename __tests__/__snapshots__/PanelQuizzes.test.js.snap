@@ -10,6 +10,7 @@ exports[`renders without crashing 1`] = `
   }
 >
   <QuizCardStart
+    onStart={[Function]}
     quizzes={
       Array [
         Object {

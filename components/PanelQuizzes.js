@@ -5,10 +5,15 @@ import PropTypes from 'prop-types'
 import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 
-export default function PanelQuizzes({ deck,  quizzes, selectedIndexQuiz = -1 }) {
+export default function PanelQuizzes(
+  { deck,
+    quizzes,
+    selectedIndexQuiz = -1,
+    onStartQuiz = () => { }
+  }) {
   function getQuizByIndex(index) {
     return (index === -1) ?
-      <QuizCardStart deck={deck} quizzes={quizzes}  />
+      <QuizCardStart deck={deck} quizzes={quizzes} onStart={onStartQuiz} />
       :
       <QuizCardQuestion {...quizzes[index]} />
   }

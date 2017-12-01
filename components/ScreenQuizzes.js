@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import PanelQuizzes from './PanelQuizzes'
 import { connect } from 'react-redux'
+import { selectQuiz } from '../actions/index';
 
 export function ScreenQuizzes(props) {
   return (
@@ -32,8 +33,17 @@ function mapStateToProps(props) {
   }
 }
 
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    onStartQuiz: () => {
+      dispatch(selectQuiz(0))
+    },
+  }
+}
+
 const ScreenQuizzesConnected = connect(
   mapStateToProps,
+  mapDispatchToProps
 )(ScreenQuizzes)
 
 export default ScreenQuizzesConnected
