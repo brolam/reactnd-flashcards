@@ -8,6 +8,12 @@ import ScreenQuizzes from './ScreenQuizzes'
 import { connect } from 'react-redux'
 import { selectDeck, setAppState, SET_APP_STATE, APP_STATES } from '../actions'
 
+const quizzesDummy = [
+  { question: 'One Quetion' },
+  { question: 'Two Quetion' },
+  { question: 'Three Quetion' }
+]
+
 let storeDispatch = {}
 
 export class ScreenDecks extends React.PureComponent {
@@ -28,7 +34,7 @@ export class ScreenDecks extends React.PureComponent {
         <DeckCardList
           decks={decks}
           onSelectedOneDeck={(deck) => {
-            dispatch(selectDeck(deck.key))
+            dispatch(selectDeck(deck.key, quizzesDummy))
             navigation.navigate('Quizzes')
           }}
         />

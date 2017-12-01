@@ -11,8 +11,10 @@ import {
 test('init status', () => {
   const store = createStore(reducer)
   expect(store.getState()).toEqual({
-    "decks": [],
-    "selectedDeckQuizzes": []
+    appState: APP_STATES.NAVIGATE_DECK,
+    decks: [],
+    selectedDeckQuizzes: [],
+    selectedIndexQuiz: -1,
   })
 });
 
@@ -20,18 +22,22 @@ test('receiveDecks', () => {
   const store = createStore(reducer)
   store.dispatch(receiveDecks(deckDummies))
   expect(store.getState()).toEqual({
+    appState: APP_STATES.NAVIGATE_DECK,
     decks: deckDummies,
-    selectedDeckQuizzes: []
+    selectedDeckQuizzes: [],
+    selectedIndexQuiz: -1,
   })
 });
 
 test('selectDeck', () => {
   const store = createStore(reducer)
-  store.dispatch(selectDeck(deckDummies[1].id))
+  store.dispatch(selectDeck(deckDummies[1].key, quizzesDummy))
   expect(store.getState()).toEqual({
+    appState: APP_STATES.NAVIGATE_DECK,
     decks: [],
-    selectedDeckKey: deckDummies[1].id,
-    selectedDeckQuizzes: quizzesDummy
+    selectedDeckKey: deckDummies[1].key,
+    selectedDeckQuizzes: quizzesDummy,
+    selectedIndexQuiz: -1,
   })
 });
 
@@ -39,9 +45,10 @@ test('setAppState', () => {
   const store = createStore(reducer)
   store.dispatch(setAppState(APP_STATES.NEW_DECK))
   expect(store.getState()).toEqual({
-    decks: [],
     appState: APP_STATES.NEW_DECK,
-    selectedDeckQuizzes: []
+    decks: [],
+    selectedDeckQuizzes: [],
+    selectedIndexQuiz: -1,
   })
 });
 
@@ -49,6 +56,7 @@ test('selectQuiz', () => {
   const store = createStore(reducer)
   store.dispatch(selectQuiz(-1))
   expect(store.getState()).toEqual({
+    appState: APP_STATES.NAVIGATE_DECK,
     decks: [],
     selectedDeckQuizzes: [],
     selectedIndexQuiz: -1
@@ -56,9 +64,9 @@ test('selectQuiz', () => {
 });
 
 const deckDummies = [
-  { id: 'one-item', title: 'One Deck', amountOfCards: 10 },
-  { id: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-  { id: 'three-item', title: 'Three Deck', amountOfCards: 12 }
+  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
 ]
 
 const quizzesDummy = [

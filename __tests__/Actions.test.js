@@ -20,10 +20,11 @@ test('receiveDecks', () => {
 });
 
 test('selectDeck', () => {
-  expect(selectDeck(deckDummies[2].id)).toEqual(
+  expect(selectDeck(deckDummies[2].key, [])).toEqual(
     {
       type: SELECT_DECK,
-      selectDeckId: deckDummies[2].id,
+      deckKey: deckDummies[2].key,
+      deckQuizzes: [],
     }
   )
 });
@@ -46,11 +47,8 @@ test('selectIndexQuiz', () => {
   )
 });
 
-
-
-
 const deckDummies = [
-  { id: 'one-item', title: 'One Deck', amountOfCards: 10 },
-  { id: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-  { id: 'three-item', title: 'Three Deck', amountOfCards: 12 }
+  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
 ]

@@ -2,12 +2,16 @@ import {
   RECEIVE_DECKS,
   SELECT_DECK,
   SELECT_QUIZ,
-  SET_APP_STATE
+  SET_APP_STATE,
+  APP_STATES
 } from '../actions'
 
 const INIT_STATE = {
+  appState: APP_STATES.NAVIGATE_DECK,
   decks: [],
-  selectedDeckQuizzes: []
+  selectedDeckKey: undefined,
+  selectedDeckQuizzes: [],
+  selectedIndexQuiz: -1
 }
 
 function decks(state = INIT_STATE, action) {
@@ -20,8 +24,9 @@ function decks(state = INIT_STATE, action) {
     case SELECT_DECK:
       return {
         ...state,
-        selectedDeckKey: action.selectDeckId,
-        selectedDeckQuizzes: quizzesDummy
+        selectedDeckKey: action.deckKey,
+        selectedDeckQuizzes: action.deckQuizzes,
+        selectedIndexQuiz: -1
       }
     case SELECT_QUIZ:
       return {
@@ -37,11 +42,5 @@ function decks(state = INIT_STATE, action) {
       return state
   }
 }
-
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]
 
 export default decks

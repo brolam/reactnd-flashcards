@@ -3,6 +3,7 @@ export const SELECT_DECK = 'SELECT_DECK'
 export const SET_APP_STATE = 'SET_APP_STATE'
 export const SELECT_QUIZ = 'SELECT_QUIZ'
 export const APP_STATES = {
+  NAVIGATE_DECK: 'navigate_deck',
   NEW_DECK: 'newDeck'
 }
 
@@ -13,10 +14,11 @@ export function receiveDecks(decks) {
   }
 }
 
-export function selectDeck(selectDeckId) {
+export function selectDeck(deckKey, deckQuizzes) {
   return {
     type: SELECT_DECK,
-    selectDeckId,
+    deckKey,
+    deckQuizzes,
   }
 }
 

@@ -17,7 +17,7 @@ describe('browse the quizzes', () => {
   beforeEach(() => {
     const store = createStore(reducer)
     store.dispatch(receiveDecks(deckDummies))
-    store.dispatch(selectDeck(deckDummies[0].key))
+    store.dispatch(selectDeck(deckDummies[0].key, quizzesDummy))
     screenQuizzesConnected = mount(
       <Provider store={store}>
         <ScreenQuizzesConnected />
