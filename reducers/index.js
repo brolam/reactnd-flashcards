@@ -19,7 +19,7 @@ function decks(state = INIT_STATE, action) {
     case SELECT_DECK:
       return {
         ...state,
-        selectedDeckId: action.selectDeckId,
+        selectedDeckKey: action.selectDeckId,
         selectedDeckQuizzes: quizzesDummy
       }
     case SET_APP_STATE:

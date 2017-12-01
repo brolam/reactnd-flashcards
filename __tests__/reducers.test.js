@@ -29,7 +29,7 @@ test('selectDeck', () => {
   store.dispatch(selectDeck(deckDummies[1].id))
   expect(store.getState()).toEqual({
     decks: [],
-    selectedDeckId: deckDummies[1].id,
+    selectedDeckKey: deckDummies[1].id,
     selectedDeckQuizzes: quizzesDummy
   })
 });

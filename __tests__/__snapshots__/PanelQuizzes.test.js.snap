@@ -9,8 +9,40 @@ exports[`renders without crashing 1`] = `
     }
   }
 >
-  <QuizCardQuestion
-    question="One Quetion"
+  <QuizCardStart
+    quizzes={
+      Array [
+        Object {
+          "question": "One Quetion",
+        },
+        Object {
+          "question": "Two Quetion",
+        },
+        Object {
+          "question": "Three Quetion",
+        },
+      ]
+    }
   />
+</View>
+`;
+
+exports[`there are not quizzes 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+  >
+    There are not quizzes
+  </Text>
 </View>
 `;

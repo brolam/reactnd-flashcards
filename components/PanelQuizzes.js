@@ -2,13 +2,21 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
+import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 
-export default function PanelQuizzes({ quizzes }) {
+export default function PanelQuizzes({ deck,  quizzes, selectedIndexQuiz = -1 }) {
+  function getQuizByIndex(index) {
+    return (index === -1) ?
+      <QuizCardStart deck={deck} quizzes={quizzes}  />
+      :
+      <QuizCardQuestion {...quizzes[index]} />
+  }
+
   return (
     <View style={styles.container}>
       {quizzes && quizzes.length > 0 ?
-        <QuizCardQuestion {...quizzes[0]} />
+        getQuizByIndex(selectedIndexQuiz)
         :
         <Text>There are not quizzes</Text>
       }

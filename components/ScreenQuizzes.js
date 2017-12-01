@@ -6,10 +6,9 @@ import PanelQuizzes from './PanelQuizzes'
 import { connect } from 'react-redux'
 
 export function ScreenQuizzes(props) {
-  const { quizzes } = props
   return (
     <View style={styles.container}>
-      <PanelQuizzes quizzes={quizzes} />
+      <PanelQuizzes {...props} />
     </View>
   )
 }
@@ -25,10 +24,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(decks) {
+function mapStateToProps(props) {
   return {
-    quizzes: decks.selectedDeckQuizzes,
-    ...decks
+    deck: props.decks.find(deck => deck.key === props.selectedDeckKey),
+    quizzes: props.selectedDeckQuizzes,
+    ...props
   }
 }
 
