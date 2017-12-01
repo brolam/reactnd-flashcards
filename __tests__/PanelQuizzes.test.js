@@ -11,17 +11,20 @@ test('there are not quizzes', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-describe('browse the quizzes', () => {
-  let panelQuizzes
+test('start quiz', () => {
+  const panelQuizzes = mount(<PanelQuizzes deck={deckDummy} quizzes={quizzesDummy} />);
+  expect(panelQuizzes.find('QuizCardStart').length).toEqual(1)
+});
 
-  beforeEach(() => {
-    panelQuizzes = mount(<PanelQuizzes deck={deckDummy} quizzes={quizzesDummy} />);
-  })
-
-  test('start quiz', () => {
-    expect(panelQuizzes.find('QuizCardStart').length).toEqual(1)
-  });
-})
+test('first quiz', () => {
+  const panelQuizzes = mount(
+    <PanelQuizzes
+      deck={deckDummy}
+      quizzes={quizzesDummy}
+      selectedIndexQuiz={0}
+    />);
+  expect(panelQuizzes.find('QuizCardQuestion').text()).toEqual('One Quetion')
+});
 
 const deckDummy = { id: 'one-item', title: 'One Deck', amountOfCards: 10 }
 const quizzesDummy = [
