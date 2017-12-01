@@ -24,6 +24,7 @@ function decks(state = INIT_STATE, action) {
     case SELECT_DECK:
       return {
         ...state,
+        appState: APP_STATES.NAVIGATE_DECK,
         selectedDeckKey: action.deckKey,
         selectedDeckQuizzes: action.deckQuizzes,
         selectedIndexQuiz: -1
@@ -31,6 +32,7 @@ function decks(state = INIT_STATE, action) {
     case SELECT_QUIZ:
       return {
         ...state,
+        appState: APP_STATES.STARTED_QUIZ,
         selectedIndexQuiz: action.selectIndexQuiz,
       }
     case SET_APP_STATE:

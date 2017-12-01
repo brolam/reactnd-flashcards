@@ -4,7 +4,7 @@ import ScreenDecksAndQuizzesConnected from '../components/ScreenDecksAndQuizzes'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from '../reducers'
-
+import { receiveDecks, selectDeck } from '../actions'
 
 test('renders without crashing', () => {
   const wrapper = shallow(
@@ -26,12 +26,42 @@ test('on press add button', () => {
   expect(store.getState().appState).toBe('newDeck')
 });
 
-const deckDummies = [
-  { id: 'one-item', title: 'One Deck', amountOfCards: 10 },
-  { id: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-  { id: 'three-item', title: 'Three Deck', amountOfCards: 12 }
-]
+describe('browse the quizzes', () => {
+  let screenDecksAndQuizzesConnected
 
+  beforeEach(() => {
+    const store = createStore(reducer)
+    store.dispatch(receiveDecks(deckDummies))
+    store.dispatch(selectDeck(deckDummies[0].key, quizzesDummy))
+    screenDecksAndQuizzesConnected = mount(
+      <Provider store={store}>
+        <ScreenDecksAndQuizzesConnected />
+      </Provider>
+    );
+  })
+
+  test('select first Deck', () => {
+    selectFirstDeck(screenDecksAndQuizzesConnected)
+  });
+
+  test('start quiz', () => {
+    selectFirstDeck(screenDecksAndQuizzesConnected)
+    screenDecksAndQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
+    const panelQuizzes = screenDecksAndQuizzesConnected.find('PanelQuizzes')
+    expect(panelQuizzes.text()).toEqual('One Quetion')
+  });
+})
+
+function selectFirstDeck(screenDecksAndQuizzesConnected) {
+  screenDecksAndQuizzesConnected.find('DeckCard').at(0).props().onPress()
+  expect(screenDecksAndQuizzesConnected.find('QuizCardStart').length).toEqual(1)
+}
+
+const deckDummies = [
+  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
+]
 
 const quizzesDummy = [
   { question: 'One Quetion' },

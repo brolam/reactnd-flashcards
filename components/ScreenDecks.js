@@ -24,7 +24,8 @@ export class ScreenDecks extends React.PureComponent {
 
   componentWillMount() {
     const { appState, navigation } = this.props
-    if (appState === APP_STATES.NEW_DECK) navigation.navigate('Quizzes')
+    if ((appState === APP_STATES.NEW_DECK) || (appState === APP_STATES.STARTED_QUIZ))
+      navigation.navigate('Quizzes')
   }
 
   render() {

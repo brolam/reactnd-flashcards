@@ -21,17 +21,17 @@ exports[`renders without crashing 1`] = `
         Array [
           Object {
             "amountOfCards": 10,
-            "id": "one-item",
+            "key": "one-item",
             "title": "One Deck",
           },
           Object {
             "amountOfCards": 11,
-            "id": "two-item",
+            "key": "two-item",
             "title": "Two Deck",
           },
           Object {
             "amountOfCards": 12,
-            "id": "three-item",
+            "key": "three-item",
             "title": "Three Deck",
           },
         ]
@@ -88,7 +88,26 @@ exports[`renders without crashing 1`] = `
     }
   >
     <PanelQuizzes
-      quizzes={
+      decks={
+        Array [
+          Object {
+            "amountOfCards": 10,
+            "key": "one-item",
+            "title": "One Deck",
+          },
+          Object {
+            "amountOfCards": 11,
+            "key": "two-item",
+            "title": "Two Deck",
+          },
+          Object {
+            "amountOfCards": 12,
+            "key": "three-item",
+            "title": "Three Deck",
+          },
+        ]
+      }
+      selectedDeckQuizzes={
         Array [
           Object {
             "question": "One Quetion",

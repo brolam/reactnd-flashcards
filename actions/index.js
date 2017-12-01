@@ -4,7 +4,8 @@ export const SET_APP_STATE = 'SET_APP_STATE'
 export const SELECT_QUIZ = 'SELECT_QUIZ'
 export const APP_STATES = {
   NAVIGATE_DECK: 'navigate_deck',
-  NEW_DECK: 'newDeck'
+  NEW_DECK: 'newDeck',
+  STARTED_QUIZ: 'started_quiz'
 }
 
 export function receiveDecks(decks) {

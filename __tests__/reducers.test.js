@@ -56,7 +56,7 @@ test('selectQuiz', () => {
   const store = createStore(reducer)
   store.dispatch(selectQuiz(-1))
   expect(store.getState()).toEqual({
-    appState: APP_STATES.NAVIGATE_DECK,
+    appState: APP_STATES.STARTED_QUIZ,
     decks: [],
     selectedDeckQuizzes: [],
     selectedIndexQuiz: -1

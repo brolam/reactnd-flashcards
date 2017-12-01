@@ -6,8 +6,15 @@ import { orange, white } from '../styles/colors'
 import DeckCardList from './DeckCardList'
 import PanelQuizzes from './PanelQuizzes'
 import { connect } from 'react-redux'
-import { selectDeck, setAppState, APP_STATES } from '../actions'
+import { selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions'
 import { Ionicons } from '@expo/vector-icons'
+
+const quizzesDummy = [
+  { question: 'One Quetion' },
+  { question: 'Two Quetion' },
+  { question: 'Three Quetion' }
+]
+
 
 export function ScreenDecksAndQuizzes(props) {
   const { decks, selectedDeckQuizzes, dispatch } = props
@@ -16,7 +23,7 @@ export function ScreenDecksAndQuizzes(props) {
       <View style={styles.containerDeckList}>
         <DeckCardList
           decks={decks}
-          onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key))}
+          onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key, quizzesDummy))}
         />
         <TouchableOpacity id={'addFabButton'} style={[styles.fabButton, styles.addButton]}
           onPress={() => dispatch(setAppState(APP_STATES.NEW_DECK))}>
@@ -24,7 +31,7 @@ export function ScreenDecksAndQuizzes(props) {
         </TouchableOpacity>
       </View>
       <View style={styles.containerDeckQuizzes}>
-        <PanelQuizzes quizzes={selectedDeckQuizzes} />
+        <PanelQuizzes {...props} />
       </View>
     </View>
   )
@@ -71,12 +78,26 @@ const styles = StyleSheet.create({
   },
 })
 
-function mapStateToProps(decks) {
-  return decks
+function mapStateToProps(props) {
+  return {
+    deck: props.decks.find(deck => deck.key === props.selectedDeckKey),
+    quizzes: props.selectedDeckQuizzes,
+    ...props
+  }
+}
+
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    onStartQuiz: () => {
+      dispatch(selectQuiz(0))
+    },
+    dispatch
+  }
 }
 
 const ScreenDecksAndQuizzesConnected = connect(
   mapStateToProps,
+  mapDispatchToProps
 )(ScreenDecksAndQuizzes)
 
 
