@@ -1,13 +1,14 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { View, FlatList, TouchableOpacity, Text } from 'react-native'
+import { View, FlatList, TouchableOpacity, Text, Button } from 'react-native'
 import PropTypes from 'prop-types'
-import { orange, white } from '../styles/colors'
+import { orange, white, red, blue } from '../styles/colors'
+import cardStyle from '../styles/cardStyles'
 import DeckCardList from './DeckCardList'
 import PanelQuizzes from './PanelQuizzes'
 import { connect } from 'react-redux'
 import { selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions'
-import { Ionicons } from '@expo/vector-icons'
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 const quizzesDummy = [
   { question: 'One Quetion' },
@@ -15,9 +16,8 @@ const quizzesDummy = [
   { question: 'Three Quetion' }
 ]
 
-
 export function ScreenDecksAndQuizzes(props) {
-  const { decks, selectedDeckQuizzes, dispatch } = props
+  const { decks, selectedDeckQuizzes, deck, dispatch } = props
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
@@ -31,6 +31,15 @@ export function ScreenDecksAndQuizzes(props) {
         </TouchableOpacity>
       </View>
       <View style={styles.containerDeckQuizzes}>
+        {deck && (
+          <View style={[cardStyle, styles.toolbar]} >
+            <Text style={styles.toolbarText}>{deck.title}</Text>
+            <TouchableOpacity
+              onPress={() => console.log('Edit deck')}>
+              <FontAwesome style={styles.toolbarButton} name='edit' />
+            </TouchableOpacity>
+          </View>
+        )}
         <PanelQuizzes {...props} />
       </View>
     </View>
@@ -48,6 +57,24 @@ const styles = StyleSheet.create({
   },
   containerDeckList: {
     width: '40%'
+  },
+  toolbar: {
+    flex: 0,
+    alignItems: 'center',
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    padding: 0,
+    height: 48,
+  },
+  toolbarText: {
+    fontWeight: 'bold',
+    paddingLeft: 20,
+    fontSize: 24
+  },
+  toolbarButton: {
+    paddingRight: 10,
+    fontSize: 32
   },
   containerDeckQuizzes: {
     marginRight: 20,

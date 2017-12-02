@@ -25,6 +25,6 @@ DeckCard.propTypes = {
 }
 
 const styles = StyleSheet.create({
-  title: { fontSize: 24, textAlign: 'left', paddingTop: 8 },
-  amountOfCards: { fontSize: 32, textAlign: 'right', }
+  title: { fontSize: 24, textAlign: 'left', paddingTop: 8, fontWeight: '400' },
+  amountOfCards: { fontSize: 32, textAlign: 'right', fontWeight: '500' }
 });

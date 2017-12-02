@@ -39,6 +39,7 @@ exports[`renders without crashing 1`] = `
       style={
         Object {
           "fontSize": 24,
+          "fontWeight": "400",
           "paddingTop": 8,
           "textAlign": "left",
         }
@@ -54,6 +55,7 @@ exports[`renders without crashing 1`] = `
       style={
         Object {
           "fontSize": 32,
+          "fontWeight": "500",
           "textAlign": "right",
         }
       }
