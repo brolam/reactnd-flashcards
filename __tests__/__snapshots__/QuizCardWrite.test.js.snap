@@ -1,47 +1,192 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<View
+<KeyboardAvoidingView
+  behavior="padding"
+  keyboardVerticalOffset={0}
   style={
     Array [
-      Object {
-        "backgroundColor": "#fff",
-        "flex": 1,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginLeft": 10,
-        "marginRight": 10,
-        "marginTop": 8,
-        "padding": 20,
-        "shadowColor": "rgba(0, 0, 0, 0.24)",
-        "shadowOpacity": 0.8,
-      },
-      Object {
-        "borderRadius": 8,
-        "shadowOffset": Object {
-          "height": 3,
-          "width": 0,
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 8,
+          "padding": 20,
+          "shadowColor": "rgba(0, 0, 0, 0.24)",
+          "shadowOpacity": 0.8,
         },
-        "shadowRadius": 3,
+        Object {
+          "borderRadius": 8,
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 0,
+          },
+          "shadowRadius": 3,
+        },
+      ],
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "marginBottom": 10,
       },
     ]
   }
 >
-  <TextInput
-    placeholder="Enter with a question."
+  <View
     style={
       Object {
-        "height": 40,
+        "height": "30%",
       }
     }
-  />
-  <TextInput
-    placeholder="Enter the answer to the question."
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+    >
+      Question
+    </Text>
+    <TextInput
+      blurOnSubmit={false}
+      multiline={true}
+      onSubmitEditing={[Function]}
+      placeholder="Enter with a question."
+      returnKeyType="next"
+      style={
+        Object {
+          "fontSize": 24,
+          "height": "90%",
+          "width": "100%",
+        }
+      }
+    />
+  </View>
+  <View
     style={
       Object {
-        "height": 40,
+        "height": "30%",
       }
     }
-  />
-</View>
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+    >
+      Answer
+    </Text>
+    <TextInput
+      blurOnSubmit={true}
+      multiline={true}
+      placeholder="Enter the answer to the question."
+      returnKeyType="done"
+      style={
+        Object {
+          "fontSize": 24,
+          "height": "90%",
+          "width": "100%",
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "space-around",
+        "marginBottom": 5,
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#292477",
+              "borderRadius": 3,
+              "borderWidth": 1,
+              "padding": 5,
+              "paddingLeft": 25,
+              "paddingRight": 25,
+            },
+          ],
+          Object {
+            "backgroundColor": "#3cb371",
+            "margin": 5,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 24,
+          }
+        }
+      >
+        Save as Correct
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#292477",
+              "borderRadius": 3,
+              "borderWidth": 1,
+              "padding": 5,
+              "paddingLeft": 25,
+              "paddingRight": 25,
+            },
+          ],
+          Object {
+            "backgroundColor": "#ff0000",
+            "margin": 5,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 24,
+          }
+        }
+      >
+        Save as Incorrect
+      </Text>
+    </TouchableOpacity>
+  </View>
+</KeyboardAvoidingView>
 `;

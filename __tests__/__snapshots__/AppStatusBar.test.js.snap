@@ -4,7 +4,7 @@ exports[`renders without crashing 1`] = `
 <View
   style={
     Object {
-      "backgroundColor": "#b71845",
+      "backgroundColor": "#ff0000",
       "height": 44,
     }
   }
@@ -15,7 +15,7 @@ exports[`renders without crashing 1`] = `
     showHideTransition="fade"
     style={
       Object {
-        "backgroundColor": "#b71845",
+        "backgroundColor": "#ff0000",
       }
     }
   />
