@@ -45,5 +45,6 @@ exports[`there are not quizzes 1`] = `
   >
     There are not quizzes
   </Text>
+  }
 </View>
 `;

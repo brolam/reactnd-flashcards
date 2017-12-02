@@ -25,14 +25,21 @@ export default function PanelQuizzes(
       <QuizCardQuestion {...quizzes[index]} />
   }
   
+  if (isWriteCard)
+    return (
+      <View style={styles.container}>
+        <QuizCardWrite />
+      </View>
+    )
+  if (hasQuiz(quizzes))
+    return (
+      <View style={styles.container}>
+        {hasQuiz(quizzes) && getQuizCardByIndex(selectedIndexQuiz)}
+      </View>
+    )
   return (
     <View style={styles.container}>
-      {isWriteCard && <QuizCardWrite />}
-      {hasQuiz(quizzes) && !isWriteCard ?
-        getQuizCardByIndex(selectedIndexQuiz)
-        :
-        <Text>There are not quizzes</Text>
-      }
+      <Text>There are not quizzes</Text>}
     </View>
   )
 }

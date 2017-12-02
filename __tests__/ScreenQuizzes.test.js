@@ -28,22 +28,11 @@ describe('browse the quizzes', () => {
   test('start quiz', () => {
     expect(screenQuizzesConnected.find('QuizCardStart').length).toEqual(1)
   });
-  
+
   test('first quiz', () => {
     screenQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
     expect(screenQuizzesConnected.text()).toEqual('One Quetion')
   });
-
-  /*
-
-  test('move to the Two quiz', () => {
-    panelQuizzes.find('TouchableOpacity [id="buttonNextQuiz"]').simulate('press')
-    expect(panelQuizzes.find('QuizCardQuestion').text()).toEqual('Two Quetion')
-  });
-  */
-
-
-
 })
 
 const deckDummies = [
