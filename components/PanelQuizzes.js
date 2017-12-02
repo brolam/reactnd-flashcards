@@ -4,24 +4,32 @@ import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
+import QuizCardWrite from './QuizCardWrite'
 
 export default function PanelQuizzes(
   { deck,
     quizzes,
     selectedIndexQuiz = -1,
-    onStartQuiz = () => { }
+    onStartQuiz = () => { },
+    isWriteCard = false
   }) {
-  function getQuizByIndex(index) {
+
+  function hasQuiz(quizzes) {
+    return quizzes && quizzes.length > 0
+  }
+
+  function getQuizCardByIndex(index) {
     return (index === -1) ?
       <QuizCardStart deck={deck} quizzes={quizzes} onStart={onStartQuiz} />
       :
       <QuizCardQuestion {...quizzes[index]} />
   }
-
+  
   return (
     <View style={styles.container}>
-      {quizzes && quizzes.length > 0 ?
-        getQuizByIndex(selectedIndexQuiz)
+      {isWriteCard && <QuizCardWrite />}
+      {hasQuiz(quizzes) && !isWriteCard ?
+        getQuizCardByIndex(selectedIndexQuiz)
         :
         <Text>There are not quizzes</Text>
       }

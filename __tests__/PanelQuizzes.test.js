@@ -26,6 +26,11 @@ test('first quiz', () => {
   expect(panelQuizzes.find('QuizCardQuestion').text()).toEqual('One Quetion')
 });
 
+test('write card', () => {
+  const panelQuizzes = shallow(<PanelQuizzes quizzes={[]} isWriteCard={true} />);
+  expect(panelQuizzes.find('QuizCardWrite').length).toEqual(1)
+});
+
 const deckDummy = { id: 'one-item', title: 'One Deck', amountOfCards: 10 }
 const quizzesDummy = [
   { question: 'One Quetion' },
