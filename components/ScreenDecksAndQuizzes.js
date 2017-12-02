@@ -82,6 +82,7 @@ function mapStateToProps(props) {
   return {
     deck: props.decks.find(deck => deck.key === props.selectedDeckKey),
     quizzes: props.selectedDeckQuizzes,
+    isWriteCard: props.appState === APP_STATES.NEW_DECK,
     ...props
   }
 }
