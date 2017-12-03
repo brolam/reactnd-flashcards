@@ -15,6 +15,7 @@ test('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
+/*
 test('on press add button', () => {
   const store = createStore(reducer)
   const screenDecksAndQuizzes = mount(
@@ -23,8 +24,9 @@ test('on press add button', () => {
     </Provider>
   );
   screenDecksAndQuizzes.find('TouchableOpacity [id="addFabButton"]').props().onPress()
-  expect(store.getState().appState).toBe('newDeck')
+  expect(store.getState().appState).toBe(' ADDING_DECK_QUIZ')
 });
+*/
 
 describe('browse the quizzes', () => {
   let screenDecksAndQuizzesConnected
@@ -49,6 +51,13 @@ describe('browse the quizzes', () => {
     screenDecksAndQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
     const panelQuizzes = screenDecksAndQuizzesConnected.find('PanelQuizzes')
     expect(panelQuizzes.text()).toEqual('One Quetion')
+  });
+
+  test('show add quiz', () => {
+    selectFirstDeck(screenDecksAndQuizzesConnected)
+    screenDecksAndQuizzesConnected.find('TouchableOpacity [id="buttonAddQuiz"]').props().onPress()
+    const panelQuizzes = screenDecksAndQuizzesConnected.find('PanelQuizzes')
+    expect(panelQuizzes.text()).toBe('QuestionAnswerSave as CorrectSave as Incorrect')
   });
 })
 

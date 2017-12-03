@@ -11,6 +11,7 @@ export default function PanelQuizzes(
     quizzes,
     selectedIndexQuiz = -1,
     onStartQuiz = () => { },
+    onAddQuiz = () => { },
     isWriteCard = false
   }) {
 
@@ -20,7 +21,11 @@ export default function PanelQuizzes(
 
   function getQuizCardByIndex(index) {
     return (index === -1) ?
-      <QuizCardStart deck={deck} quizzes={quizzes} onStart={onStartQuiz} />
+      <QuizCardStart
+        deck={deck}
+        quizzes={quizzes}
+        onStart={onStartQuiz}
+        onAddQuiz={onAddQuiz} />
       :
       <QuizCardQuestion {...quizzes[index]} />
   }

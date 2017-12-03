@@ -33,6 +33,11 @@ describe('browse the quizzes', () => {
     screenQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
     expect(screenQuizzesConnected.text()).toEqual('One Quetion')
   });
+
+  test('show new quiz', () => {
+    screenQuizzesConnected.find('TouchableOpacity [id="buttonAddQuiz"]').props().onPress()
+    expect(screenQuizzesConnected.text()).toBe('QuestionAnswerSave as CorrectSave as Incorrect')
+  });
 })
 
 const deckDummies = [

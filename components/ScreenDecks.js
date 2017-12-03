@@ -24,8 +24,9 @@ export class ScreenDecks extends React.PureComponent {
 
   componentWillMount() {
     const { appState, navigation, deck } = this.props
-    if ((appState === APP_STATES.NEW_DECK) || (appState === APP_STATES.STARTED_QUIZ))
+    if ((appState === APP_STATES.ADDING_DECK_QUIZ) || (appState === APP_STATES.STARTED_QUIZ)){
       navigation.navigate('Quizzes', { title: deck.title })
+    }
   }
 
   render() {
@@ -36,7 +37,7 @@ export class ScreenDecks extends React.PureComponent {
           decks={decks}
           onSelectedOneDeck={(deck) => {
             dispatch(selectDeck(deck.key, quizzesDummy))
-            navigation.navigate('Quizzes',  { title: deck.title })
+            navigation.navigate('Quizzes', { title: deck.title })
           }}
         />
       </View>
@@ -67,10 +68,7 @@ export default RootNavigator = StackNavigator({
     screen: ScreenDecksConnected,
     navigationOptions: ({ navigation }) => ({
       headerTitle: 'Decks',
-      headerRight: <Button title="Add" onPress={() => {
-        storeDispatch(setAppState(APP_STATES.NEW_DECK))
-        navigation.navigate('Quizzes', { title: 'New Deck' })
-      }} />,
+      headerRight: <Button title="Add" onPress={() => console.log('Add Deck')} />,
     }),
 
   },
@@ -79,7 +77,7 @@ export default RootNavigator = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       headerTitle: navigation.state.params.title,
       headerRight: <Button title="Edit" onPress={() => {
-       console.log('Edit Deck')
+        console.log('Edit Deck')
       }} />,
     }),
   },

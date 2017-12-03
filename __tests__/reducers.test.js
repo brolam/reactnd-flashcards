@@ -43,9 +43,9 @@ test('selectDeck', () => {
 
 test('setAppState', () => {
   const store = createStore(reducer)
-  store.dispatch(setAppState(APP_STATES.NEW_DECK))
+  store.dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ))
   expect(store.getState()).toEqual({
-    appState: APP_STATES.NEW_DECK,
+    appState: APP_STATES.ADDING_DECK_QUIZ,
     decks: [],
     selectedDeckQuizzes: [],
     selectedIndexQuiz: -1,

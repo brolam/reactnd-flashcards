@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import PanelQuizzes from './PanelQuizzes'
 import { connect } from 'react-redux'
-import { selectQuiz, APP_STATES } from '../actions/index';
+import { selectQuiz, APP_STATES, setAppState } from '../actions/index';
 
 export function ScreenQuizzes(props) {
   return (
@@ -29,16 +29,15 @@ function mapStateToProps(props) {
   return {
     deck: props.decks.find(deck => deck.key === props.selectedDeckKey),
     quizzes: props.selectedDeckQuizzes,
-    isWriteCard: props.appState === APP_STATES.NEW_DECK,
+    isWriteCard: props.appState === APP_STATES.ADDING_DECK_QUIZ,
     ...props
   }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onStartQuiz: () => {
-      dispatch(selectQuiz(0))
-    },
+    onStartQuiz: () => dispatch(selectQuiz(0)),
+    onAddQuiz: () => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ)),
   }
 }
 

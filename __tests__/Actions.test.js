@@ -30,10 +30,10 @@ test('selectDeck', () => {
 });
 
 test('setAppState', () => {
-  expect(setAppState(APP_STATES.NEW_DECK)).toEqual(
+  expect(setAppState(APP_STATES.ADDING_DECK_QUIZ)).toEqual(
     {
       type: SET_APP_STATE,
-      appState: APP_STATES.NEW_DECK
+      appState: APP_STATES.ADDING_DECK_QUIZ
     }
   )
 });

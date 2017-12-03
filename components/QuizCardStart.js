@@ -6,7 +6,12 @@ import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { white, green, red, orange, lightPurp } from '../styles/colors'
 
-export default function QuizCardStart({ deck, quizzes, onStart = () => { } }) {
+export default function QuizCardStart(
+  { deck,
+    quizzes,
+    onStart = () => { },
+    onAddQuiz = () => { }
+  }) {
   return (
     <View style={[cardStyle, styles.container]}>
       <Text style={styles.amountOfCards}>Last Score 99% </Text>
@@ -21,7 +26,7 @@ export default function QuizCardStart({ deck, quizzes, onStart = () => { } }) {
         <TouchableOpacity
           style={[buttonStyle, styles.buttonAdd]}
           id="buttonAddQuiz"
-          onPress={() => console.log('Add quiz')}>
+          onPress={onAddQuiz}>
           <Text style={styles.textButtons} >Add</Text>
         </TouchableOpacity>
         <TouchableOpacity

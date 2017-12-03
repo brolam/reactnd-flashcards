@@ -26,7 +26,7 @@ export function ScreenDecksAndQuizzes(props) {
           onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key, quizzesDummy))}
         />
         <TouchableOpacity id={'addFabButton'} style={[styles.fabButton, styles.addButton]}
-          onPress={() => dispatch(setAppState(APP_STATES.NEW_DECK))}>
+          onPress={() => console.log('Add Deck')}>
           <Ionicons name='md-add' size={30} color={white} />
         </TouchableOpacity>
       </View>
@@ -109,16 +109,15 @@ function mapStateToProps(props) {
   return {
     deck: props.decks.find(deck => deck.key === props.selectedDeckKey),
     quizzes: props.selectedDeckQuizzes,
-    isWriteCard: props.appState === APP_STATES.NEW_DECK,
+    isWriteCard: props.appState === APP_STATES.ADDING_DECK_QUIZ,
     ...props
   }
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onStartQuiz: () => {
-      dispatch(selectQuiz(0))
-    },
+    onStartQuiz: () => dispatch(selectQuiz(0)),
+    onAddQuiz: () => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ)),
     dispatch
   }
 }
