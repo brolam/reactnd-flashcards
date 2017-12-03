@@ -10,19 +10,6 @@ test('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-/*
-test('on press add button', () => {
-  const store = createStore(reducer)
-  const screenDecks = mount(
-    <Provider store={store}>
-      <ScreenDecksConnected />
-    </Provider>
-  );
-  screenDecks.find('Button [title="Add"]').props().onPress()
-  expect(store.getState().appState).toBe('ADDING_DECK_QUIZ')
-});
-*/
-
 const deckDummies = [
   { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
   { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },

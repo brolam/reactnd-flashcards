@@ -47,7 +47,13 @@ exports[`renders without crashing 1`] = `
     }
   >
     <AppStatusBar />
-    <NavigationContainer />
+    <NavigationContainer
+      screenProps={
+        Object {
+          "onAddDeck": [Function],
+        }
+      }
+    />
   </View>
 </Provider>
 `;

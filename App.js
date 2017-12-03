@@ -4,6 +4,7 @@ import appStyles from './styles/appStyles'
 import AppStatusBar from './components/AppStatusBar'
 import ScreenDecks from './components/ScreenDecks'
 import ScreenDecksAndQuizzes from './components/ScreenDecksAndQuizzes'
+import DeckWriteModal from './components/DeckWriteModal'
 import { isPossibleTwoPanels } from './util/ScreenHelper';
 import Dimensions from 'Dimensions';
 import { createStore } from 'redux'
@@ -16,10 +17,13 @@ const store = createStore(reducer)
 export default class App extends React.Component {
   constructor(props) {
     super();
-    this.state = {  ...this.state, isTwoPanels: props.isTwoPanels, selectedDeck: undefined };
+    this.state = {
+      isTwoPanels: props.isTwoPanels,
+      isAddingDeck: false
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     store.dispatch(receiveDecks(deckDummies))
   }
 
@@ -27,17 +31,23 @@ export default class App extends React.Component {
     this.setState({ isTwoPanels: isPossibleTwoPanels(Dimensions.get('window')) });
   }
 
+  onAddDeck = () => {
+    this.setState({ isAddingDeck: true })
+  }
+
   render() {
+    const { isAddingDeck } = this.state
     return (
       <Provider store={store}>
         <View style={appStyles.container} onLayout={this.onLayoutChanged} >
           <AppStatusBar />
           {
             (this.state.isTwoPanels) ?
-              <ScreenDecksAndQuizzes/>
+              <ScreenDecksAndQuizzes />
               :
-              <ScreenDecks/>
+              <ScreenDecks screenProps={{ onAddDeck: this.onAddDeck }} />
           }
+          {isAddingDeck && <DeckWriteModal title="New Deck" />}
         </View>
       </Provider>
     );
@@ -45,8 +55,8 @@ export default class App extends React.Component {
 }
 
 const deckDummies = [
-  { key:'deck1', title: 'One Deck', amountOfCards: 10 },
-  { key:'deck2', title: 'Two Deck', amountOfCards: 11 },
-  { key:'deck3', title: 'Three Deck', amountOfCards: 12 }
+  { key: 'deck1', title: 'One Deck', amountOfCards: 10 },
+  { key: 'deck2', title: 'Two Deck', amountOfCards: 11 },
+  { key: 'deck3', title: 'Three Deck', amountOfCards: 12 }
 ]
 

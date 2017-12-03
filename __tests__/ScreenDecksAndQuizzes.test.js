@@ -15,19 +15,6 @@ test('renders without crashing', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-/*
-test('on press add button', () => {
-  const store = createStore(reducer)
-  const screenDecksAndQuizzes = mount(
-    <Provider store={store}>
-      <ScreenDecksAndQuizzesConnected />
-    </Provider>
-  );
-  screenDecksAndQuizzes.find('TouchableOpacity [id="addFabButton"]').props().onPress()
-  expect(store.getState().appState).toBe(' ADDING_DECK_QUIZ')
-});
-*/
-
 describe('browse the quizzes', () => {
   let screenDecksAndQuizzesConnected
 

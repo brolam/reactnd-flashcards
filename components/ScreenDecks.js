@@ -6,7 +6,7 @@ import DeckCardList from './DeckCardList'
 import { StackNavigator } from 'react-navigation';
 import ScreenQuizzes from './ScreenQuizzes'
 import { connect } from 'react-redux'
-import { selectDeck, setAppState, SET_APP_STATE, APP_STATES } from '../actions'
+import { selectDeck, APP_STATES } from '../actions'
 
 const quizzesDummy = [
   { question: 'One Quetion' },
@@ -14,17 +14,14 @@ const quizzesDummy = [
   { question: 'Three Quetion' }
 ]
 
-let storeDispatch = {}
-
 export class ScreenDecks extends React.PureComponent {
   constructor(props) {
     super();
-    storeDispatch = props.dispatch
   }
 
   componentWillMount() {
     const { appState, navigation, deck } = this.props
-    if ((appState === APP_STATES.ADDING_DECK_QUIZ) || (appState === APP_STATES.STARTED_QUIZ)){
+    if ((appState === APP_STATES.ADDING_DECK_QUIZ) || (appState === APP_STATES.STARTED_QUIZ)) {
       navigation.navigate('Quizzes', { title: deck.title })
     }
   }
@@ -66,11 +63,10 @@ const ScreenDecksConnected = connect(
 export default RootNavigator = StackNavigator({
   Home: {
     screen: ScreenDecksConnected,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation, screenProps }) => ({
       headerTitle: 'Decks',
-      headerRight: <Button title="Add" onPress={() => console.log('Add Deck')} />,
+      headerRight: <Button title="Add" onPress={() => screenProps.onAddDeck()} />,
     }),
-
   },
   Quizzes: {
     screen: ScreenQuizzes,
