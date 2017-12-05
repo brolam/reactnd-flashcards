@@ -17,7 +17,7 @@ const quizzesDummy = [
 ]
 
 export function ScreenDecksAndQuizzes(props) {
-  const { decks, selectedDeckQuizzes, deck, dispatch } = props
+  const { decks, selectedDeckQuizzes, deck, dispatch, onClickAddDeck } = props
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
@@ -26,7 +26,7 @@ export function ScreenDecksAndQuizzes(props) {
           onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key, quizzesDummy))}
         />
         <TouchableOpacity id={'addFabButton'} style={[styles.fabButton, styles.addButton]}
-          onPress={() => console.log('Add Deck')}>
+          onPress={onClickAddDeck}>
           <Ionicons name='md-add' size={30} color={white} />
         </TouchableOpacity>
       </View>

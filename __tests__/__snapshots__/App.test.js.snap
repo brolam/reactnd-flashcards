@@ -21,7 +21,9 @@ exports[`renders two panels without crashing 1`] = `
     }
   >
     <AppStatusBar />
-    <Connect(ScreenDecksAndQuizzes) />
+    <Connect(ScreenDecksAndQuizzes)
+      onClickAddDeck={[Function]}
+    />
   </View>
 </Provider>
 `;
@@ -50,7 +52,7 @@ exports[`renders without crashing 1`] = `
     <NavigationContainer
       screenProps={
         Object {
-          "onAddDeck": [Function],
+          "onClickAddDeck": [Function],
         }
       }
     />

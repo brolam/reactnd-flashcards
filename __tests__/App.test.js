@@ -11,7 +11,7 @@ test('renders two panels without crashing', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-describe('new deck with one panel', () => {
+describe('new Deck Modal with one panel', () => {
   let app
   beforeEach(() => {
     app = mount(<App />);
@@ -19,8 +19,32 @@ describe('new deck with one panel', () => {
 
   test('show add Deck modal', () => {
     app.find('Button [title="Add"]').props().onPress()
-    const { isAddingDeck } = app.state()
-    expect(isAddingDeck).toBe(true)
+    expect(app.state().isAddingDeck).toBe(true)
+  });
+
+  test('cancel add Deck modal', () => {
+    app.find('Button [title="Add"]').props().onPress()
+    app.instance().onClickCancelAddDeck()
+    expect(app.state().isAddingDeck).toBe(false)    
+  });
+
+})
+
+describe('new Deck Modal with two panels', () => {
+  let app
+  beforeEach(() => {
+    app = mount(<App isTwoPanels={true} />);
+  })
+
+  test('show add Deck modal', () => {
+    app.find('TouchableOpacity [id="addFabButton"]').props().onPress()
+    expect(app.state().isAddingDeck).toBe(true)
+  });
+
+  test('cancel add Deck modal', () => {
+    app.find('TouchableOpacity [id="addFabButton"]').props().onPress()
+    app.instance().onClickCancelAddDeck()
+    expect(app.state().isAddingDeck).toBe(false)    
   });
 
 })

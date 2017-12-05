@@ -14,7 +14,7 @@ import { white, green, red } from '../styles/colors'
 
 export default function DeckWriteModal(props) {
   return (
-    <Modal animationType='fade' transparent={true} >
+    <Modal animationType='fade' transparent={true}  onRequestClose={() =>{}} >
       {Platform.OS === 'ios' ?
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
           <DeckWriteBody {...props} />
@@ -38,13 +38,14 @@ function DeckWriteBody(props) {
         onChange={() => { }} />
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
+          id="buttonSave"
           style={[buttonStyle, styles.buttonSave]}
           onPress={() => console.log('Save Deck')}>
           <Text style={styles.textButtons}>Save</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[buttonStyle, styles.buttonCancel]}
-          onPress={() => console.log('Cancel Add Deck')}>
+          onPress={props.onCancel}>
           <Text style={styles.textButtons}>Cancel</Text>
         </TouchableOpacity>
       </View>

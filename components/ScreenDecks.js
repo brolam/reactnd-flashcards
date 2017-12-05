@@ -65,7 +65,7 @@ export default RootNavigator = StackNavigator({
     screen: ScreenDecksConnected,
     navigationOptions: ({ navigation, screenProps }) => ({
       headerTitle: 'Decks',
-      headerRight: <Button title="Add" onPress={() => screenProps.onAddDeck()} />,
+      headerRight: <Button title="Add" onPress={() => screenProps.onClickAddDeck()} />,
     }),
   },
   Quizzes: {

@@ -41,7 +41,6 @@ exports[`renders without crashing 1`] = `
     <TouchableOpacity
       activeOpacity={0.2}
       id="addFabButton"
-      onPress={[Function]}
       style={
         Array [
           Object {

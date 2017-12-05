@@ -31,8 +31,12 @@ export default class App extends React.Component {
     this.setState({ isTwoPanels: isPossibleTwoPanels(Dimensions.get('window')) });
   }
 
-  onAddDeck = () => {
+  onClickAddDeck = () => {
     this.setState({ isAddingDeck: true })
+  }
+
+  onClickCancelAddDeck = () => {
+    this.setState({ isAddingDeck: false })
   }
 
   render() {
@@ -43,11 +47,14 @@ export default class App extends React.Component {
           <AppStatusBar />
           {
             (this.state.isTwoPanels) ?
-              <ScreenDecksAndQuizzes />
+              <ScreenDecksAndQuizzes onClickAddDeck={this.onClickAddDeck} />
               :
-              <ScreenDecks screenProps={{ onAddDeck: this.onAddDeck }} />
+              <ScreenDecks screenProps={{ onClickAddDeck: this.onClickAddDeck }} />
           }
-          {isAddingDeck && <DeckWriteModal title="New Deck" />}
+          {isAddingDeck && <DeckWriteModal
+            title="New Deck"
+            onCancel={this.onClickCancelAddDeck}
+          />}
         </View>
       </Provider>
     );
