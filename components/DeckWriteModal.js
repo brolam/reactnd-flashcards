@@ -31,10 +31,10 @@ export default function DeckWriteModal(props) {
 }
 
 function DeckWriteBody(props) {
-  let textInputTile
+  let textInputTile = {}
   function onSave() {
     if (textInputTile.value && textInputTile.value.length > 0)
-      props.onSave && props.onSave()
+      props.onSave && props.onSave(textInputTile.value)
     else {
       Alert.alert('Title is required')
     }
@@ -46,7 +46,7 @@ function DeckWriteBody(props) {
         ref={input => { textInputTile = input }}
         placeholder="Enter with a Deck Title."
         style={styles.titleTextInput}
-        onChange={() => { }} />
+        onChangeText={text => textInputTile.value = text} />
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={[buttonStyle, styles.buttonSave]}

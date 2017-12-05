@@ -25,7 +25,7 @@ describe('new Deck Modal with one panel', () => {
   test('cancel add Deck modal', () => {
     app.find('Button [title="Add"]').props().onPress()
     app.instance().onClickCancelAddDeck()
-    expect(app.state().isAddingDeck).toBe(false)    
+    expect(app.state().isAddingDeck).toBe(false)
   });
 
 })
@@ -44,7 +44,14 @@ describe('new Deck Modal with two panels', () => {
   test('cancel add Deck modal', () => {
     app.find('TouchableOpacity [id="addFabButton"]').props().onPress()
     app.instance().onClickCancelAddDeck()
-    expect(app.state().isAddingDeck).toBe(false)    
+    expect(app.state().isAddingDeck).toBe(false)
   });
 
 })
+
+test('Add Deck with one panel', () => {
+  const app = mount(<App />);
+  app.find('Button [title="Add"]').props().onPress()
+  app.instance().onSaveDeck('One Deck')
+  expect(app.state().isAddingDeck).toBe(false)
+});

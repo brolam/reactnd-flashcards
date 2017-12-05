@@ -9,8 +9,9 @@ import { isPossibleTwoPanels } from './util/ScreenHelper';
 import Dimensions from 'Dimensions';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { receiveDecks } from './actions'
+import { receiveDecks, setDeck } from './actions'
 import reducer from './reducers'
+import { getNewDeck } from './storage/index';
 
 const store = createStore(reducer)
 
@@ -39,6 +40,12 @@ export default class App extends React.Component {
     this.setState({ isAddingDeck: false })
   }
 
+  onSaveDeck = (title) => {
+    const newDeck = getNewDeck(title)
+    store.dispatch(setDeck(newDeck))
+    this.setState({ isAddingDeck: false })
+  }
+
   render() {
     const { isAddingDeck } = this.state
     return (
@@ -54,6 +61,7 @@ export default class App extends React.Component {
           {isAddingDeck && <DeckWriteModal
             title="New Deck"
             onCancel={this.onClickCancelAddDeck}
+            onSave={this.onSaveDeck}
           />}
         </View>
       </Provider>
