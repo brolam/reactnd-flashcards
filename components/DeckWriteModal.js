@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import {
+  StyleSheet,
+  Alert,
   Modal,
   View,
   Text,
@@ -29,15 +30,20 @@ export default function DeckWriteModal(props) {
   )
 }
 
-
 function DeckWriteBody(props) {
+  let textInputTile
   function onSave() {
-    props.onSave && props.onSave()
+    if (textInputTile.value && textInputTile.value.length > 0)
+      props.onSave && props.onSave()
+    else {
+      Alert.alert('Title is required')
+    }
   }
   return (
     <View style={[cardStyle, styles.body]}>
       <Text style={styles.title}>{props.title}</Text>
       <TextInput
+        ref={input => { textInputTile = input }}
         placeholder="Enter with a Deck Title."
         style={styles.titleTextInput}
         onChange={() => { }} />
