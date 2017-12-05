@@ -1,6 +1,7 @@
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const SELECT_DECK = 'SELECT_DECK'
 export const SET_APP_STATE = 'SET_APP_STATE'
+export const SET_DECK = 'SET_DECK'
 export const SELECT_QUIZ = 'SELECT_QUIZ'
 export const APP_STATES = {
   NAVIGATE_DECK: 'navigate_deck',
@@ -34,5 +35,12 @@ export function selectQuiz(index) {
   return {
     type: SELECT_QUIZ,
     selectIndexQuiz: index
+  }
+}
+
+export function setDeck(deck) {
+  return {
+    type: SET_DECK,
+    deck
   }
 }

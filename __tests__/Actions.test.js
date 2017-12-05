@@ -3,12 +3,16 @@ import {
   SELECT_DECK,
   SELECT_QUIZ,
   SET_APP_STATE,
+  SET_DECK,
   APP_STATES,
   receiveDecks,
   selectDeck,
   setAppState,
-  selectQuiz
+  selectQuiz,
+  setDeck
 } from '../actions'
+
+import {getNewDeck} from '../storage'
 
 test('receiveDecks', () => {
   expect(receiveDecks(deckDummies)).toEqual(
@@ -43,6 +47,16 @@ test('selectIndexQuiz', () => {
     {
       type: SELECT_QUIZ,
       selectIndexQuiz: 0
+    }
+  )
+});
+
+test('setDeck', () => {
+  const newDeck = getNewDeck('One Deck')
+  expect(setDeck(newDeck)).toEqual(
+    {
+      type: SET_DECK,
+      deck: newDeck
     }
   )
 });
