@@ -24,8 +24,10 @@ function copyProps(src, target) {
   Object.defineProperties(target, props);
 }
 
-setUpDomEnvironment();
+console.warn = jest.genMockFunction();
+console.error = jest.genMockFunction();
 
+setUpDomEnvironment();
 
 // React 16 Enzyme adapter
 Enzyme.configure({ adapter: new Adapter() });
