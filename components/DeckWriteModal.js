@@ -9,12 +9,13 @@ import {
   KeyboardAvoidingView,
   Platform
 } from 'react-native'
-import CardStyle from '../styles/cardStyles'
+import cardStyle from '../styles/cardStyles'
+import buttonStyle from '../styles/buttonStyles'
 import { white, green, red } from '../styles/colors'
 
 export default function DeckWriteModal(props) {
   return (
-    <Modal animationType='fade' transparent={true}  onRequestClose={() =>{}} >
+    <Modal animationType='fade' transparent={true} onRequestClose={() => { }} >
       {Platform.OS === 'ios' ?
         <KeyboardAvoidingView behavior='padding' style={styles.container}>
           <DeckWriteBody {...props} />
@@ -28,9 +29,13 @@ export default function DeckWriteModal(props) {
   )
 }
 
+
 function DeckWriteBody(props) {
+  function onSave() {
+    props.onSave && props.onSave()
+  }
   return (
-    <View style={[CardStyle, styles.body]}>
+    <View style={[cardStyle, styles.body]}>
       <Text style={styles.title}>{props.title}</Text>
       <TextInput
         placeholder="Enter with a Deck Title."
@@ -38,9 +43,8 @@ function DeckWriteBody(props) {
         onChange={() => { }} />
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          id="buttonSave"
           style={[buttonStyle, styles.buttonSave]}
-          onPress={() => console.log('Save Deck')}>
+          onPress={onSave}>
           <Text style={styles.textButtons}>Save</Text>
         </TouchableOpacity>
         <TouchableOpacity
