@@ -3,7 +3,8 @@ import {
   SELECT_DECK,
   SELECT_QUIZ,
   SET_APP_STATE,
-  APP_STATES
+  APP_STATES,
+  SET_DECK
 } from '../actions'
 
 const INIT_STATE = {
@@ -39,6 +40,12 @@ function decks(state = INIT_STATE, action) {
       return {
         ...state,
         appState: action.appState,
+      }
+    case SET_DECK:
+      const decks = [action.deck, ...state.decks]
+      return {
+        ...state,
+        decks
       }
     default:
       return state

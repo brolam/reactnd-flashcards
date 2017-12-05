@@ -5,8 +5,10 @@ import {
   selectDeck,
   selectQuiz,
   setAppState,
-  APP_STATES
+  APP_STATES,
+  setDeck
 } from '../actions'
+import {getNewDeck} from '../storage'
 
 test('init status', () => {
   const store = createStore(reducer)
@@ -58,6 +60,18 @@ test('selectQuiz', () => {
   expect(store.getState()).toEqual({
     appState: APP_STATES.STARTED_QUIZ,
     decks: [],
+    selectedDeckQuizzes: [],
+    selectedIndexQuiz: -1
+  })
+});
+
+test('setDeck', () => {
+  const store = createStore(reducer)
+  const newDeck = getNewDeck('One Deck')
+  store.dispatch(setDeck(newDeck))
+  expect(store.getState()).toEqual({
+    appState: APP_STATES.NAVIGATE_DECK,
+    decks: [newDeck],
     selectedDeckQuizzes: [],
     selectedIndexQuiz: -1
   })
