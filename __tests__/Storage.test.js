@@ -3,7 +3,7 @@ import MockAsyncStorage from 'mock-async-storage'
 const mockImpl = new MockAsyncStorage()
 jest.mock('AsyncStorage', () => mockImpl)
 
-import { getNewDeck, setDecks, fetchDecks } from '../storage'
+import { getNewDeck, setDecks, fetchDecks, setDeck } from '../storage'
 
 describe('storage Decks', () => {
 
@@ -25,6 +25,20 @@ describe('storage Decks', () => {
       expect(decks[0]).toEqual(oneDeck)
       expect(decks[1]).toEqual(twoDeck)
     }).catch(reason => console.log(reason))
+
+  });
+
+  test('Set a new Deck', () => {
+    const oneDeck = getNewDeck('One Deck')
+    const twoDeck = getNewDeck('Two Deck')
+    const threeDeck = getNewDeck('Three Deck')
+    const decks = [oneDeck, twoDeck]
+    setDecks(decks)
+    setDeck(threeDeck).then(() => {
+      fetchDecks().then(decks => {
+        expect(decks[0]).toEqual(threeDeck)
+      })
+    })
 
   });
 })
