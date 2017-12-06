@@ -14,8 +14,14 @@ export default function QuizCardWrite({ onSave = (question, answer, answerExpect
   function parseFields(answerExpect) {
     const question = textInputQuestion.value
     const answer = textInputAnswer.value
-    if (!question  || question.length == 0 ){
+    if (!question || question.length == 0) {
+      textInputQuestion.focus()
       Alert.alert('Question is required!')
+      return
+    }
+    if (!answer || answer.length == 0) {
+      textInputAnswer.focus()
+      Alert.alert('Answer is required!')
       return
     }
     onSave(question, answer, answerExpect)

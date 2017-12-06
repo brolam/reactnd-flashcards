@@ -44,6 +44,20 @@ test('question field is required', () => {
   expect(onSave).not.toHaveBeenCalled();
 });
 
+test('answer field is required', () => {
+  const onSave = jest.fn()
+  const quizCardWrite = mount(
+    <QuizCardWrite
+      onSave={onSave}
+    />);
+  fillQuziCardWriteInputs(quizCardWrite)
+  const textInputAnswer = quizCardWrite.find('TextInput').at(2)
+  const buttonSaveInCorrect = quizCardWrite.find('TouchableOpacity').at(1)
+  textInputAnswer.props().onChangeText('')
+  buttonSaveInCorrect.props().onPress()
+  expect(onSave).not.toHaveBeenCalled();
+});
+
 function fillQuziCardWriteInputs(quizCardWrite){
   const textInputQuestion = quizCardWrite.find('TextInput').at(0)
   const textInputAnswer = quizCardWrite.find('TextInput').at(2)
