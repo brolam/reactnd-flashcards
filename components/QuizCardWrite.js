@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, Alert } from 'react-native'
 import { View, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import PropTypes from 'prop-types'
 import cardStyle from '../styles/cardStyles'
@@ -14,6 +14,10 @@ export default function QuizCardWrite({ onSave = (question, answer, answerExpect
   function parseFields(answerExpect) {
     const question = textInputQuestion.value
     const answer = textInputAnswer.value
+    if (!question  || question.length == 0 ){
+      Alert.alert('Question is required!')
+      return
+    }
     onSave(question, answer, answerExpect)
   }
   return (

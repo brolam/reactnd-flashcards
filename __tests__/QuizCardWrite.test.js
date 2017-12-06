@@ -30,6 +30,19 @@ test('onSave event expect an answer incorrect', () => {
   expect(onSave).toHaveBeenCalledWith('One Question', 'One Answer', false);
 });
 
+test('question field is required', () => {
+  const onSave = jest.fn()
+  const quizCardWrite = mount(
+    <QuizCardWrite
+      onSave={onSave}
+    />);
+  fillQuziCardWriteInputs(quizCardWrite)
+  const textInputQuestion = quizCardWrite.find('TextInput').at(0)
+  const buttonSaveInCorrect = quizCardWrite.find('TouchableOpacity').at(1)
+  textInputQuestion.props().onChangeText('')
+  buttonSaveInCorrect.props().onPress()
+  expect(onSave).not.toHaveBeenCalled();
+});
 
 function fillQuziCardWriteInputs(quizCardWrite){
   const textInputQuestion = quizCardWrite.find('TextInput').at(0)
