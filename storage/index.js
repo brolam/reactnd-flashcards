@@ -16,6 +16,16 @@ export function getNewDeck(title, amountOfCards = 0) {
   }
 }
 
+export function getNewQuiz(question, answer, answerExpect, answered = undefined) {
+  return {
+    key: newKey(),
+    question,
+    answer,
+    answerExpect,
+    answered
+  }
+}
+
 export function setDecks(decks) {
   const stringifyDecks = JSON.stringify(decks)
   return AsyncStorage.setItem(DECKS_STORAGE_KEY, stringifyDecks)

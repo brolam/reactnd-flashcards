@@ -1,9 +1,13 @@
 import MockAsyncStorage from 'mock-async-storage'
-
 const mockImpl = new MockAsyncStorage()
 jest.mock('AsyncStorage', () => mockImpl)
-
-import { getNewDeck, setDecks, fetchDecks, setDeck } from '../storage'
+import {
+  getNewDeck,
+  setDecks,
+  fetchDecks,
+  setDeck,
+  getNewQuiz
+} from '../storage'
 
 describe('storage Decks', () => {
 
@@ -36,7 +40,7 @@ describe('storage Decks', () => {
     const startedDecks = [oneDeck, twoDeck]
     setDecks(startedDecks)
     expect.assertions(1);
-    return setDeck(threeDeck).then( () => {
+    return setDeck(threeDeck).then(() => {
       fetchDecks().then(decks => {
         expect(decks[0]).toEqual(threeDeck)
       })
@@ -46,21 +50,29 @@ describe('storage Decks', () => {
   test('Set an existing Deck', () => {
     const now = Date.now()
     const oneDeck = getNewDeck('One Deck')
-    let twoDeck = {...getNewDeck('Two Deck'), lastUpdated:0}
+    let twoDeck = { ...getNewDeck('Two Deck'), lastUpdated: 0 }
     const startedDecks = [oneDeck, twoDeck]
     setDecks(startedDecks)
-    const twoDeckUpdated = {...twoDeck, title:'Two Deck Updated' }
+    const twoDeckUpdated = { ...twoDeck, title: 'Two Deck Updated' }
     expect.assertions(3);
     return setDeck(twoDeckUpdated).then(() => {
-      fetchDecks().then( decks => {
+      fetchDecks().then(decks => {
         expect(decks.length).toBe(2)
         expect(decks[0].title).toBe('Two Deck Updated')
         expect(decks[0].lastUpdated).toBeGreaterThanOrEqual(now)
       })
     })
   });
+})
 
+describe('storage Quiz', () => {
 
-
-
+  test('new Quiz', () => {
+    const newQuiz = getNewQuiz('Question One', 'Answer One', true)
+    expect(newQuiz.key).toHaveLength(15)
+    expect(newQuiz.question).toEqual('Question One')
+    expect(newQuiz.answer).toEqual('Answer One')
+    expect(newQuiz.answerExpect).toBe(true)
+    expect(newQuiz.answered).toBe(undefined)
+  })
 })
