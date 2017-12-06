@@ -21,6 +21,7 @@ describe('storage Decks', () => {
     const twoDeck = getNewDeck('Two Deck')
     const decks = [oneDeck, twoDeck]
     setDecks(decks)
+    expect.assertions(2);
     fetchDecks().then(decks => {
       expect(decks[0]).toEqual(oneDeck)
       expect(decks[1]).toEqual(twoDeck)
@@ -32,13 +33,34 @@ describe('storage Decks', () => {
     const oneDeck = getNewDeck('One Deck')
     const twoDeck = getNewDeck('Two Deck')
     const threeDeck = getNewDeck('Three Deck')
-    const decks = [oneDeck, twoDeck]
-    setDecks(decks)
-    setDeck(threeDeck).then(() => {
+    const startedDecks = [oneDeck, twoDeck]
+    setDecks(startedDecks)
+    expect.assertions(1);
+    return setDeck(threeDeck).then( () => {
       fetchDecks().then(decks => {
         expect(decks[0]).toEqual(threeDeck)
       })
     })
-
   });
+
+  test('Set an existing Deck', () => {
+    const now = Date.now()
+    const oneDeck = getNewDeck('One Deck')
+    let twoDeck = {...getNewDeck('Two Deck'), lastUpdated:0}
+    const startedDecks = [oneDeck, twoDeck]
+    setDecks(startedDecks)
+    const twoDeckUpdated = {...twoDeck, title:'Two Deck Updated' }
+    expect.assertions(3);
+    return setDeck(twoDeckUpdated).then(() => {
+      fetchDecks().then( decks => {
+        expect(decks.length).toBe(2)
+        expect(decks[0].title).toBe('Two Deck Updated')
+        expect(decks[0].lastUpdated).toBeGreaterThanOrEqual(now)
+      })
+    })
+  });
+
+
+
+
 })

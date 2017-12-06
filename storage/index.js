@@ -26,11 +26,14 @@ export function fetchDecks() {
     .then(result => JSON.parse(result))
 }
 
-export const setDeck = deck => new Promise(function (then) {
+export const setDeck = deckUnSaved => new Promise(function (then) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then(result => {
-      const lastDecksStored = JSON.parse(result)
-      const updatedDecks = [deck, ...lastDecksStored]
+      const lastDecksStoredWithoutDeckUnSaved = JSON.parse(result).filter(
+        deck => deck.key !== deckUnSaved.key
+      )
+      deckUnSaved.lastUpdated = Date.now()
+      const updatedDecks = [deckUnSaved, ...lastDecksStoredWithoutDeckUnSaved]
       setDecks(updatedDecks).then(then())
     })
 })
