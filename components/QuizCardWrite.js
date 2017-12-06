@@ -56,7 +56,7 @@ export default function QuizCardWrite({ onSave = (question, answer, answerExpect
         </TouchableOpacity>
         <TouchableOpacity
           style={[buttonStyle, styles.buttonSaveAsIncorrect]}
-          onPress={() => console.log('on Save as incorrect')}>
+          onPress={() => parseFields(false)}>
           <Text style={styles.textButtons}>Save as Incorrect</Text>
         </TouchableOpacity>
       </View>
