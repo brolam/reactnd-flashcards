@@ -9,9 +9,10 @@ import { isPossibleTwoPanels } from './util/ScreenHelper';
 import Dimensions from 'Dimensions';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { receiveDecks, setDeck } from './actions'
+import { receiveDecks } from './actions'
 import reducer from './reducers'
-import { getNewDeck } from './storage/index';
+import { fetchDecks, getNewDeck, setDeck } from './storage/index';
+
 
 const store = createStore(reducer)
 
@@ -25,7 +26,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    store.dispatch(receiveDecks(deckDummies))
+    fetchDecks().then(decks => store.dispatch(receiveDecks(decks)))
   }
 
   onLayoutChanged = event => {
@@ -42,8 +43,10 @@ export default class App extends React.Component {
 
   onSaveDeck = (title) => {
     const newDeck = getNewDeck(title)
-    store.dispatch(setDeck(newDeck))
-    this.setState({ isAddingDeck: false })
+    setDeck(newDeck).then(decks => {
+      store.dispatch(receiveDecks(decks))
+      this.setState({ isAddingDeck: false })
+    })
   }
 
   render() {
@@ -58,20 +61,15 @@ export default class App extends React.Component {
               :
               <ScreenDecks screenProps={{ onClickAddDeck: this.onClickAddDeck }} />
           }
-          {isAddingDeck && <DeckWriteModal
-            title="New Deck"
-            onCancel={this.onClickCancelAddDeck}
-            onSave={this.onSaveDeck}
-          />}
+          {isAddingDeck &&
+            <DeckWriteModal
+              title="New Deck"
+              onCancel={this.onClickCancelAddDeck}
+              onSave={this.onSaveDeck}
+            />
+          }
         </View>
       </Provider>
     );
   }
 }
-
-const deckDummies = [
-  { key: 'deck1', title: 'One Deck', amountOfCards: 10 },
-  { key: 'deck2', title: 'Two Deck', amountOfCards: 11 },
-  { key: 'deck3', title: 'Three Deck', amountOfCards: 12 }
-]
-

@@ -65,18 +65,6 @@ test('selectQuiz', () => {
   })
 });
 
-test('setDeck', () => {
-  const store = createStore(reducer)
-  const newDeck = getNewDeck('One Deck')
-  store.dispatch(setDeck(newDeck))
-  expect(store.getState()).toEqual({
-    appState: APP_STATES.NAVIGATE_DECK,
-    decks: [newDeck],
-    selectedDeckQuizzes: [],
-    selectedIndexQuiz: -1
-  })
-});
-
 const deckDummies = [
   { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
   { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },

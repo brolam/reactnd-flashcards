@@ -23,17 +23,20 @@ export function setDecks(decks) {
 
 export function fetchDecks() {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-    .then(result => JSON.parse(result))
+    .then(result => result ? JSON.parse(result) : [])
 }
 
 export const setDeck = deckUnSaved => new Promise(function (then) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
     .then(result => {
-      const lastDecksStoredWithoutDeckUnSaved = JSON.parse(result).filter(
-        deck => deck.key !== deckUnSaved.key
-      )
-      deckUnSaved.lastUpdated = Date.now()
+      let lastDecksStoredWithoutDeckUnSaved = []
+      if (result) {
+        lastDecksStoredWithoutDeckUnSaved = JSON.parse(result).filter(
+          deck => deck.key !== deckUnSaved.key
+        )
+        deckUnSaved.lastUpdated = Date.now()
+      }
       const updatedDecks = [deckUnSaved, ...lastDecksStoredWithoutDeckUnSaved]
-      setDecks(updatedDecks).then(then())
+      setDecks(updatedDecks).then(then(updatedDecks))
     })
 })

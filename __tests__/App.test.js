@@ -1,5 +1,11 @@
 import React from 'react';
+
+import MockAsyncStorage from 'mock-async-storage'
+const mockImpl = new MockAsyncStorage()
+jest.mock('AsyncStorage', () => mockImpl)
 import App from '../App';
+
+
 
 test('renders without crashing', () => {
   const wrapper = shallow(<App isTwoPanels={false} />);
@@ -49,9 +55,16 @@ describe('new Deck Modal with two panels', () => {
 
 })
 
-test('Add Deck with one panel', () => {
+describe('new Deck Modal with two panels', () => {
   const app = mount(<App />);
-  app.find('Button [title="Add"]').props().onPress()
-  app.instance().onSaveDeck('One Deck')
-  expect(app.state().isAddingDeck).toBe(false)
-});
+  it('Add Deck with one panel', () => {
+    app.find('Button [title="Add"]').props().onPress()
+    expect(app.state().isAddingDeck).toBe(true)
+    app.instance().onSaveDeck('One Deck')
+  });
+
+  test('check if Deck was added', () => {
+    expect(app.state().isAddingDeck).toBe(false)
+  });
+
+})

@@ -51,16 +51,6 @@ test('selectIndexQuiz', () => {
   )
 });
 
-test('setDeck', () => {
-  const newDeck = getNewDeck('One Deck')
-  expect(setDeck(newDeck)).toEqual(
-    {
-      type: SET_DECK,
-      deck: newDeck
-    }
-  )
-});
-
 const deckDummies = [
   { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
   { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
