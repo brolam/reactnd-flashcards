@@ -37,28 +37,30 @@ export function setDecks(decks) {
 
 export function fetchDecks() {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-    .then(result => result ? JSON.parse(result) : [])
+    .then(decksStored => decksStored ? JSON.parse(decksStored) : [])
 }
 
 export const setDeck = deckUnSaved => new Promise(function (then) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-    .then(result => {
-      let lastDecksStoredWithoutDeckUnSaved = []
-      if (result) {
-        lastDecksStoredWithoutDeckUnSaved = JSON.parse(result).filter(
+    .then(decksStored => {
+      let decksStoredWithoutDeckUnSaved = []
+      if (decksStored) {
+        decksStoredWithoutDeckUnSaved = JSON.parse(decksStored).filter(
           deck => deck.key !== deckUnSaved.key
         )
         deckUnSaved.lastUpdated = Date.now()
       }
-      const updatedDecks = [deckUnSaved, ...lastDecksStoredWithoutDeckUnSaved]
+      const updatedDecks = [deckUnSaved, ...decksStoredWithoutDeckUnSaved]
       setDecks(updatedDecks).then(then(updatedDecks))
     })
 })
 
-export const setQuiz = (deck, quiz) => new Promise(function (then) {
-  if (!deck.quizzes){
-    deck.quizzes = [quiz]
-  } 
+export const setQuiz = (deck, quizUnsaved) => new Promise(function (then) {
+  if (!deck.quizzes) deck.quizzes = [quizUnsaved]
+  else deck.quizzes = [
+    quizUnsaved,
+    ...deck.quizzes.filter(quiz => quiz.key != quizUnsaved.key)
+  ]
   deck.amountOfCards = deck.quizzes.length
   setDeck(deck).then(decks => then(decks))
 })

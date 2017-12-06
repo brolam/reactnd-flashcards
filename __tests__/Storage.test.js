@@ -107,6 +107,19 @@ describe('storage Quiz', () => {
       expect(oneDeck.quizzes[0].answered).toBe(false)
       expect(doneExpects).toBe(true)
     })
+  })
 
+  test('Add Two Quiz', () => {
+    const twoQuiz = getNewQuiz('Two Question', 'Two Answer', true, true)
+    expect.assertions(6);
+    setQuiz(oneDeck, twoQuiz).then((decks) => {
+      oneDeck = decks[0]
+      expect(oneDeck.quizzes.length).toBe(2)
+      expect(oneDeck.quizzes[0].question).toBe('Two Question')
+      expect(oneDeck.quizzes[0].answer).toBe('Two Answer')
+      expect(oneDeck.quizzes[0].answerExpect).toBe(true)
+      expect(oneDeck.quizzes[0].answered).toBe(true)
+      expect(doneExpects).toBe(true)
+    })
   })
 })
