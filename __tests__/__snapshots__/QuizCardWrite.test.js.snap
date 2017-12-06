@@ -54,6 +54,7 @@ exports[`renders without crashing 1`] = `
     <TextInput
       blurOnSubmit={false}
       multiline={true}
+      onChangeText={[Function]}
       onSubmitEditing={[Function]}
       placeholder="Enter with a question."
       returnKeyType="next"
@@ -84,6 +85,7 @@ exports[`renders without crashing 1`] = `
     <TextInput
       blurOnSubmit={true}
       multiline={true}
+      onChangeText={[Function]}
       placeholder="Enter the answer to the question."
       returnKeyType="done"
       style={

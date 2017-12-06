@@ -17,12 +17,11 @@ import { white, green, red } from '../styles/colors'
 export default function DeckWriteModal(props) {
   return (
     <Modal animationType='fade' transparent={true} onRequestClose={() => { }} >
-      {Platform.OS === 'ios' ?
-        <KeyboardAvoidingView behavior='padding' style={styles.container}>
+      {Platform.OS === 'ios'
+        ? <KeyboardAvoidingView behavior='padding' style={styles.container}>
           <DeckWriteBody {...props} />
         </KeyboardAvoidingView>
-        :
-        <View style={styles.container} >
+        : <View style={styles.container} >
           <DeckWriteBody {...props} />
         </View>
       }

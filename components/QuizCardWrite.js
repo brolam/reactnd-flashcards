@@ -6,7 +6,16 @@ import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { white, blue, green, red } from '../styles/colors'
 
-export default function QuizCardWrite() {
+export default function QuizCardWrite({ onSave = (question, answer, answerExpect) => { } }) {
+
+  let textInputQuestion = {}
+  let textInputAnswer = {}
+
+  function parseFields(answerExpect) {
+    const question = textInputQuestion.value
+    const answer = textInputAnswer.value
+    onSave(question, answer, answerExpect)
+  }
   return (
     <KeyboardAvoidingView
       style={[cardStyle, styles.container]}
@@ -15,33 +24,34 @@ export default function QuizCardWrite() {
       <View style={styles.containerTextInput}>
         <Text>Question</Text>
         <TextInput
+          ref={input => { textInputQuestion = input }}
           returnKeyType={"next"}
           blurOnSubmit={false}
           multiline={true}
           style={styles.textInput}
           placeholder="Enter with a question."
           onSubmitEditing={() => {
-            this.inputAnswer.focus()
+            textInputAnswer.focus()
           }}
+          onChangeText={text => textInputQuestion.value = text}
         />
       </View>
       <View style={styles.containerTextInput}>
         <Text>Answer</Text>
         <TextInput
-          ref={input => {
-            this.inputAnswer = input;
-          }}
+          ref={input => { textInputAnswer = input }}
           returnKeyType={"done"}
           blurOnSubmit={true}
           multiline={true}
           style={styles.textInput}
           placeholder="Enter the answer to the question."
+          onChangeText={text => textInputAnswer.value = text}
         />
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={[buttonStyle, styles.buttonSaveAsCorrect]}
-          onPress={() => console.log('on Save as correct')}>
+          onPress={() => parseFields(true)}>
           <Text style={styles.textButtons}>Save as Correct</Text>
         </TouchableOpacity>
         <TouchableOpacity
