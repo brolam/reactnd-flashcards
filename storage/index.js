@@ -3,6 +3,10 @@ import { AsyncStorage } from 'react-native'
 
 const DECKS_STORAGE_KEY = 'FLASH_CARDS:DECKS'
 
+function getDeckQuizzesStorageKey(deckKey) {
+  return `FLASH_CARDS:DECK:QUIZZES:${deckKey}`
+}
+
 function newKey() {
   return Math.random().toString(36).substr(-15)
 }
@@ -49,4 +53,12 @@ export const setDeck = deckUnSaved => new Promise(function (then) {
       const updatedDecks = [deckUnSaved, ...lastDecksStoredWithoutDeckUnSaved]
       setDecks(updatedDecks).then(then(updatedDecks))
     })
+})
+
+export const setQuiz = (deck, quiz) => new Promise(function (then) {
+  if (!deck.quizzes){
+    deck.quizzes = [quiz]
+  } 
+  deck.amountOfCards = deck.quizzes.length
+  setDeck(deck).then(decks => then(decks))
 })

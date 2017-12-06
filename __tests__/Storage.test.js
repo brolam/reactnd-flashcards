@@ -6,7 +6,8 @@ import {
   setDecks,
   fetchDecks,
   setDeck,
-  getNewQuiz
+  getNewQuiz,
+  setQuiz
 } from '../storage'
 
 describe('storage Decks', () => {
@@ -66,13 +67,32 @@ describe('storage Decks', () => {
 })
 
 describe('storage Quiz', () => {
+  mockImpl.clear()
+  const now = Date.now()
+  let oneDeck = getNewDeck('One Deck')
 
   test('new Quiz', () => {
-    const newQuiz = getNewQuiz('Question One', 'Answer One', true)
+    const newQuiz = getNewQuiz('One Question', 'One Answer', true)
     expect(newQuiz.key).toHaveLength(15)
-    expect(newQuiz.question).toEqual('Question One')
-    expect(newQuiz.answer).toEqual('Answer One')
+    expect(newQuiz.question).toBe('One Question')
+    expect(newQuiz.answer).toBe('One Answer')
     expect(newQuiz.answerExpect).toBe(true)
     expect(newQuiz.answered).toBe(undefined)
+  })
+
+  test('set One Quiz', () => {
+    const oneQuiz = getNewQuiz('One Question', 'One Answer', true, true)
+    expect.assertions(8);
+    setQuiz(oneDeck, oneQuiz).then(function (decks) {
+      oneDeck = decks[0]
+      expect(oneDeck.title).toBe('One Deck')
+      expect(oneDeck.lastUpdated).toBeGreaterThanOrEqual(now)
+      expect(oneDeck.amountOfCards).toBe(1)
+      expect(oneDeck.quizzes.length).toBe(1)
+      expect(oneDeck.quizzes[0].question).toBe('One Question')
+      expect(oneDeck.quizzes[0].answer).toBe('One Answer')
+      expect(oneDeck.quizzes[0].answerExpect).toBe(true)
+      expect(oneDeck.quizzes[0].answered).toBe(true)
+    })
   })
 })
