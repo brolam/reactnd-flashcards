@@ -70,6 +70,7 @@ describe('storage Quiz', () => {
   mockImpl.clear()
   const now = Date.now()
   let oneDeck = getNewDeck('One Deck')
+  const doneExpects = true
 
   test('new Quiz', () => {
     const newQuiz = getNewQuiz('One Question', 'One Answer', true)
@@ -82,7 +83,7 @@ describe('storage Quiz', () => {
 
   test('set One Quiz', () => {
     const oneQuiz = getNewQuiz('One Question', 'One Answer', true, true)
-    expect.assertions(8);
+    expect.assertions(9);
     setQuiz(oneDeck, oneQuiz).then(function (decks) {
       oneDeck = decks[0]
       expect(oneDeck.title).toBe('One Deck')
@@ -93,6 +94,19 @@ describe('storage Quiz', () => {
       expect(oneDeck.quizzes[0].answer).toBe('One Answer')
       expect(oneDeck.quizzes[0].answerExpect).toBe(true)
       expect(oneDeck.quizzes[0].answered).toBe(true)
+      expect(doneExpects).toBe(true)
     })
+  })
+
+  test('update One Quiz', () => {
+    oneDeck.quizzes[0].answered = false
+    expect.assertions(3);
+    setDeck(oneDeck).then((decks) => {
+      oneDeck = decks[0]
+      expect(oneDeck.quizzes.length).toBe(1)
+      expect(oneDeck.quizzes[0].answered).toBe(false)
+      expect(doneExpects).toBe(true)
+    })
+
   })
 })
