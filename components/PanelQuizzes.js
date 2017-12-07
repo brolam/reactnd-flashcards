@@ -6,14 +6,12 @@ import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 import QuizCardWrite from './QuizCardWrite'
 import { setQuiz, getNewQuiz } from '../storage/index';
-import { receiveDecks, selectDeck, selectQuiz } from '../actions/index';
+import { receiveDecks, selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions/index';
 
 export default function PanelQuizzes(
   { deck,
     quizzes,
     selectedIndexQuiz = -1,
-    onStartQuiz = () => { },
-    onAddQuiz = () => { },
     isWriteCard = false,
     dispatch = action => { },
   }) {
@@ -36,8 +34,8 @@ export default function PanelQuizzes(
       <QuizCardStart
         deck={deck}
         quizzes={quizzes}
-        onStart={onStartQuiz}
-        onAddQuiz={onAddQuiz} />
+        onStart={() => dispatch(selectQuiz(0))}
+        onAddQuiz={() => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ))} />
       :
       <QuizCardQuestion
         question={quizzes[index].question}
