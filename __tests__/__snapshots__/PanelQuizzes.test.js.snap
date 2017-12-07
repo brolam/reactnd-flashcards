@@ -9,23 +9,14 @@ exports[`renders without crashing 1`] = `
     }
   }
 >
-  <QuizCardStart
-    onAddQuiz={[Function]}
-    onStart={[Function]}
-    quizzes={
-      Array [
-        Object {
-          "question": "One Quetion",
-        },
-        Object {
-          "question": "Two Quetion",
-        },
-        Object {
-          "question": "Three Quetion",
-        },
-      ]
-    }
-  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+  >
+    There are not quizzes
+  </Text>
 </View>
 `;
 

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 import QuizCardWrite from './QuizCardWrite'
+import { setQuiz, getNewQuiz } from '../storage/index';
+import { receiveDecks, selectDeck } from '../actions/index';
 
 export default function PanelQuizzes(
   { deck,
@@ -12,11 +14,21 @@ export default function PanelQuizzes(
     selectedIndexQuiz = -1,
     onStartQuiz = () => { },
     onAddQuiz = () => { },
-    isWriteCard = false
+    isWriteCard = false,
+    dispatch = action => { },
   }) {
 
   function hasQuiz(quizzes) {
-    return quizzes && quizzes.length > 0
+    return deck !== undefined
+  }
+
+  function onSaveQuiz(question, answer, answerExpect) {
+    const quiz = getNewQuiz(question, answer, answerExpect)
+    setQuiz(deck, quiz).then(decks => {
+      dispatch(receiveDecks(decks))
+      dispatch(selectDeck(deck.key, deck.quizzes))
+    })
+
   }
 
   function getQuizCardByIndex(index) {
@@ -33,7 +45,7 @@ export default function PanelQuizzes(
   if (isWriteCard)
     return (
       <View style={styles.container}>
-        <QuizCardWrite />
+        <QuizCardWrite onSave={onSaveQuiz} />
       </View>
     )
   else if (hasQuiz(quizzes))

@@ -38,6 +38,7 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     onStartQuiz: () => dispatch(selectQuiz(0)),
     onAddQuiz: () => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ)),
+    dispatch
   }
 }
 
