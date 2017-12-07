@@ -20,18 +20,51 @@ exports[`renders without crashing 1`] = `
       decks={
         Array [
           Object {
-            "amountOfCards": 10,
+            "amountOfCards": 3,
             "key": "one-item",
+            "quizzes": Array [
+              Object {
+                "question": "One Quetion",
+              },
+              Object {
+                "question": "Two Quetion",
+              },
+              Object {
+                "question": "Three Quetion",
+              },
+            ],
             "title": "One Deck",
           },
           Object {
-            "amountOfCards": 11,
+            "amountOfCards": 3,
             "key": "two-item",
+            "quizzes": Array [
+              Object {
+                "question": "One Quetion",
+              },
+              Object {
+                "question": "Two Quetion",
+              },
+              Object {
+                "question": "Three Quetion",
+              },
+            ],
             "title": "Two Deck",
           },
           Object {
-            "amountOfCards": 12,
+            "amountOfCards": 3,
             "key": "three-item",
+            "quizzes": Array [
+              Object {
+                "question": "One Quetion",
+              },
+              Object {
+                "question": "Two Quetion",
+              },
+              Object {
+                "question": "Three Quetion",
+              },
+            ],
             "title": "Three Deck",
           },
         ]
@@ -90,18 +123,51 @@ exports[`renders without crashing 1`] = `
       decks={
         Array [
           Object {
-            "amountOfCards": 10,
+            "amountOfCards": 3,
             "key": "one-item",
+            "quizzes": Array [
+              Object {
+                "question": "One Quetion",
+              },
+              Object {
+                "question": "Two Quetion",
+              },
+              Object {
+                "question": "Three Quetion",
+              },
+            ],
             "title": "One Deck",
           },
           Object {
-            "amountOfCards": 11,
+            "amountOfCards": 3,
             "key": "two-item",
+            "quizzes": Array [
+              Object {
+                "question": "One Quetion",
+              },
+              Object {
+                "question": "Two Quetion",
+              },
+              Object {
+                "question": "Three Quetion",
+              },
+            ],
             "title": "Two Deck",
           },
           Object {
-            "amountOfCards": 12,
+            "amountOfCards": 3,
             "key": "three-item",
+            "quizzes": Array [
+              Object {
+                "question": "One Quetion",
+              },
+              Object {
+                "question": "Two Quetion",
+              },
+              Object {
+                "question": "Three Quetion",
+              },
+            ],
             "title": "Three Deck",
           },
         ]

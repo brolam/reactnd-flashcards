@@ -31,7 +31,7 @@ describe('browse the quizzes', () => {
 
   test('first quiz', () => {
     screenQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
-    expect(screenQuizzesConnected.text()).toEqual('1/1One Quetionshow answerCorrect?Incorrect?')
+    expect(screenQuizzesConnected.text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   });
 
   test('show new quiz', () => {
@@ -41,9 +41,9 @@ describe('browse the quizzes', () => {
 })
 
 const deckDummies = [
-  { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
-  { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
-  { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
+  { key: 'one-item', title: 'One Deck', amountOfCards: 3 },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 3 },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 3 }
 ]
 
 const quizzesDummy = [

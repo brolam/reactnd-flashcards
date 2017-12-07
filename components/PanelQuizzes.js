@@ -6,7 +6,7 @@ import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 import QuizCardWrite from './QuizCardWrite'
 import { setQuiz, getNewQuiz } from '../storage/index';
-import { receiveDecks, selectDeck } from '../actions/index';
+import { receiveDecks, selectDeck, selectQuiz } from '../actions/index';
 
 export default function PanelQuizzes(
   { deck,
@@ -39,7 +39,11 @@ export default function PanelQuizzes(
         onStart={onStartQuiz}
         onAddQuiz={onAddQuiz} />
       :
-      <QuizCardQuestion {...quizzes[index]} />
+      <QuizCardQuestion
+        question={quizzes[index].question}
+        indexCard={selectedIndexQuiz}
+        amountOfCards={deck.amountOfCards}
+      />
   }
 
   if (isWriteCard)
@@ -60,6 +64,13 @@ export default function PanelQuizzes(
     </View>
   )
 }
+
+export function nextQuiz(dispatch, selectedIndexQuiz, quizzes) {
+  if (selectedIndexQuiz + 1 < quizzes.length) selectedIndexQuiz++
+  else selectedIndexQuiz = 0
+  dispatch(selectQuiz(selectedIndexQuiz))
+}
+
 
 PanelQuizzes.propTypes = {
   quizzes: PropTypes.array.isRequired,

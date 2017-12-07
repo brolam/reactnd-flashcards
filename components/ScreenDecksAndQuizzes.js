@@ -10,12 +10,6 @@ import { connect } from 'react-redux'
 import { selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]
-
 export function ScreenDecksAndQuizzes(props) {
   const { decks, selectedDeckQuizzes, deck, dispatch, onClickAddDeck } = props
   return (
@@ -23,7 +17,7 @@ export function ScreenDecksAndQuizzes(props) {
       <View style={styles.containerDeckList}>
         <DeckCardList
           decks={decks}
-          onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key, quizzesDummy))}
+          onSelectedOneDeck={(deck) => dispatch(selectDeck(deck.key, deck.quizzes))}
         />
         <TouchableOpacity id={'addFabButton'} style={[styles.fabButton, styles.addButton]}
           onPress={onClickAddDeck}>
