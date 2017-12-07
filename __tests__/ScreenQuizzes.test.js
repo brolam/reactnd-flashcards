@@ -31,7 +31,7 @@ describe('browse the quizzes', () => {
 
   test('first quiz', () => {
     screenQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
-    expect(screenQuizzesConnected.text()).toEqual('One Quetion')
+    expect(screenQuizzesConnected.text()).toEqual('1/1One Quetionshow answerCorrect?Incorrect?')
   });
 
   test('show new quiz', () => {

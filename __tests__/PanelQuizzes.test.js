@@ -28,7 +28,7 @@ test('first quiz', () => {
       quizzes={quizzesDummy}
       selectedIndexQuiz={0}
     />);
-  expect(panelQuizzes.find('QuizCardQuestion').text()).toEqual('One Quetion')
+  expect(panelQuizzes.find('QuizCardQuestion').text()).toEqual('1/1One Quetionshow answerCorrect?Incorrect?')
 });
 
 test('write card', () => {
