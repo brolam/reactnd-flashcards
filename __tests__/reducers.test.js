@@ -15,7 +15,6 @@ test('init status', () => {
   expect(store.getState()).toEqual({
     appState: APP_STATES.NAVIGATE_DECK,
     decks: [],
-    selectedDeckQuizzes: [],
     selectedIndexQuiz: -1,
   })
 });
@@ -26,19 +25,17 @@ test('receiveDecks', () => {
   expect(store.getState()).toEqual({
     appState: APP_STATES.NAVIGATE_DECK,
     decks: deckDummies,
-    selectedDeckQuizzes: [],
     selectedIndexQuiz: -1,
   })
 });
 
 test('selectDeck', () => {
   const store = createStore(reducer)
-  store.dispatch(selectDeck(deckDummies[1].key, quizzesDummy))
+  store.dispatch(selectDeck(deckDummies[1].key))
   expect(store.getState()).toEqual({
     appState: APP_STATES.NAVIGATE_DECK,
     decks: [],
     selectedDeckKey: deckDummies[1].key,
-    selectedDeckQuizzes: quizzesDummy,
     selectedIndexQuiz: -1,
   })
 });
@@ -49,7 +46,6 @@ test('setAppState', () => {
   expect(store.getState()).toEqual({
     appState: APP_STATES.ADDING_DECK_QUIZ,
     decks: [],
-    selectedDeckQuizzes: [],
     selectedIndexQuiz: -1,
   })
 });
@@ -60,7 +56,6 @@ test('selectQuiz', () => {
   expect(store.getState()).toEqual({
     appState: APP_STATES.STARTED_QUIZ,
     decks: [],
-    selectedDeckQuizzes: [],
     selectedIndexQuiz: -1
   })
 });

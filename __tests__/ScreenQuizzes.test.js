@@ -40,14 +40,14 @@ describe('browse the quizzes', () => {
   });
 })
 
-const deckDummies = [
-  { key: 'one-item', title: 'One Deck', amountOfCards: 3 },
-  { key: 'two-item', title: 'Two Deck', amountOfCards: 3 },
-  { key: 'three-item', title: 'Three Deck', amountOfCards: 3 }
-]
-
 const quizzesDummy = [
   { question: 'One Quetion' },
   { question: 'Two Quetion' },
   { question: 'Three Quetion' }
+]
+
+const deckDummies = [
+  { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizzes: quizzesDummy },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 3, quizzes: quizzesDummy },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 3, quizzes: quizzesDummy }
 ]

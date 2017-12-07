@@ -15,11 +15,10 @@ export function receiveDecks(decks) {
   }
 }
 
-export function selectDeck(deckKey, deckQuizzes = []) {
+export function selectDeck(deckKey) {
   return {
     type: SELECT_DECK,
     deckKey,
-    deckQuizzes,
   }
 }
 

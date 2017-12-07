@@ -27,7 +27,7 @@ export class ScreenDecks extends React.PureComponent {
         <DeckCardList
           decks={decks}
           onSelectedOneDeck={(deck) => {
-            dispatch(selectDeck(deck.key, deck.quizzes))
+            dispatch(selectDeck(deck.key))
             navigation.navigate('Quizzes', { title: deck.title })
           }}
         />

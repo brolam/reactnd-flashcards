@@ -26,9 +26,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(props) {
+  const deck = props.decks.find(deck => deck.key === props.selectedDeckKey)
+  const quizzes = deck && deck.quizzes ? deck.quizzes : []
   return {
-    deck: props.decks.find(deck => deck.key === props.selectedDeckKey),
-    quizzes: props.selectedDeckQuizzes,
+    deck,
+    quizzes,
     isWriteCard: props.appState === APP_STATES.ADDING_DECK_QUIZ,
     ...props
   }

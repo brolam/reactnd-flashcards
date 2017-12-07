@@ -24,11 +24,10 @@ test('receiveDecks', () => {
 });
 
 test('selectDeck', () => {
-  expect(selectDeck(deckDummies[2].key, [])).toEqual(
+  expect(selectDeck(deckDummies[2].key)).toEqual(
     {
       type: SELECT_DECK,
       deckKey: deckDummies[2].key,
-      deckQuizzes: [],
     }
   )
 });

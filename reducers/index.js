@@ -10,7 +10,6 @@ const INIT_STATE = {
   appState: APP_STATES.NAVIGATE_DECK,
   decks: [],
   selectedDeckKey: undefined,
-  selectedDeckQuizzes: [],
   selectedIndexQuiz: -1
 }
 
@@ -26,7 +25,6 @@ function decks(state = INIT_STATE, action) {
         ...state,
         appState: APP_STATES.NAVIGATE_DECK,
         selectedDeckKey: action.deckKey,
-        selectedDeckQuizzes: action.deckQuizzes,
         selectedIndexQuiz: -1
       }
     case SELECT_QUIZ:
