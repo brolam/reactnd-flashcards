@@ -30,6 +30,11 @@ test('start quiz', () => {
   expect(panelQuizzes.find('QuizCardStart').length).toEqual(1)
 });
 
+test('show QuizCardWrite if quizzes is empty', () => {
+  const panelQuizzes = mount(<PanelQuizzes deck={deckDummy} quizzes={[]} />);
+  expect(panelQuizzes.find('QuizCardWrite').length).toEqual(1)
+});
+
 test('first quiz', () => {
   const panelQuizzes = mount(
     <PanelQuizzes

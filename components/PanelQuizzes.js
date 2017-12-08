@@ -16,8 +16,8 @@ export default function PanelQuizzes(
     dispatch = action => { },
   }) {
 
-  function hasQuiz(quizzes) {
-    return deck !== undefined
+  function hasQuiz() {
+    return deck && quizzes && quizzes.length > 0
   }
 
   function onStartQuiz() {
@@ -59,13 +59,13 @@ export default function PanelQuizzes(
       />
   }
 
-  if (isWriteCard)
+  if (isWriteCard || hasQuiz() === false )
     return (
       <View style={styles.container}>
         <QuizCardWrite onSave={onSaveQuiz} />
       </View>
     )
-  else if (hasQuiz(quizzes))
+  else if (hasQuiz())
     return (
       <View style={styles.container}>
         {getQuizCardByIndex(selectedIndexQuiz)}
@@ -82,7 +82,6 @@ export function nextQuiz(dispatch, selectedIndexQuiz, quizzes) {
   nextIndexQuiz = quizzes.findIndex(quiz => quiz.answered === undefined)
   dispatch(selectQuiz(nextIndexQuiz))
 }
-
 
 PanelQuizzes.propTypes = {
   quizzes: PropTypes.array.isRequired,
