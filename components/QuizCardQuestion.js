@@ -4,12 +4,14 @@ import PropTypes from 'prop-types'
 import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { green, red, white, } from '../styles/colors';
+import { showQuizAnswer } from '../actions/index';
 
 export default function QuizCardQuestion({
   deck,
   selectedIndexQuiz = 0,
   onAnswer,
-  showQuizAnswer = false  }) {
+  showQuizAnswer = false,
+  dispatch = (action) => { console.log('dispatch') } }) {
   const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>
@@ -17,8 +19,8 @@ export default function QuizCardQuestion({
         <Text>{selectedIndexQuiz + 1}/{deck.amountOfCards}</Text>
       </View>
       {showQuizAnswer
-        ? <Answer quiz={quiz} />
-        : <Question quiz={quiz} />
+        ? <Answer quiz={quiz} dispatch={dispatch} />
+        : <Question quiz={quiz} dispatch={dispatch} />
       }
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
@@ -38,12 +40,12 @@ export default function QuizCardQuestion({
 }
 
 function Question(props) {
-  const { quiz } = props
+  const { quiz, dispatch } = props
   return (
     <View>
       <Text style={styles.question}>{quiz.question}</Text>
       <TouchableOpacity
-        onPress={() => console.log('show answer')}>
+        onPress={() => dispatch(showQuizAnswer(true))}>
         <Text style={styles.buttonShowAnswer}>show answer</Text>
       </TouchableOpacity>
     </View>
@@ -51,12 +53,12 @@ function Question(props) {
 }
 
 function Answer(props) {
-  const { quiz } = props
+  const { quiz, dispatch } = props
   return (
     <View>
-      <Text style={styles.question}>{quiz.answer}</Text>
+      <Text style={styles.answer}>{quiz.answer}</Text>
       <TouchableOpacity
-        onPress={() => console.log('show answer')}>
+        onPress={() => dispatch(showQuizAnswer(false))}>
         <Text style={styles.buttonShowAnswer}>show question</Text>
       </TouchableOpacity>
     </View>
@@ -89,8 +91,13 @@ const styles = StyleSheet.create({
     top: 0
   },
   question: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: '400',
+    textAlign: 'center',
+  },
+  answer: {
+    fontSize: 36,
+    fontWeight: '500',
     textAlign: 'center',
   },
   buttonShowAnswer: {

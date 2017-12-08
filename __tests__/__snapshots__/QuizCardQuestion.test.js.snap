@@ -61,6 +61,7 @@ exports[`renders without crashing 1`] = `
     </Text>
   </View>
   <Question
+    dispatch={[Function]}
     quiz={
       Object {
         "answer": "One Answer",
@@ -228,6 +229,7 @@ exports[`show quiz answer 1`] = `
     </Text>
   </View>
   <Answer
+    dispatch={[Function]}
     quiz={
       Object {
         "answer": "One Answer",

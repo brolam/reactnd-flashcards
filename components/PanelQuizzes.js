@@ -14,6 +14,7 @@ export default function PanelQuizzes(
     selectedIndexQuiz = -1,
     isWriteCard = false,
     dispatch = action => { },
+    showQuizAnswer = false 
   }) {
 
   function hasQuiz() {
@@ -56,6 +57,8 @@ export default function PanelQuizzes(
         quizzes={quizzes}
         selectedIndexQuiz={index}
         onAnswer={onAnswerQuiz}
+        dispatch={dispatch}
+        showQuizAnswer={showQuizAnswer}
       />
   }
 
