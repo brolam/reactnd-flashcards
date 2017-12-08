@@ -64,9 +64,8 @@ export default function PanelQuizzes(
 }
 
 export function nextQuiz(dispatch, selectedIndexQuiz, quizzes) {
-  if (selectedIndexQuiz + 1 < quizzes.length) selectedIndexQuiz++
-  else selectedIndexQuiz = 0
-  dispatch(selectQuiz(selectedIndexQuiz))
+  nextIndexQuiz = quizzes.findIndex(quiz => quiz.answered === undefined)
+  dispatch(selectQuiz(nextIndexQuiz))
 }
 
 

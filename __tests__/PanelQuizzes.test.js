@@ -8,6 +8,13 @@ import { receiveDecks, selectQuiz } from '../actions/index';
 import { createStore } from 'redux'
 import reducer from '../reducers'
 
+const deckDummy = { key: 'one-item', title: 'One Deck', amountOfCards: 3 }
+const quizzesDummy = [
+  { question: 'One Quetion' },
+  { question: 'Two Quetion' },
+  { question: 'Three Quetion' }
+]
+
 test('renders without crashing', () => {
   const wrapper = shallow(<PanelQuizzes quizzes={quizzesDummy} />);
   expect(wrapper).toMatchSnapshot();
@@ -61,9 +68,11 @@ test('save a quiz', () => {
   })
 });
 
+
 describe('navigate between cards', () => {
   let panelQuizzes
-  let deck = { amountOfCards: 3 }
+  const deck = { amountOfCards: 3 }
+  const quizzes = quizzesDummy.slice()
   let selectedIndexQuiz = 0
   const store = createStore(reducer)
   store.dispatch(selectQuiz(selectedIndexQuiz))
@@ -73,7 +82,7 @@ describe('navigate between cards', () => {
       <PanelQuizzes
         deck={deck}
         selectedIndexQuiz={selectedIndexQuiz}
-        quizzes={quizzesDummy}
+        quizzes={quizzes}
         dispatch={store.dispatch}
       />);
   })
@@ -83,33 +92,48 @@ describe('navigate between cards', () => {
       .text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   })
 
-  it('try move next - Two Quetions', () => {
-    nextQuiz(store.dispatch, selectedIndexQuiz, quizzesDummy)
+  it('answer question one', () => {
+    quizzes[0].answered = true
+    nextQuiz(store.dispatch, selectedIndexQuiz, quizzes)
   })
 
-  test('moved next - Two Quetions', () => {
+  test('moved to quetion two ', () => {
     expect(panelQuizzes.find('QuizCardQuestion').text())
       .toEqual('2/3Two Quetionshow answerCorrect?Incorrect?')
   })
 
-  it('try move next - Three Quetions', () => {
-    nextQuiz(store.dispatch, selectedIndexQuiz, quizzesDummy)
+  it('answer question two', () => {
+    quizzes[1].answered = true
+    nextQuiz(store.dispatch, selectedIndexQuiz, quizzes)
   })
 
-  test('moved next - Three Quetions', () => {
+  test('moved to question three', () => {
     expect(panelQuizzes.find('QuizCardQuestion').text())
       .toEqual('3/3Three Quetionshow answerCorrect?Incorrect?')
   })
 
-  it('try move to first when end of quetions', () => {
-    nextQuiz(store.dispatch, selectedIndexQuiz, quizzesDummy)
+  it('try move to not answered quiz', () => {
+    quizzes[0].answered = undefined
+    quizzes[1].answered = true
+    quizzes[2].answered = true
+    nextQuiz(store.dispatch, selectedIndexQuiz, quizzes)
   })
 
-  test('moved to first when end of quetions', () => {
+  test('moved to not answered quiz', () => {
     expect(panelQuizzes.find('QuizCardQuestion')
       .text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   })
 
+  it('try move to start quiz', () => {
+    quizzes[0].answered = true
+    quizzes[1].answered = true
+    quizzes[2].answered = true
+    nextQuiz(store.dispatch, selectedIndexQuiz, quizzes)
+  })
+
+  test('moved to start quiz', () => {
+    expect(panelQuizzes.find('QuizCardStart').length).toBe(1)
+  })
 
 })
 
@@ -120,9 +144,4 @@ function fillQuziCardWriteInputs(quizCardWrite) {
   textInputAnswer.props().onChangeText('One Answer')
 }
 
-const deckDummy = { key: 'one-item', title: 'One Deck', amountOfCards: 3 }
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]
+
