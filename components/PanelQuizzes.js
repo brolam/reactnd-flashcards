@@ -28,8 +28,8 @@ export default function PanelQuizzes(
     })
   }
 
-  function onAnswerQuizCorrect(deck, indexQuiz) {
-    deck.quizzes[indexQuiz].answered = true
+  function onAnswerQuiz(deck, indexQuiz, answered) {
+    deck.quizzes[indexQuiz].answered = answered
     setDeck(deck).then(decks => {
       dispatch(receiveDecks(decks))
       nextQuiz(dispatch, indexQuiz, deck.quizzes)
@@ -48,7 +48,7 @@ export default function PanelQuizzes(
         deck={deck}
         quizzes={quizzes}
         selectedIndexQuiz={index}
-        onAnswerCorrect={onAnswerQuizCorrect}
+        onAnswer={onAnswerQuiz}
       />
   }
 

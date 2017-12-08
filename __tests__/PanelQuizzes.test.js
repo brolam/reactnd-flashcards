@@ -159,6 +159,28 @@ test('answer and save a quiz as correct', () => {
   })
 });
 
+test('answer and save a quiz as incorrect', () => {
+  mockImpl.clear()
+  const spyDispatch = jest.fn()
+  const quiz = getNewQuiz('One Quiz', 'One Answer', true)
+  const deck = { ...getNewDeck('One Deck'), quizzes: [quiz] }
+  const panelQuizzes = mount(
+    <PanelQuizzes
+      deck={deck}
+      selectedIndexQuiz={0}
+      quizzes={deck.quizzes}
+      dispatch={spyDispatch}
+    />);
+  const quizCardQuestion = panelQuizzes.find('QuizCardQuestion')
+  const buttonAnswerInCorrect = quizCardQuestion.find('TouchableOpacity').at(2)
+  buttonAnswerInCorrect.props().onPress()
+  expect.assertions(2);
+  fetchDecks().then(decks => {
+    expect(spyDispatch).toHaveBeenCalled()
+    expect(true).toBe(true)
+  })
+});
+
 function fillQuziCardWriteInputs(quizCardWrite) {
   const textInputQuestion = quizCardWrite.find('TextInput').at(0)
   const textInputAnswer = quizCardWrite.find('TextInput').at(2)

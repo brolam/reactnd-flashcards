@@ -8,7 +8,7 @@ import { green, red, white, } from '../styles/colors';
 export default function QuizCardQuestion({
   deck,
   selectedIndexQuiz = 0,
-  onAnswerCorrect }) {
+  onAnswer }) {
   const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>
@@ -24,13 +24,13 @@ export default function QuizCardQuestion({
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
-          style={[buttonStyle, styles.buttonSaveAsCorrect]}
-          onPress={() => onAnswerCorrect(deck, selectedIndexQuiz)}>
+          style={[buttonStyle, styles.buttonAnswerCorrect]}
+          onPress={() => onAnswer(deck, selectedIndexQuiz, true)}>
           <Text style={styles.textButtons}>Correct?</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[buttonStyle, styles.buttonSaveAsIncorrect]}
-          onPress={() => console.log('Answered Incorrect')}>
+          style={[buttonStyle, styles.buttonAnswerIncorrect]}
+          onPress={() => onAnswer(deck, selectedIndexQuiz, false)}>
           <Text style={styles.textButtons}>Incorrect?</Text>
         </TouchableOpacity>
       </View>
@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0
   },
-  buttonSaveAsCorrect: {
+  buttonAnswerCorrect: {
     backgroundColor: green,
     margin: 5
   },
-  buttonSaveAsIncorrect: {
+  buttonAnswerIncorrect: {
     backgroundColor: red,
     margin: 5
   },
