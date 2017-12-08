@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 import QuizCardWrite from './QuizCardWrite'
-import { setDeck, setQuiz, getNewQuiz } from '../storage/index';
+import { setDeck, setQuiz, getNewQuiz, startDeckQuiz } from '../storage/index';
 import { receiveDecks, selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions/index';
 
 export default function PanelQuizzes(
@@ -18,6 +18,13 @@ export default function PanelQuizzes(
 
   function hasQuiz(quizzes) {
     return deck !== undefined
+  }
+
+  function onStartQuiz() {
+    dispatch(selectQuiz(0))
+    startDeckQuiz(deck).then(decks => {
+      dispatch(receiveDecks(decks))
+    })
   }
 
   function onSaveQuiz(question, answer, answerExpect) {
@@ -41,7 +48,7 @@ export default function PanelQuizzes(
       <QuizCardStart
         deck={deck}
         quizzes={quizzes}
-        onStart={() => dispatch(selectQuiz(0))}
+        onStart={() => onStartQuiz()}
         onAddQuiz={() => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ))} />
       :
       <QuizCardQuestion
