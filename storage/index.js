@@ -30,6 +30,15 @@ export function getNewQuiz(question, answer, answerExpect, answered = undefined)
   }
 }
 
+function calculateDeckScore(quizzes) {
+  if (!quizzes || quizzes.length === 0) return 0
+  const totalCorrect = quizzes.filter(
+    quiz => quiz.answered === quiz.answerExpect
+  ).length
+  if (totalCorrect === 0) return 0
+  return (totalCorrect / quizzes.length) * 100.0
+}
+
 export function setDecks(decks) {
   const stringifyDecks = JSON.stringify(decks)
   return AsyncStorage.setItem(DECKS_STORAGE_KEY, stringifyDecks)
@@ -50,6 +59,7 @@ export const setDeck = deckUnSaved => new Promise(function (then) {
         )
         deckUnSaved.lastUpdated = Date.now()
       }
+      deckUnSaved.score = calculateDeckScore(deckUnSaved.quizzes)
       const updatedDecks = [deckUnSaved, ...decksStoredWithoutDeckUnSaved]
       setDecks(updatedDecks).then(then(updatedDecks))
     })

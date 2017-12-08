@@ -123,3 +123,58 @@ describe('storage Quiz', () => {
     })
   })
 })
+
+describe('calculate score', () => {
+  mockImpl.clear()
+  let oneDeck = getNewDeck('One Deck')
+  const doneExpects = true
+  setDeck(oneDeck).then(decks => {
+    oneDeck = decks[0]
+    setQuiz(oneDeck, getNewQuiz('Five Question', 'Five Answer', true))
+    setQuiz(oneDeck, getNewQuiz('Four Question', 'Four Answer', true))
+    setQuiz(oneDeck, getNewQuiz('Three Question', 'Three Answer', false))
+    setQuiz(oneDeck, getNewQuiz('Two Question', 'Two Answer', true))
+    setQuiz(oneDeck, getNewQuiz('One Question', 'One Answer', true))
+  })
+
+  test('score equal zero', () => {
+    expect(oneDeck.score).toEqual(0)
+  })
+
+  test('score equal 10%', () => {
+    oneDeck.quizzes[0].answered = true
+    expect.assertions(2);
+    setDeck(oneDeck).then(decks => {
+      oneDeck = decks[0]
+      expect(oneDeck.score).toBe(20)
+      expect(doneExpects).toBe(true)
+    })
+  })
+
+  test('score equal 60%', () => {
+    oneDeck.quizzes[0].answered = true
+    oneDeck.quizzes[1].answered = true
+    oneDeck.quizzes[2].answered = false
+    expect.assertions(2);
+    setDeck(oneDeck).then(decks => {
+      oneDeck = decks[0]
+      expect(oneDeck.score).toBe(60)
+      expect(doneExpects).toBe(true)
+    })
+  })
+
+  test('score equal 100%', () => {
+    oneDeck.quizzes[0].answered = true
+    oneDeck.quizzes[1].answered = true
+    oneDeck.quizzes[2].answered = false
+    oneDeck.quizzes[3].answered = true
+    oneDeck.quizzes[4].answered = true
+    expect.assertions(2);
+    setDeck(oneDeck).then(decks => {
+      oneDeck = decks[0]
+      expect(oneDeck.score).toBe(100)
+      expect(doneExpects).toBe(true)
+    })
+  })
+
+})
