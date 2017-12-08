@@ -6,7 +6,8 @@ import {
   selectQuiz,
   setAppState,
   APP_STATES,
-  setDeck
+  setDeck,
+  showQuizAnswer
 } from '../actions'
 import {getNewDeck} from '../storage'
 
@@ -16,6 +17,7 @@ test('init status', () => {
     appState: APP_STATES.NAVIGATE_DECK,
     decks: [],
     selectedIndexQuiz: -1,
+    showQuizAnswer: false
   })
 });
 
@@ -26,6 +28,7 @@ test('receiveDecks', () => {
     appState: APP_STATES.NAVIGATE_DECK,
     decks: deckDummies,
     selectedIndexQuiz: -1,
+    showQuizAnswer: false
   })
 });
 
@@ -37,6 +40,7 @@ test('selectDeck', () => {
     decks: [],
     selectedDeckKey: deckDummies[1].key,
     selectedIndexQuiz: -1,
+    showQuizAnswer: false
   })
 });
 
@@ -47,6 +51,7 @@ test('setAppState', () => {
     appState: APP_STATES.ADDING_DECK_QUIZ,
     decks: [],
     selectedIndexQuiz: -1,
+    showQuizAnswer: false
   })
 });
 
@@ -56,7 +61,19 @@ test('selectQuiz', () => {
   expect(store.getState()).toEqual({
     appState: APP_STATES.STARTED_QUIZ,
     decks: [],
-    selectedIndexQuiz: -1
+    selectedIndexQuiz: -1,
+    showQuizAnswer: false
+  })
+});
+
+test('showQuizAnswer', () => {
+  const store = createStore(reducer)
+  store.dispatch(showQuizAnswer(true))
+  expect(store.getState()).toEqual({
+    appState: APP_STATES.NAVIGATE_DECK,
+    decks: [],
+    selectedIndexQuiz: -1,
+    showQuizAnswer: true
   })
 });
 

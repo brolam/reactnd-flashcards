@@ -9,10 +9,12 @@ import {
   selectDeck,
   setAppState,
   selectQuiz,
-  setDeck
+  setDeck,
+  showQuizAnswer,
+  SHOW_QUIZ_ANSWER
 } from '../actions'
 
-import {getNewDeck} from '../storage'
+import { getNewDeck } from '../storage'
 
 test('receiveDecks', () => {
   expect(receiveDecks(deckDummies)).toEqual(
@@ -46,6 +48,15 @@ test('selectIndexQuiz', () => {
     {
       type: SELECT_QUIZ,
       selectIndexQuiz: 0
+    }
+  )
+});
+
+test('showQuizAnswer', () => {
+  expect(showQuizAnswer(true)).toEqual(
+    {
+      type: SHOW_QUIZ_ANSWER,
+      showQuizAnswer: true
     }
   )
 });
