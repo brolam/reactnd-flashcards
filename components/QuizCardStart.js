@@ -12,9 +12,16 @@ export default function QuizCardStart(
     onStart = () => { },
     onAddQuiz = () => { }
   }) {
+   
+  function getScoreText( {lastUpdated, score=0} ){
+    const todayAtZeroHour = new Date().setHours(0,0,0,0)
+    return lastUpdated < todayAtZeroHour
+    ?`Last Score ${score.toFixed(2)}%`
+    :`Today Score ${score.toFixed(2)}%`
+  }
   return (
     <View style={[cardStyle, styles.container]}>
-      <Text style={styles.amountOfCards}>Last Score 99% </Text>
+      <Text style={styles.amountOfCards}>{getScoreText(deck)}</Text>
       <Text style={styles.lastScore}>{deck.amountOfCards} cards</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity

@@ -1,5 +1,219 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders today score 1`] = `
+<View
+  style={
+    Array [
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 10,
+          "marginRight": 10,
+          "marginTop": 8,
+          "padding": 20,
+          "shadowColor": "rgba(0, 0, 0, 0.24)",
+          "shadowOpacity": 0.8,
+        },
+        Object {
+          "borderRadius": 8,
+          "shadowOffset": Object {
+            "height": 3,
+            "width": 0,
+          },
+          "shadowRadius": 3,
+        },
+      ],
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "marginBottom": 10,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 32,
+        "fontWeight": "700",
+        "marginBottom": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    Today Score 99.00%
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 42,
+        "fontWeight": "700",
+        "marginBottom": 5,
+        "padding": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+     cards
+  </Text>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "space-around",
+        "marginBottom": 5,
+      }
+    }
+  >
+    <TouchableOpacity
+      activeOpacity={0.2}
+      id="buttonStart"
+      onPress={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#292477",
+              "borderRadius": 3,
+              "borderWidth": 1,
+              "padding": 5,
+              "paddingLeft": 25,
+              "paddingRight": 25,
+            },
+          ],
+          Object {
+            "backgroundColor": "#3cb371",
+            "margin": 5,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 32,
+            "fontWeight": "600",
+            "padding": 5,
+          }
+        }
+      >
+        Start
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      id="buttonAddQuiz"
+      onPress={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#292477",
+              "borderRadius": 3,
+              "borderWidth": 1,
+              "padding": 5,
+              "paddingLeft": 25,
+              "paddingRight": 25,
+            },
+          ],
+          Object {
+            "backgroundColor": "#f26f28",
+            "margin": 5,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 32,
+            "fontWeight": "600",
+            "padding": 5,
+          }
+        }
+      >
+        Add
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      id="buttonEditQuiz"
+      onPress={[Function]}
+      style={
+        Array [
+          Array [
+            Object {
+              "alignItems": "center",
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "borderColor": "#292477",
+              "borderRadius": 3,
+              "borderWidth": 1,
+              "padding": 5,
+              "paddingLeft": 25,
+              "paddingRight": 25,
+            },
+          ],
+          Object {
+            "backgroundColor": "#7c53c3",
+            "margin": 5,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#fff",
+            "fontSize": 32,
+            "fontWeight": "600",
+            "padding": 5,
+          }
+        }
+      >
+        Edit
+      </Text>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
 exports[`renders without crashing 1`] = `
 <View
   style={
@@ -49,7 +263,7 @@ exports[`renders without crashing 1`] = `
       }
     }
   >
-    Last Score 99% 
+    Last Score 99.99%
   </Text>
   <Text
     accessible={true}
@@ -66,7 +280,6 @@ exports[`renders without crashing 1`] = `
       }
     }
   >
-    10
      cards
   </Text>
   <View
