@@ -3,7 +3,7 @@ import MockAsyncStorage from 'mock-async-storage'
 const mockImpl = new MockAsyncStorage()
 jest.mock('AsyncStorage', () => mockImpl)
 import PanelQuizzes, { nextQuiz } from '../components/PanelQuizzes'
-import { getNewDeck, fetchDecks } from '../storage/index';
+import { getNewDeck, fetchDecks, getNewQuiz } from '../storage/index';
 import { receiveDecks, selectQuiz } from '../actions/index';
 import { createStore } from 'redux'
 import reducer from '../reducers'
@@ -136,6 +136,28 @@ describe('navigate between cards', () => {
   })
 
 })
+
+test('answer and save a quiz as correct', () => {
+  mockImpl.clear()
+  const spyDispatch = jest.fn()
+  const quiz = getNewQuiz('One Quiz', 'One Answer', true)
+  const deck = { ...getNewDeck('One Deck'), quizzes: [quiz] }
+  const panelQuizzes = mount(
+    <PanelQuizzes
+      deck={deck}
+      selectedIndexQuiz={0}
+      quizzes={deck.quizzes}
+      dispatch={spyDispatch}
+    />);
+  const quizCardQuestion = panelQuizzes.find('QuizCardQuestion')
+  const buttonAnswerCorrect = quizCardQuestion.find('TouchableOpacity').at(1)
+  buttonAnswerCorrect.props().onPress()
+  expect.assertions(2);
+  fetchDecks().then(decks => {
+    expect(spyDispatch).toHaveBeenCalled()
+    expect(true).toBe(true)
+  })
+});
 
 function fillQuziCardWriteInputs(quizCardWrite) {
   const textInputQuestion = quizCardWrite.find('TextInput').at(0)

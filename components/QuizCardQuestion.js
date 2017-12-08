@@ -5,7 +5,10 @@ import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { green, red, white, } from '../styles/colors';
 
-export default function QuizCardQuestion({ deck, selectedIndexQuiz = 0 }) {
+export default function QuizCardQuestion({
+  deck,
+  selectedIndexQuiz = 0,
+  onAnswerCorrect }) {
   const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>
@@ -15,14 +18,14 @@ export default function QuizCardQuestion({ deck, selectedIndexQuiz = 0 }) {
       <View>
         <Text style={styles.question}>{quiz.question}</Text>
         <TouchableOpacity
-          onPress={() => console.log('Answered Correct')}>
+          onPress={() => console.log('show answer')}>
           <Text style={styles.buttonShowAnswer}>show answer</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={[buttonStyle, styles.buttonSaveAsCorrect]}
-          onPress={() => console.log('Answered Correct')}>
+          onPress={() => onAnswerCorrect(deck, selectedIndexQuiz)}>
           <Text style={styles.textButtons}>Correct?</Text>
         </TouchableOpacity>
         <TouchableOpacity

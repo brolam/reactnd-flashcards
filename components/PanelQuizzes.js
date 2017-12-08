@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import QuizCardStart from './QuizCardStart'
 import QuizCardQuestion from './QuizCardQuestion'
 import QuizCardWrite from './QuizCardWrite'
-import { setQuiz, getNewQuiz } from '../storage/index';
+import { setDeck, setQuiz, getNewQuiz } from '../storage/index';
 import { receiveDecks, selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions/index';
 
 export default function PanelQuizzes(
@@ -26,7 +26,14 @@ export default function PanelQuizzes(
       dispatch(receiveDecks(decks))
       dispatch(selectDeck(deck.key, deck.quizzes))
     })
+  }
 
+  function onAnswerQuizCorrect(deck, indexQuiz) {
+    deck.quizzes[indexQuiz].answered = true
+    setDeck(deck).then(decks => {
+      dispatch(receiveDecks(decks))
+      nextQuiz(dispatch, indexQuiz, deck.quizzes)
+    })
   }
 
   function getQuizCardByIndex(index) {
@@ -41,6 +48,7 @@ export default function PanelQuizzes(
         deck={deck}
         quizzes={quizzes}
         selectedIndexQuiz={index}
+        onAnswerCorrect={onAnswerQuizCorrect}
       />
   }
 
