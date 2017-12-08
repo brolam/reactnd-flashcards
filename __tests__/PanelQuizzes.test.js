@@ -8,12 +8,12 @@ import { receiveDecks, selectQuiz } from '../actions/index';
 import { createStore } from 'redux'
 import reducer from '../reducers'
 
-const deckDummy = { key: 'one-item', title: 'One Deck', amountOfCards: 3 }
 const quizzesDummy = [
   { question: 'One Quetion' },
   { question: 'Two Quetion' },
   { question: 'Three Quetion' }
 ]
+const deckDummy = { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizzes: quizzesDummy }
 
 test('renders without crashing', () => {
   const wrapper = shallow(<PanelQuizzes quizzes={quizzesDummy} />);
@@ -71,8 +71,8 @@ test('save a quiz', () => {
 
 describe('navigate between cards', () => {
   let panelQuizzes
-  const deck = { amountOfCards: 3 }
   const quizzes = quizzesDummy.slice()
+  const deck = { amountOfCards: 3, quizzes }
   let selectedIndexQuiz = 0
   const store = createStore(reducer)
   store.dispatch(selectQuiz(selectedIndexQuiz))

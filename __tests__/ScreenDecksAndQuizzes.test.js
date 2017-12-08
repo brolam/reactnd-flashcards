@@ -6,11 +6,23 @@ import { Provider } from 'react-redux'
 import reducer from '../reducers'
 import { receiveDecks, selectDeck } from '../actions'
 
+
+const quizzesDummy = [
+  { question: 'One Quetion' },
+  { question: 'Two Quetion' },
+  { question: 'Three Quetion' }
+]
+
+const deckDummies = [
+  { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizzes: quizzesDummy },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 3, quizzes: quizzesDummy },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 3, quizzes: quizzesDummy }
+]
+
 test('renders without crashing', () => {
   const wrapper = shallow(
     <ScreenDecksAndQuizzes
       decks={deckDummies}
-      selectedDeckQuizzes={quizzesDummy}
     />);
   expect(wrapper).toMatchSnapshot();
 });
@@ -21,7 +33,7 @@ describe('browse the quizzes', () => {
   beforeEach(() => {
     const store = createStore(reducer)
     store.dispatch(receiveDecks(deckDummies))
-    store.dispatch(selectDeck(deckDummies[0].key, deckDummies[0].quizzes))
+    store.dispatch(selectDeck(deckDummies[0].key))
     screenDecksAndQuizzesConnected = mount(
       <Provider store={store}>
         <ScreenDecksAndQuizzesConnected />
@@ -55,14 +67,3 @@ function selectFirstDeck(screenDecksAndQuizzesConnected) {
   expect(screenDecksAndQuizzesConnected.find('QuizCardStart').length).toEqual(1)
 }
 
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]
-
-const deckDummies = [
-  { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizzes: quizzesDummy },
-  { key: 'two-item', title: 'Two Deck', amountOfCards: 3, quizzes: quizzesDummy },
-  { key: 'three-item', title: 'Three Deck', amountOfCards: 3, quizzes: quizzesDummy }
-]

@@ -172,19 +172,6 @@ exports[`renders without crashing 1`] = `
           },
         ]
       }
-      selectedDeckQuizzes={
-        Array [
-          Object {
-            "question": "One Quetion",
-          },
-          Object {
-            "question": "Two Quetion",
-          },
-          Object {
-            "question": "Three Quetion",
-          },
-        ]
-      }
     />
   </View>
 </View>

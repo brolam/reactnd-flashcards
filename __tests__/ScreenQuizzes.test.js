@@ -6,6 +6,18 @@ import { Provider } from 'react-redux'
 import reducer from '../reducers'
 import { receiveDecks, selectDeck, selectQuiz } from '../actions'
 
+const quizzesDummy = [
+  { question: 'One Quetion' },
+  { question: 'Two Quetion' },
+  { question: 'Three Quetion' }
+]
+
+const deckDummies = [
+  { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizzes: quizzesDummy },
+  { key: 'two-item', title: 'Two Deck', amountOfCards: 3, quizzes: quizzesDummy },
+  { key: 'three-item', title: 'Three Deck', amountOfCards: 3, quizzes: quizzesDummy }
+]
+
 test('renders without crashing', () => {
   const wrapper = shallow(<ScreenQuizzes quizzes={quizzesDummy} />);
   expect(wrapper).toMatchSnapshot();
@@ -40,14 +52,3 @@ describe('browse the quizzes', () => {
   });
 })
 
-const quizzesDummy = [
-  { question: 'One Quetion' },
-  { question: 'Two Quetion' },
-  { question: 'Three Quetion' }
-]
-
-const deckDummies = [
-  { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizzes: quizzesDummy },
-  { key: 'two-item', title: 'Two Deck', amountOfCards: 3, quizzes: quizzesDummy },
-  { key: 'three-item', title: 'Three Deck', amountOfCards: 3, quizzes: quizzesDummy }
-]

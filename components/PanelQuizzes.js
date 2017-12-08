@@ -38,9 +38,9 @@ export default function PanelQuizzes(
         onAddQuiz={() => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ))} />
       :
       <QuizCardQuestion
-        question={quizzes[index].question}
-        indexCard={selectedIndexQuiz}
-        amountOfCards={deck.amountOfCards}
+        deck={deck}
+        quizzes={quizzes}
+        selectedIndexQuiz={index}
       />
   }
 

@@ -5,17 +5,15 @@ import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { green, red, white, } from '../styles/colors';
 
-export default function QuizCardQuestion({
-  amountOfCards = 1,
-  indexCard = 0,
-  question, }) {
+export default function QuizCardQuestion({ deck, selectedIndexQuiz = 0 }) {
+  const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>
       <View style={styles.headerContainer}>
-        <Text>{indexCard + 1}/{amountOfCards}</Text>
+        <Text>{selectedIndexQuiz + 1}/{deck.amountOfCards}</Text>
       </View>
       <View>
-        <Text style={styles.question}>{question}</Text>
+        <Text style={styles.question}>{quiz.question}</Text>
         <TouchableOpacity
           onPress={() => console.log('Answered Correct')}>
           <Text style={styles.buttonShowAnswer}>show answer</Text>
@@ -39,7 +37,11 @@ export default function QuizCardQuestion({
 }
 
 QuizCardQuestion.propTypes = {
-  question: PropTypes.string.isRequired,
+  deck: PropTypes.shape({
+    amountOfCards: PropTypes.number.isRequired,
+    quizzes: PropTypes.array.isRequired,
+  }),
+  selectedIndexQuiz: PropTypes.number.isRequired
 }
 
 const styles = StyleSheet.create({
