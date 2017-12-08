@@ -8,20 +8,18 @@ import { green, red, white, } from '../styles/colors';
 export default function QuizCardQuestion({
   deck,
   selectedIndexQuiz = 0,
-  onAnswer }) {
+  onAnswer,
+  showQuizAnswer = false  }) {
   const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>
       <View style={styles.headerContainer}>
         <Text>{selectedIndexQuiz + 1}/{deck.amountOfCards}</Text>
       </View>
-      <View>
-        <Text style={styles.question}>{quiz.question}</Text>
-        <TouchableOpacity
-          onPress={() => console.log('show answer')}>
-          <Text style={styles.buttonShowAnswer}>show answer</Text>
-        </TouchableOpacity>
-      </View>
+      {showQuizAnswer
+        ? <Answer quiz={quiz} />
+        : <Question quiz={quiz} />
+      }
       <View style={styles.buttonsContainer}>
         <TouchableOpacity
           style={[buttonStyle, styles.buttonAnswerCorrect]}
@@ -36,6 +34,32 @@ export default function QuizCardQuestion({
       </View>
     </View>
 
+  )
+}
+
+function Question(props) {
+  const { quiz } = props
+  return (
+    <View>
+      <Text style={styles.question}>{quiz.question}</Text>
+      <TouchableOpacity
+        onPress={() => console.log('show answer')}>
+        <Text style={styles.buttonShowAnswer}>show answer</Text>
+      </TouchableOpacity>
+    </View>
+  )
+}
+
+function Answer(props) {
+  const { quiz } = props
+  return (
+    <View>
+      <Text style={styles.question}>{quiz.answer}</Text>
+      <TouchableOpacity
+        onPress={() => console.log('show answer')}>
+        <Text style={styles.buttonShowAnswer}>show question</Text>
+      </TouchableOpacity>
+    </View>
   )
 }
 
