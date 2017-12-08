@@ -74,3 +74,8 @@ export const setQuiz = (deck, quizUnsaved) => new Promise(function (then) {
   deck.amountOfCards = deck.quizzes.length
   setDeck(deck).then(decks => then(decks))
 })
+
+export const startDeckQuiz = deck => new Promise(function (then) {
+  deck.quizzes.map(quiz => quiz.answered = undefined)
+  setDeck(deck).then(decks => then(decks))
+})

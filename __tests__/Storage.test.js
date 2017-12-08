@@ -7,7 +7,8 @@ import {
   fetchDecks,
   setDeck,
   getNewQuiz,
-  setQuiz
+  setQuiz,
+  startDeckQuiz
 } from '../storage'
 
 describe('storage Decks', () => {
@@ -173,6 +174,15 @@ describe('calculate score', () => {
     setDeck(oneDeck).then(decks => {
       oneDeck = decks[0]
       expect(oneDeck.score).toBe(100)
+      expect(doneExpects).toBe(true)
+    })
+  })
+
+  test('start quiz', () => {
+    expect.assertions(2);
+    startDeckQuiz(oneDeck).then(decks => {
+      oneDeck = decks[0]
+      expect(oneDeck.score).toBe(0)
       expect(doneExpects).toBe(true)
     })
   })
