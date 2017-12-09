@@ -54,7 +54,7 @@ const ScreenDecksConnected = connect(
   mapStateToProps,
 )(ScreenDecks)
 
-export default RootNavigator = StackNavigator({
+export const routes = {
   Home: {
     screen: ScreenDecksConnected,
     navigationOptions: ({ navigation, screenProps }) => ({
@@ -64,11 +64,11 @@ export default RootNavigator = StackNavigator({
   },
   Quizzes: {
     screen: ScreenQuizzes,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation, screenProps }) => ({
       headerTitle: navigation.state.params.title,
-      headerRight: <Button title="Edit" onPress={() => {
-        console.log('Edit Deck')
-      }} />,
+      headerRight: <Button title="Edit" onPress={() => screenProps.onClickEditDeck()} />,
     }),
   },
-});
+}
+
+export default RootNavigator = StackNavigator(routes);
