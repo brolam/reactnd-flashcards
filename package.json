@@ -22,7 +22,15 @@
     ],
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy"
-    }
+    },
+    "collectCoverageFrom": [
+      "*.js",
+      "**/*.js",
+      "!**/FadeInViewAnimate.js",
+      "!/reactnd-flashcards/coverage/lcov-report",
+      "!**/prettify.js",
+      "!**/sorter.js"
+    ]
   },
   "dependencies": {
     "expo": "^22.0.2",

@@ -7,6 +7,7 @@ import QuizCardQuestion from './QuizCardQuestion'
 import QuizCardWrite from './QuizCardWrite'
 import { setDeck, setQuiz, getNewQuiz, startDeckQuiz } from '../storage/index';
 import { receiveDecks, selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions/index';
+import FadeInViewAnimate from '../components/FadeInViewAnimate'
 
 export default function PanelQuizzes(
   { deck,
@@ -14,7 +15,7 @@ export default function PanelQuizzes(
     selectedIndexQuiz = -1,
     isWriteCard = false,
     dispatch = action => { },
-    showQuizAnswer = false 
+    showQuizAnswer = false
   }) {
 
   function hasQuiz() {
@@ -62,7 +63,15 @@ export default function PanelQuizzes(
       />
   }
 
-  if (isWriteCard || hasQuiz() === false )
+  function getQuizCardByIndexAnimate(index) {
+    return (
+      <FadeInViewAnimate>
+        {getQuizCardByIndex(index)}
+      </FadeInViewAnimate>
+    )
+  }
+
+  if (isWriteCard || hasQuiz() === false)
     return (
       <View style={styles.container}>
         <QuizCardWrite onSave={onSaveQuiz} />
@@ -71,8 +80,13 @@ export default function PanelQuizzes(
   else if (hasQuiz())
     return (
       <View style={styles.container}>
-        {getQuizCardByIndex(selectedIndexQuiz)}
+        {
+          showQuizAnswer
+            ? getQuizCardByIndexAnimate(selectedIndexQuiz)
+            : getQuizCardByIndex(selectedIndexQuiz)
+        }
       </View>
+
     )
   else return (
     <View style={styles.container}>
