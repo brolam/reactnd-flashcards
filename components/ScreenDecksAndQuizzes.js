@@ -11,7 +11,7 @@ import { selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 export function ScreenDecksAndQuizzes(props) {
-  const { decks, deck, dispatch, onClickAddDeck } = props
+  const { decks, deck, dispatch, onClickAddDeck, onClickEditDeck } = props
   return (
     <View style={styles.container} >
       <View style={styles.containerDeckList}>
@@ -29,7 +29,7 @@ export function ScreenDecksAndQuizzes(props) {
           <View style={[cardStyle, styles.toolbar]} >
             <Text style={styles.toolbarText}>{deck.title}</Text>
             <TouchableOpacity
-              onPress={() => console.log('Edit deck')}>
+              onPress={() => onClickEditDeck()}>
               <FontAwesome style={styles.toolbarButton} name='edit' />
             </TouchableOpacity>
           </View>

@@ -23,6 +23,7 @@ exports[`renders two panels without crashing 1`] = `
     <AppStatusBar />
     <Connect(ScreenDecksAndQuizzes)
       onClickAddDeck={[Function]}
+      onClickEditDeck={[Function]}
     />
   </View>
 </Provider>

@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import reducer from '../reducers'
 import { receiveDecks, selectDeck } from '../actions'
 
-
 const quizzesDummy = [
   { question: 'One Quetion' },
   { question: 'Two Quetion' },
@@ -51,7 +50,6 @@ describe('browse the quizzes', () => {
     const panelQuizzes = screenDecksAndQuizzesConnected.find('PanelQuizzes')
     expect(panelQuizzes.text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   });
-  /*
 
   test('show add quiz', () => {
     selectFirstDeck(screenDecksAndQuizzesConnected)
@@ -59,8 +57,23 @@ describe('browse the quizzes', () => {
     const panelQuizzes = screenDecksAndQuizzesConnected.find('PanelQuizzes')
     expect(panelQuizzes.text()).toBe('QuestionAnswerSave as CorrectSave as Incorrect')
   });
-  */
+
 })
+
+test('edit deck', () => {
+  const onClickEditDeck = jest.fn()
+  const store = createStore(reducer)
+  store.dispatch(receiveDecks(deckDummies))
+  store.dispatch(selectDeck(deckDummies[0].key))
+  const screenDecksAndQuizzesConnected = mount(
+    <Provider store={store}>
+      <ScreenDecksAndQuizzesConnected onClickEditDeck={onClickEditDeck} />
+    </Provider>
+  );
+  selectFirstDeck(screenDecksAndQuizzesConnected)
+  screenDecksAndQuizzesConnected.find('TouchableOpacity').at(4).props().onPress()
+  expect(onClickEditDeck).toHaveBeenCalled();
+});
 
 function selectFirstDeck(screenDecksAndQuizzesConnected) {
   screenDecksAndQuizzesConnected.find('DeckCard').at(0).props().onPress()

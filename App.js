@@ -74,7 +74,10 @@ export default class App extends React.Component {
           <AppStatusBar />
           {
             (this.state.isTwoPanels) ?
-              <ScreenDecksAndQuizzes onClickAddDeck={this.onClickAddDeck} />
+              <ScreenDecksAndQuizzes
+                onClickAddDeck={this.onClickAddDeck}
+                onClickEditDeck={this.onClickEditDeck}
+              />
               :
               <ScreenDecks screenProps={{
                 onClickAddDeck: this.onClickAddDeck,
