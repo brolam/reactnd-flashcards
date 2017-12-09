@@ -2,10 +2,7 @@
 import { AsyncStorage } from 'react-native'
 
 const DECKS_STORAGE_KEY = 'FLASH_CARDS:DECKS'
-
-function getDeckQuizzesStorageKey(deckKey) {
-  return `FLASH_CARDS:DECK:QUIZZES:${deckKey}`
-}
+const DECKS_DATE_LAST_QUIZ_STARTED_KEY = 'FLASH_CARDS:DATE_LAST_QUIZ_STARTED'
 
 function newKey() {
   return Math.random().toString(36).substr(-15)
@@ -77,5 +74,15 @@ export const setQuiz = (deck, quizUnsaved) => new Promise(function (then) {
 
 export const startDeckQuiz = deck => new Promise(function (then) {
   deck.quizzes.map(quiz => quiz.answered = undefined)
-  setDeck(deck).then(decks => then(decks))
+  setDeck(deck).then(decks => {
+    const valueDateQuizStarted = Date.now().toString()
+    AsyncStorage.setItem(DECKS_DATE_LAST_QUIZ_STARTED_KEY, valueDateQuizStarted ).then(
+      then(decks)
+    )
+  })
+})
+
+export const getDateLastQuizStarted = () => new Promise(function (then) {
+  return AsyncStorage.getItem(DECKS_DATE_LAST_QUIZ_STARTED_KEY)
+    .then(milliseconds => then(milliseconds ? Number(milliseconds) : undefined))
 })

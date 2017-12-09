@@ -8,7 +8,8 @@ import {
   setDeck,
   getNewQuiz,
   setQuiz,
-  startDeckQuiz
+  startDeckQuiz,
+  getDateLastQuizStarted
 } from '../storage'
 
 describe('storage Decks', () => {
@@ -187,4 +188,27 @@ describe('calculate score', () => {
     })
   })
 
+  test('init date of the last quiz started', () => {
+    mockImpl.clear()
+    expect.assertions(2);
+    getDateLastQuizStarted().then(milliseconds => {
+      expect(milliseconds).toBe(undefined)
+      expect(doneExpects).toBe(true)
+    })
+  })
+
+  it('set date of the last quiz started ', () => {
+    const oneQuiz = getNewQuiz('On Question', 'One Answer', true)
+    const oneDeck = { ...getNewDeck('One Deck'), quizzes: [oneQuiz] }
+    startDeckQuiz(oneDeck)
+  })
+
+  test('get date of the last quiz started', () => {
+    const now = Date.now()
+    expect.assertions(2);
+    getDateLastQuizStarted().then(milliseconds => {
+      expect(milliseconds).toBeGreaterThanOrEqual(now)
+      expect(doneExpects).toBe(true)
+    })
+  })
 })
