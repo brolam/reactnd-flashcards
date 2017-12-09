@@ -30,6 +30,7 @@ export default function DeckWriteModal(props) {
 }
 
 function DeckWriteBody(props) {
+  const { deck } = props
   let textInputTile = {}
   function onSave() {
     if (textInputTile.value && textInputTile.value.length > 0)
@@ -42,6 +43,7 @@ function DeckWriteBody(props) {
     <View style={[cardStyle, styles.body]}>
       <Text style={styles.title}>{props.title}</Text>
       <TextInput
+        defaultValue={deck ? deck.title : ''}
         ref={input => { textInputTile = input }}
         placeholder="Enter with a Deck Title."
         style={styles.titleTextInput}

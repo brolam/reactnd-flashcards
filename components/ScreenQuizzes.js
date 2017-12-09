@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { selectQuiz, APP_STATES, setAppState } from '../actions/index';
 
 export function ScreenQuizzes(props) {
+  if (props.navigation)
+    props.navigation.state.params.title = props.deck.title
   return (
     <View style={styles.container}>
       <PanelQuizzes {...props} />
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(props) {
   const deck = props.decks.find(deck => deck.key === props.selectedDeckKey)
-  const quizzes = deck && deck.quizzes ? deck.quizzes : []
+  const quizzes = deck.quizzes ? deck.quizzes : []
   return {
     deck,
     quizzes,

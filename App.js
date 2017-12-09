@@ -13,7 +13,6 @@ import { receiveDecks } from './actions'
 import reducer from './reducers'
 import { fetchDecks, getNewDeck, setDeck } from './storage/index';
 
-
 const store = createStore(reducer)
 
 export default class App extends React.Component {
@@ -21,7 +20,8 @@ export default class App extends React.Component {
     super();
     this.state = {
       isTwoPanels: props.isTwoPanels,
-      isAddingDeck: false
+      isAddingDeck: false,
+      isEditingDeck: false,
     };
   }
 
@@ -37,20 +37,37 @@ export default class App extends React.Component {
     this.setState({ isAddingDeck: true })
   }
 
-  onClickCancelAddDeck = () => {
-    this.setState({ isAddingDeck: false })
+  onClickEditDeck = () => {
+    this.setState({ isEditingDeck: true })
   }
 
-  onSaveDeck = (title) => {
-    const newDeck = getNewDeck(title)
-    setDeck(newDeck).then(decks => {
-      store.dispatch(receiveDecks(decks))
-      this.setState({ isAddingDeck: false })
+  onClickCancelAddDeck = () => {
+    this.setState({
+      isAddingDeck: false,
+      isEditingDeck: false,
     })
   }
 
+  onSaveDeck = (title) => {
+    const unSaveDeck = this.state.isEditingDeck
+      ? { ...this.getSelectedDeck(), title }
+      : getNewDeck(title)
+    setDeck(unSaveDeck).then(decks => {
+      store.dispatch(receiveDecks(decks))
+      this.setState({
+        isAddingDeck: false,
+        isEditingDeck: false,
+      })
+    })
+  }
+
+  getSelectedDeck() {
+    const { decks, selectedDeckKey } = store.getState()
+    return decks.find(deck => deck.key === selectedDeckKey)
+  }
+
   render() {
-    const { isAddingDeck } = this.state
+    const { isAddingDeck, isEditingDeck } = this.state
     return (
       <Provider store={store}>
         <View style={appStyles.container} onLayout={this.onLayoutChanged} >
@@ -59,11 +76,22 @@ export default class App extends React.Component {
             (this.state.isTwoPanels) ?
               <ScreenDecksAndQuizzes onClickAddDeck={this.onClickAddDeck} />
               :
-              <ScreenDecks screenProps={{ onClickAddDeck: this.onClickAddDeck }} />
+              <ScreenDecks screenProps={{
+                onClickAddDeck: this.onClickAddDeck,
+                onClickEditDeck: this.onClickEditDeck
+              }} />
           }
           {isAddingDeck &&
             <DeckWriteModal
               title="New Deck"
+              onCancel={this.onClickCancelAddDeck}
+              onSave={this.onSaveDeck}
+            />
+          }
+          {isEditingDeck &&
+            <DeckWriteModal
+              title="Edit Deck"
+              deck={this.getSelectedDeck()}
               onCancel={this.onClickCancelAddDeck}
               onSave={this.onSaveDeck}
             />

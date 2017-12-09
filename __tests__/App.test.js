@@ -5,8 +5,6 @@ const mockImpl = new MockAsyncStorage()
 jest.mock('AsyncStorage', () => mockImpl)
 import App from '../App';
 
-
-
 test('renders without crashing', () => {
   const wrapper = shallow(<App isTwoPanels={false} />);
   expect(wrapper).toMatchSnapshot();
@@ -67,4 +65,24 @@ describe('new Deck Modal with two panels', () => {
     expect(app.state().isAddingDeck).toBe(false)
   });
 
+})
+
+describe('edit Deck with one panel', () => {
+  const app = mount(<App />);
+  app.instance().onSaveDeck('One Deck')
+  test('edit and save Deck', () => {
+    app.instance().onClickEditDeck()
+    expect(app.state().isEditingDeck).toBe(true)
+    app.instance().onSaveDeck('One Deck Edited')
+  });
+
+  test('saved Edit Deck', () => {
+    expect(app.state().isEditingDeck).toBe(false)
+  });
+
+  test('cancel Edit Deck', () => {
+    app.instance().onClickEditDeck()
+    app.instance().onClickCancelAddDeck()
+    expect(app.state().isEditingDeck).toBe(false)
+  });
 })

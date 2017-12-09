@@ -53,6 +53,7 @@ exports[`renders without crashing 1`] = `
       screenProps={
         Object {
           "onClickAddDeck": [Function],
+          "onClickEditDeck": [Function],
         }
       }
     />

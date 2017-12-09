@@ -19,7 +19,11 @@ const deckDummies = [
 ]
 
 test('renders without crashing', () => {
-  const wrapper = shallow(<ScreenQuizzes quizzes={quizzesDummy} />);
+  const mockProps = {
+    navigation: { state: { params: { title: 'One Deck' } } },
+    deck: { title: 'One Deck' }
+  }
+  const wrapper = shallow(<ScreenQuizzes {...mockProps} quizzes={quizzesDummy} />);
   expect(wrapper).toMatchSnapshot();
 });
 

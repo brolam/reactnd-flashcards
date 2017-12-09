@@ -10,6 +10,20 @@ exports[`renders without crashing 1`] = `
   }
 >
   <PanelQuizzes
+    deck={
+      Object {
+        "title": "One Deck",
+      }
+    }
+    navigation={
+      Object {
+        "state": Object {
+          "params": Object {
+            "title": "One Deck",
+          },
+        },
+      }
+    }
     quizzes={
       Array [
         Object {
