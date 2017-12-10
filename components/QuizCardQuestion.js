@@ -5,6 +5,7 @@ import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { green, red, white, } from '../styles/colors';
 import { showQuizAnswer } from '../actions/index';
+import { FontAwesome } from '@expo/vector-icons'
 
 export default function QuizCardQuestion({
   deck,
@@ -16,7 +17,13 @@ export default function QuizCardQuestion({
   return (
     <View style={[cardStyle, styles.container]}>
       <View style={styles.headerContainer}>
-        <Text>{selectedIndexQuiz + 1}/{deck.amountOfCards}</Text>
+        <Text style={styles.headerContainerItemLeft} >
+          {selectedIndexQuiz + 1}/{deck.amountOfCards}
+        </Text>
+        <TouchableOpacity style={styles.headerContainerItemRight}
+          onPress={() => console.log('Edit Card')}>
+          <FontAwesome style={styles.buttonEditCard} name='edit' />
+        </TouchableOpacity>
       </View>
       {showQuizAnswer
         ? <Answer quiz={quiz} dispatch={dispatch} />
@@ -79,16 +86,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     flex: 1,
-    marginBottom: 10
+    marginBottom: 10,
+    padding: 10,
   },
   headerContainer: {
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignSelf: 'stretch',
-    marginLeft: 8,
-    marginTop: 8,
+    flexDirection: 'row',
+    margin: 5,
+    marginTop: 18,
     position: 'absolute',
     top: 0
+  },
+  headerContainerItemLeft: {
+    flex: 1,
+  },
+  headerContainerItemRight: {
+    flex: 1,
+    alignItems: 'flex-end',
   },
   question: {
     fontSize: 32,
@@ -119,14 +132,18 @@ const styles = StyleSheet.create({
   },
   buttonAnswerCorrect: {
     backgroundColor: green,
-    margin: 5
+    marginRight: 5
   },
   buttonAnswerIncorrect: {
     backgroundColor: red,
-    margin: 5
+    marginLeft: 5
   },
   textButtons: {
     color: white,
-    fontSize: 24
+    fontSize: 18,
+    fontWeight: '600',
+  },
+  buttonEditCard: {
+    fontSize: 18,
   },
 });

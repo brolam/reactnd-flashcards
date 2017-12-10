@@ -49,7 +49,7 @@ exports[`renders today score 1`] = `
       }
     }
   >
-    Today Score 99.00%
+    Today's Score 99.00%
   </Text>
   <Text
     accessible={true}
@@ -100,6 +100,7 @@ exports[`renders today score 1`] = `
           ],
           Object {
             "backgroundColor": "#3cb371",
+            "flex": 1,
             "margin": 5,
           },
         ]
@@ -113,9 +114,8 @@ exports[`renders today score 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 32,
+            "fontSize": 28,
             "fontWeight": "600",
-            "padding": 5,
           }
         }
       >
@@ -144,6 +144,7 @@ exports[`renders today score 1`] = `
           ],
           Object {
             "backgroundColor": "#f26f28",
+            "flex": 1,
             "margin": 5,
           },
         ]
@@ -157,57 +158,12 @@ exports[`renders today score 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 32,
+            "fontSize": 28,
             "fontWeight": "600",
-            "padding": 5,
           }
         }
       >
         Add
-      </Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      activeOpacity={0.2}
-      id="buttonEditQuiz"
-      onPress={[Function]}
-      style={
-        Array [
-          Array [
-            Object {
-              "alignItems": "center",
-            },
-            Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#292477",
-              "borderRadius": 3,
-              "borderWidth": 1,
-              "padding": 5,
-              "paddingLeft": 25,
-              "paddingRight": 25,
-            },
-          ],
-          Object {
-            "backgroundColor": "#7c53c3",
-            "margin": 5,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#fff",
-            "fontSize": 32,
-            "fontWeight": "600",
-            "padding": 5,
-          }
-        }
-      >
-        Edit
       </Text>
     </TouchableOpacity>
   </View>
@@ -314,6 +270,7 @@ exports[`renders without crashing 1`] = `
           ],
           Object {
             "backgroundColor": "#3cb371",
+            "flex": 1,
             "margin": 5,
           },
         ]
@@ -327,9 +284,8 @@ exports[`renders without crashing 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 32,
+            "fontSize": 28,
             "fontWeight": "600",
-            "padding": 5,
           }
         }
       >
@@ -358,6 +314,7 @@ exports[`renders without crashing 1`] = `
           ],
           Object {
             "backgroundColor": "#f26f28",
+            "flex": 1,
             "margin": 5,
           },
         ]
@@ -371,57 +328,12 @@ exports[`renders without crashing 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 32,
+            "fontSize": 28,
             "fontWeight": "600",
-            "padding": 5,
           }
         }
       >
         Add
-      </Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      activeOpacity={0.2}
-      id="buttonEditQuiz"
-      onPress={[Function]}
-      style={
-        Array [
-          Array [
-            Object {
-              "alignItems": "center",
-            },
-            Object {
-              "backgroundColor": "#fff",
-              "borderColor": "#292477",
-              "borderRadius": 3,
-              "borderWidth": 1,
-              "padding": 5,
-              "paddingLeft": 25,
-              "paddingRight": 25,
-            },
-          ],
-          Object {
-            "backgroundColor": "#7c53c3",
-            "margin": 5,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#fff",
-            "fontSize": 32,
-            "fontWeight": "600",
-            "padding": 5,
-          }
-        }
-      >
-        Edit
       </Text>
     </TouchableOpacity>
   </View>

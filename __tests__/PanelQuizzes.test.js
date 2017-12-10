@@ -94,7 +94,7 @@ describe('navigate between cards', () => {
 
   test('selected first quiz', () => {
     expect(panelQuizzes.find('QuizCardQuestion')
-      .text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
+      .text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   })
 
   it('answer question one', () => {
@@ -104,7 +104,7 @@ describe('navigate between cards', () => {
 
   test('moved to quetion two ', () => {
     expect(panelQuizzes.find('QuizCardQuestion').text())
-      .toEqual('2/3Two Quetionshow answerCorrect?Incorrect?')
+      .toEqual('2/3Two Quetionshow answerCorrect?Incorrect?')
   })
 
   it('answer question two', () => {
@@ -114,7 +114,7 @@ describe('navigate between cards', () => {
 
   test('moved to question three', () => {
     expect(panelQuizzes.find('QuizCardQuestion').text())
-      .toEqual('3/3Three Quetionshow answerCorrect?Incorrect?')
+      .toEqual('3/3Three Quetionshow answerCorrect?Incorrect?')
   })
 
   it('try move to not answered quiz', () => {
@@ -126,7 +126,7 @@ describe('navigate between cards', () => {
 
   test('moved to not answered quiz', () => {
     expect(panelQuizzes.find('QuizCardQuestion')
-      .text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
+      .text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   })
 
   it('try move to start quiz', () => {

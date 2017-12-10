@@ -17,7 +17,7 @@ export default function QuizCardStart(
     const todayAtZeroHour = new Date().setHours(0,0,0,0)
     return lastUpdated < todayAtZeroHour
     ?`Last Score ${score.toFixed(2)}%`
-    :`Today Score ${score.toFixed(2)}%`
+    :`Today's Score ${score.toFixed(2)}%`
   }
   return (
     <View style={[cardStyle, styles.container]}>
@@ -35,12 +35,6 @@ export default function QuizCardStart(
           id="buttonAddQuiz"
           onPress={onAddQuiz}>
           <Text style={styles.textButtons} >Add</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[buttonStyle, styles.buttonEdit]}
-          id="buttonEditQuiz"
-          onPress={() => console.log('Edit quiz')}>
-          <Text style={styles.textButtons} >Edit</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -69,21 +63,18 @@ const styles = StyleSheet.create({
   },
   buttonStart: {
     backgroundColor: green,
+    flex: 1,
     margin: 5
   },
   buttonAdd: {
     backgroundColor: orange,
-    margin: 5
-  },
-  buttonEdit: {
-    backgroundColor: lightPurp,
+    flex: 1,
     margin: 5
   },
   textButtons: {
     color: white,
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: '600',
-    padding: 5,
   },
   lastScore: {
     fontSize: 42,

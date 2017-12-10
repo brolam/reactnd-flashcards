@@ -33,7 +33,7 @@ test('dispatch show quiz answer', () => {
     quizzes={quizzesDummy}
     selectedIndexQuiz={0}
     dispatch={spyDispatch} />);
-    const buttonShowAnswer = quizCardQuestion.find('TouchableOpacity').at(0)
+    const buttonShowAnswer = quizCardQuestion.find('TouchableOpacity').at(1)
     buttonShowAnswer.props().onPress()
     expect(spyDispatch).toHaveBeenCalledWith(showQuizAnswer(true))
 });
@@ -46,7 +46,7 @@ test('dispatch show quiz question', () => {
     selectedIndexQuiz={0}
     showQuizAnswer={true}
     dispatch={spyDispatch} />);
-    const buttonShowQuestion = quizCardQuestion.find('TouchableOpacity').at(0)
+    const buttonShowQuestion = quizCardQuestion.find('TouchableOpacity').at(1)
     buttonShowQuestion.props().onPress()
     expect(spyDispatch).toHaveBeenCalledWith(showQuizAnswer(false))
 });

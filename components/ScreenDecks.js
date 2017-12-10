@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { View, Button } from 'react-native'
+import { View, Button, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import DeckCardList from './DeckCardList'
 import { StackNavigator } from 'react-navigation';
@@ -59,14 +58,20 @@ export const routes = {
     screen: ScreenDecksConnected,
     navigationOptions: ({ navigation, screenProps }) => ({
       headerTitle: 'Decks',
-      headerRight: <Button title="Add" onPress={() => screenProps.onClickAddDeck()} />,
+      headerRight: <Button
+        title="Add"
+        onPress={() => screenProps.onClickAddDeck()}
+      />,
     }),
   },
   Quizzes: {
     screen: ScreenQuizzes,
     navigationOptions: ({ navigation, screenProps }) => ({
       headerTitle: navigation.state.params.title,
-      headerRight: <Button title="Edit" onPress={() => screenProps.onClickEditDeck()} />,
+      headerRight: <Button
+        title="Edit"
+        onPress={() => screenProps.onClickEditDeck()}
+      />,
     }),
   },
 }

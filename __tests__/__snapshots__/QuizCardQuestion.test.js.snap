@@ -32,6 +32,7 @@ exports[`renders without crashing 1`] = `
         "flexDirection": "column",
         "justifyContent": "space-around",
         "marginBottom": 10,
+        "padding": 10,
       },
     ]
   }
@@ -39,11 +40,9 @@ exports[`renders without crashing 1`] = `
   <View
     style={
       Object {
-        "alignSelf": "stretch",
-        "flexDirection": "column",
-        "justifyContent": "space-around",
-        "marginLeft": 8,
-        "marginTop": 8,
+        "flexDirection": "row",
+        "margin": 5,
+        "marginTop": 18,
         "position": "absolute",
         "top": 0,
       }
@@ -54,11 +53,37 @@ exports[`renders without crashing 1`] = `
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
     >
       1
       /
       3
     </Text>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 1,
+        }
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        name="edit"
+        size={12}
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      />
+    </TouchableOpacity>
   </View>
   <Question
     dispatch={[Function]}
@@ -103,7 +128,7 @@ exports[`renders without crashing 1`] = `
           ],
           Object {
             "backgroundColor": "#3cb371",
-            "margin": 5,
+            "marginRight": 5,
           },
         ]
       }
@@ -116,7 +141,8 @@ exports[`renders without crashing 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 24,
+            "fontSize": 18,
+            "fontWeight": "600",
           }
         }
       >
@@ -144,7 +170,7 @@ exports[`renders without crashing 1`] = `
           ],
           Object {
             "backgroundColor": "#ff0000",
-            "margin": 5,
+            "marginLeft": 5,
           },
         ]
       }
@@ -157,7 +183,8 @@ exports[`renders without crashing 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 24,
+            "fontSize": 18,
+            "fontWeight": "600",
           }
         }
       >
@@ -200,6 +227,7 @@ exports[`show quiz answer 1`] = `
         "flexDirection": "column",
         "justifyContent": "space-around",
         "marginBottom": 10,
+        "padding": 10,
       },
     ]
   }
@@ -207,11 +235,9 @@ exports[`show quiz answer 1`] = `
   <View
     style={
       Object {
-        "alignSelf": "stretch",
-        "flexDirection": "column",
-        "justifyContent": "space-around",
-        "marginLeft": 8,
-        "marginTop": 8,
+        "flexDirection": "row",
+        "margin": 5,
+        "marginTop": 18,
         "position": "absolute",
         "top": 0,
       }
@@ -222,11 +248,37 @@ exports[`show quiz answer 1`] = `
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
     >
       1
       /
       3
     </Text>
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 1,
+        }
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        name="edit"
+        size={12}
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      />
+    </TouchableOpacity>
   </View>
   <Answer
     dispatch={[Function]}
@@ -271,7 +323,7 @@ exports[`show quiz answer 1`] = `
           ],
           Object {
             "backgroundColor": "#3cb371",
-            "margin": 5,
+            "marginRight": 5,
           },
         ]
       }
@@ -284,7 +336,8 @@ exports[`show quiz answer 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 24,
+            "fontSize": 18,
+            "fontWeight": "600",
           }
         }
       >
@@ -312,7 +365,7 @@ exports[`show quiz answer 1`] = `
           ],
           Object {
             "backgroundColor": "#ff0000",
-            "margin": 5,
+            "marginLeft": 5,
           },
         ]
       }
@@ -325,7 +378,8 @@ exports[`show quiz answer 1`] = `
         style={
           Object {
             "color": "#fff",
-            "fontSize": 24,
+            "fontSize": 18,
+            "fontWeight": "600",
           }
         }
       >

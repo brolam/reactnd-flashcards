@@ -48,7 +48,7 @@ describe('browse the quizzes', () => {
     selectFirstDeck(screenDecksAndQuizzesConnected)
     screenDecksAndQuizzesConnected.find('TouchableOpacity [id="buttonStart"]').props().onPress()
     const panelQuizzes = screenDecksAndQuizzesConnected.find('PanelQuizzes')
-    expect(panelQuizzes.text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
+    expect(panelQuizzes.text()).toEqual('1/3One Quetionshow answerCorrect?Incorrect?')
   });
 
   test('show add quiz', () => {
