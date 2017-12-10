@@ -9,7 +9,8 @@ import {
   getNewQuiz,
   setQuiz,
   startDeckQuiz,
-  getDateLastQuizStarted
+  isReminderSetted,
+  setReminder
 } from '../storage'
 
 describe('storage Decks', () => {
@@ -188,27 +189,31 @@ describe('calculate score', () => {
     })
   })
 
-  test('init date of the last quiz started', () => {
+})
+
+describe('reminder setted', () => {
+  mockImpl.clear()
+  const doneExpects = true
+
+  test('init reminder setted', () => {
     mockImpl.clear()
     expect.assertions(2);
-    getDateLastQuizStarted().then(milliseconds => {
+    isReminderSetted().then(milliseconds => {
       expect(milliseconds).toBe(undefined)
       expect(doneExpects).toBe(true)
     })
   })
 
-  it('set date of the last quiz started ', () => {
-    const oneQuiz = getNewQuiz('On Question', 'One Answer', true)
-    const oneDeck = { ...getNewDeck('One Deck'), quizzes: [oneQuiz] }
-    startDeckQuiz(oneDeck)
+  it('set reminder', () => {
+    setReminder(true)
   })
 
-  test('get date of the last quiz started', () => {
-    const now = Date.now()
+  test('reminder setted', () => {
     expect.assertions(2);
-    getDateLastQuizStarted().then(milliseconds => {
-      expect(milliseconds).toBeGreaterThanOrEqual(now)
+    isReminderSetted().then(reminderSetted => {
+      expect(reminderSetted).toBe(true)
       expect(doneExpects).toBe(true)
     })
   })
+
 })
