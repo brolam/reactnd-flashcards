@@ -8,6 +8,7 @@ import QuizCardWrite from './QuizCardWrite'
 import { setDeck, setQuiz, getNewQuiz, startDeckQuiz } from '../storage/index';
 import { receiveDecks, selectDeck, selectQuiz, setAppState, APP_STATES } from '../actions/index';
 import FadeInViewAnimate from '../components/FadeInViewAnimate'
+import { setReminderScheduledNotification, REMINDER_TYPES } from '../util/NotificationsHelper'
 
 export default function PanelQuizzes(
   { deck,
@@ -26,7 +27,10 @@ export default function PanelQuizzes(
     dispatch(selectQuiz(0))
     startDeckQuiz(deck).then(decks => {
       dispatch(receiveDecks(decks))
+      //Cancel today's reminder and will schedule the next day's reminder
+      setReminderScheduledNotification(REMINDER_TYPES.ANSWER_A_QUIZ)
     })
+    
   }
 
   function onSaveQuiz(question, answer, answerExpect) {

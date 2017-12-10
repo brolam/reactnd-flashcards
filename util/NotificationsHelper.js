@@ -37,17 +37,16 @@ export function setReminderScheduledNotification(reminderType) {
   Permissions.askAsync(Permissions.NOTIFICATIONS)
     .then(({ status }) => {
       if (status === 'granted') {
-        Notifications.cancelAllScheduledNotificationsAsync().then(() => {
-          const nextReminder = getNextDateReminder(reminderType)
-          setReminderScheduled(true).then(() => {
-            Notifications.scheduleLocalNotificationsAsync(
-              getReminderByType(reminderType),
-              {
-                time: nextReminder,
-                repeat: 'day',
-              }
-            )
-          })
+        Notifications.cancelAllScheduledNotificationsAsync()
+        const nextReminder = getNextDateReminder(reminderType)
+        setReminderScheduled(true).then(() => {
+          Notifications.scheduleLocalNotificationAsync(
+            getReminderByType(reminderType),
+            {
+              time: nextReminder,
+              repeat: 'day',
+            }
+          )
         })
       }
     })

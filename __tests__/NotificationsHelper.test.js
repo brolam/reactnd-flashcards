@@ -6,15 +6,15 @@ const mockImpl = new MockAsyncStorage()
 jest.mock('AsyncStorage', () => mockImpl)
 
 const spyCancelAllScheduledNotificationsAsync = jest.fn()
-const spyScheduleLocalNotificationsAsync = jest.fn()
+const spyScheduleLocalNotificationAsync = jest.fn()
 
 Notifications.cancelAllScheduledNotificationsAsync = () => new Promise(function (then) {
   spyCancelAllScheduledNotificationsAsync()
   then()
 })
 
-Notifications.scheduleLocalNotificationsAsync = () => new Promise(function (then) {
-  spyScheduleLocalNotificationsAsync()
+Notifications.scheduleLocalNotificationAsync = () => new Promise(function (then) {
+  spyScheduleLocalNotificationAsync()
 })
 
 Permissions.askAsync = () => new Promise(function (then) { then({ status: 'granted' }) })
@@ -62,13 +62,12 @@ describe('reminder scheduled notification', () => {
 
   test('reminder was setted', () => {
     expect(spyCancelAllScheduledNotificationsAsync).toHaveBeenCalled()
-    expect(spyScheduleLocalNotificationsAsync).toHaveBeenCalled()
+    expect(spyScheduleLocalNotificationAsync).toHaveBeenCalled()
   })
 
   test('reminder scheduled setted', () => {
     expect.assertions(2);
     isReminderScheduled().then(reminderSetted => {
-      console.log(reminderSetted)
       expect(reminderSetted).toBe(true)
       expect(doneExpects).toBe(true)
     })

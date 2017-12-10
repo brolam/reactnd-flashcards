@@ -11,7 +11,13 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { receiveDecks } from './actions'
 import reducer from './reducers'
-import { fetchDecks, getNewDeck, setDeck } from './storage/index';
+import {
+  fetchDecks,
+  getNewDeck,
+  setDeck,
+  isReminderScheduled
+} from './storage';
+import { setReminderScheduledNotification, REMINDER_TYPES } from './util/NotificationsHelper'
 
 const store = createStore(reducer)
 
@@ -27,6 +33,10 @@ export default class App extends React.Component {
 
   componentDidMount() {
     fetchDecks().then(decks => store.dispatch(receiveDecks(decks)))
+    isReminderScheduled().then(setted => {
+      if (!setted) setReminderScheduledNotification(REMINDER_TYPES.ANSWER_A_QUIZ)
+    })
+
   }
 
   onLayoutChanged = event => {
