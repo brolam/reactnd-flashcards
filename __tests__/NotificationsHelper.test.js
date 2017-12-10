@@ -1,23 +1,48 @@
 import React from 'react'
+import { Notifications, Permissions } from 'expo'
+import MockAsyncStorage from 'mock-async-storage'
+
+const mockImpl = new MockAsyncStorage()
+jest.mock('AsyncStorage', () => mockImpl)
+
+const spyCancelAllScheduledNotificationsAsync = jest.fn()
+const spyScheduleLocalNotificationsAsync = jest.fn()
+
+Notifications.cancelAllScheduledNotificationsAsync = () => new Promise(function (then) {
+  spyCancelAllScheduledNotificationsAsync()
+  then()
+})
+
+Notifications.scheduleLocalNotificationsAsync = () => new Promise(function (then) {
+  spyScheduleLocalNotificationsAsync()
+})
+
+Permissions.askAsync = () => new Promise(function (then) { then({ status: 'granted' }) })
+
 import {
-  createReminderAnswerQuiz,
-  getNextDateReminder
+  getReminderByType,
+  getNextDateReminder,
+  setReminderScheduledNotification
 } from '../util/NotificationsHelper'
 
+import { isReminderScheduled } from '../storage'
+
+const expectCreateRemindetAnswerQuiz = {
+  title: 'Keep learning!',
+  body: "Do not forget to answer a quiz today.",
+  ios: {
+    sound: true,
+  },
+  android: {
+    sound: true,
+    priority: 'high',
+    sticky: false,
+    vibrate: true,
+  }
+}
+
 test('create reminder to answer a quiz', () => {
-  expect(createReminderAnswerQuiz).toEqual({
-    title: 'Keep learning!',
-    body: "Do not forget to answer a quiz today.",
-    ios: {
-      sound: true,
-    },
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true,
-    }
-  })
+  expect(getReminderByType('ANSWER_A_QUIZ')).toEqual(expectCreateRemindetAnswerQuiz)
 })
 
 test('get next date reminder to answer a quiz', () => {
@@ -25,5 +50,27 @@ test('get next date reminder to answer a quiz', () => {
   tomorrow.setDate(tomorrow.getDate() + 1)
   tomorrow.setHours(20)
   tomorrow.setMinutes(0)
-  expect(getNextDateReminder('ANSWER_A_QUIZ')).toEqual(tomorrow)
+  const nextRemainder = getNextDateReminder('ANSWER_A_QUIZ')
+  expect(String(nextRemainder).substring(1, 24)).toEqual(String(tomorrow).substring(1, 24))
+})
+
+describe('reminder scheduled notification', () => {
+  const doneExpects = true
+  test('try set reminder', () => {
+    setReminderScheduledNotification('ANSWER_A_QUIZ')
+  })
+
+  test('reminder was setted', () => {
+    expect(spyCancelAllScheduledNotificationsAsync).toHaveBeenCalled()
+    expect(spyScheduleLocalNotificationsAsync).toHaveBeenCalled()
+  })
+
+  test('reminder scheduled setted', () => {
+    expect.assertions(2);
+    isReminderScheduled().then(reminderSetted => {
+      console.log(reminderSetted)
+      expect(reminderSetted).toBe(true)
+      expect(doneExpects).toBe(true)
+    })
+  })
 })
