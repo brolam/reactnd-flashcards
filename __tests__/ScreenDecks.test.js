@@ -32,6 +32,21 @@ test('edit button event', () => {
   expect(mockParams.screenProps.onClickEditDeck).toHaveBeenCalled();
 });
 
+test('select a deck', () => {
+  const spyDispatch = jest.fn()
+  const spyNavigation = { navigate: jest.fn() }
+  const screenDecks = mount(
+    <ScreenDecks
+      componentWillMount
+      decks={deckDummies}
+      dispatch={spyDispatch}
+      navigation={spyNavigation}
+    />);
+  screenDecks.find('DeckCard').at(0).props().onPress()
+  expect(spyDispatch).toHaveBeenCalled()
+  expect(spyNavigation.navigate).toHaveBeenCalled()
+});
+
 const deckDummies = [
   { key: 'one-item', title: 'One Deck', amountOfCards: 10 },
   { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
