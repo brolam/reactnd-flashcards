@@ -73,6 +73,17 @@ test('save a quiz', () => {
   })
 });
 
+test('show edit card', () => {
+  const oneQuiz = getNewQuiz('One Question', 'One Answer', true)
+  const oneDeck = { ...getNewDeck('One Deck'), quizzes: [oneQuiz] }
+  const panelQuizzes = shallow(
+    <PanelQuizzes
+      deck={oneDeck} quizzes={oneDeck.quizzes}
+      isEditCard={true}
+      selectedIndexQuiz={0}
+    />);
+  expect(panelQuizzes.find('QuizCardWrite').length).toEqual(1)
+});
 
 describe('navigate between cards', () => {
   let panelQuizzes

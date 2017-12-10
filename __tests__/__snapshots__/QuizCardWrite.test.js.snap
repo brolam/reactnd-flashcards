@@ -53,6 +53,7 @@ exports[`renders without crashing 1`] = `
     </Text>
     <TextInput
       blurOnSubmit={false}
+      defaultValue=""
       multiline={true}
       onChangeText={[Function]}
       onSubmitEditing={[Function]}
@@ -84,6 +85,7 @@ exports[`renders without crashing 1`] = `
     </Text>
     <TextInput
       blurOnSubmit={true}
+      defaultValue=""
       multiline={true}
       onChangeText={[Function]}
       placeholder="Enter the answer to the question."

@@ -15,6 +15,7 @@ export default function PanelQuizzes(
     quizzes,
     selectedIndexQuiz = -1,
     isWriteCard = false,
+    isEditCard = false,
     dispatch = action => { },
     showQuizAnswer = false
   }) {
@@ -30,7 +31,7 @@ export default function PanelQuizzes(
       //Cancel today's reminder and will schedule the next day's reminder
       setReminderScheduledNotification(REMINDER_TYPES.ANSWER_A_QUIZ)
     })
-    
+
   }
 
   function onSaveQuiz(question, answer, answerExpect) {
@@ -75,10 +76,13 @@ export default function PanelQuizzes(
     )
   }
 
-  if (isWriteCard || hasQuiz() === false)
+  if (isWriteCard || isEditCard || (hasQuiz() === false))
     return (
       <View style={styles.container}>
-        <QuizCardWrite onSave={onSaveQuiz} />
+        <QuizCardWrite
+          quiz={selectedIndexQuiz > -1 ? quizzes[selectedIndexQuiz] : {}}
+          onSave={onSaveQuiz}
+        />
       </View>
     )
   else if (hasQuiz())

@@ -6,10 +6,14 @@ import cardStyle from '../styles/cardStyles'
 import buttonStyle from '../styles/buttonStyles'
 import { white, blue, green, red } from '../styles/colors'
 
-export default function QuizCardWrite({ onSave = (question, answer, answerExpect) => { } }) {
+export default function QuizCardWrite({
+  quiz = {},
+  onSave = (question, answer, answerExpect) => { } }) {
 
-  let textInputQuestion = {}
-  let textInputAnswer = {}
+  const defaultQuestion = quiz.question ? quiz.question : ''
+  const defaultAnswer = quiz.answer ? quiz.answer : ''
+  let textInputQuestion = { value: defaultQuestion }
+  let textInputAnswer = { value: defaultAnswer }
 
   function parseFields(answerExpect) {
     const question = textInputQuestion.value
@@ -44,6 +48,7 @@ export default function QuizCardWrite({ onSave = (question, answer, answerExpect
             textInputAnswer.focus()
           }}
           onChangeText={text => textInputQuestion.value = text}
+          defaultValue={defaultQuestion}
         />
       </View>
       <View style={styles.containerTextInput}>
@@ -56,6 +61,7 @@ export default function QuizCardWrite({ onSave = (question, answer, answerExpect
           style={styles.textInput}
           placeholder="Enter the answer to the question."
           onChangeText={text => textInputAnswer.value = text}
+          defaultValue={defaultAnswer}
         />
       </View>
       <View style={styles.buttonsContainer}>
