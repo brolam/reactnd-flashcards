@@ -9,8 +9,8 @@ import {
   getNewQuiz,
   setQuiz,
   startDeckQuiz,
-  isReminderSetted,
-  setReminder
+  isReminderScheduled ,
+  setReminderScheduled 
 } from '../storage'
 
 describe('storage Decks', () => {
@@ -191,26 +191,26 @@ describe('calculate score', () => {
 
 })
 
-describe('reminder setted', () => {
+describe('reminder scheduled setted', () => {
   mockImpl.clear()
   const doneExpects = true
 
   test('init reminder setted', () => {
     mockImpl.clear()
     expect.assertions(2);
-    isReminderSetted().then(milliseconds => {
+    isReminderScheduled().then(milliseconds => {
       expect(milliseconds).toBe(undefined)
       expect(doneExpects).toBe(true)
     })
   })
 
   it('set reminder', () => {
-    setReminder(true)
+    setReminderScheduled (true)
   })
 
   test('reminder setted', () => {
     expect.assertions(2);
-    isReminderSetted().then(reminderSetted => {
+    isReminderScheduled().then(reminderSetted => {
       expect(reminderSetted).toBe(true)
       expect(doneExpects).toBe(true)
     })

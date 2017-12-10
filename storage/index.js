@@ -77,11 +77,11 @@ export const startDeckQuiz = deck => new Promise(function (then) {
   setDeck(deck).then(decks => then(decks))
 })
 
-export const setReminder = (setted) => {
+export const setReminderScheduled = (setted) => {
   return AsyncStorage.setItem(IS_REMINDER_SETTED_KEY, setted.toString())
 }
 
-export const isReminderSetted = () => new Promise(function (then) {
+export const isReminderScheduled = () => new Promise(function (then) {
   return AsyncStorage.getItem(IS_REMINDER_SETTED_KEY)
     .then(reminderSetted => then(reminderSetted ? true : undefined))
 })
