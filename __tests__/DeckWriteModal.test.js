@@ -12,6 +12,7 @@ test('onSave event', () => {
   const textInputTitle = deckWriteModal.find('TextInput').at(0)
   const buttonSave = deckWriteModal.find('TouchableOpacity').at(0)
   textInputTitle.instance().value = 'One Deck'
+  textInputTitle.props().onChangeText('One Deck')
   buttonSave.props().onPress()
   expect(onSave).toHaveBeenCalled();
 });
