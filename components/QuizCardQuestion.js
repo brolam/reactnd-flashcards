@@ -12,8 +12,8 @@ export default function QuizCardQuestion({
   selectedIndexQuiz = 0,
   onAnswer,
   showQuizAnswer = false,
-  dispatch = (action) => { console.log('dispatch') },
-  onEditQuiz = () => { console.log('Edit Card') } }) {
+  dispatch = (action) => { },
+  onEditQuiz = () => { } }) {
   const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>

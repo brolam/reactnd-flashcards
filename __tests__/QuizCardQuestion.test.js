@@ -50,3 +50,17 @@ test('dispatch show quiz question', () => {
     buttonShowQuestion.props().onPress()
     expect(spyDispatch).toHaveBeenCalledWith(showQuizAnswer(false))
 });
+
+
+test('on click button answer incorrect', () => {
+  const spyOnAnswer = jest.fn()
+  const quizCardQuestion = mount(<QuizCardQuestion
+    deck={deckDummy}
+    quizzes={quizzesDummy}
+    selectedIndexQuiz={0}
+    showQuizAnswer={true}
+    onAnswer={spyOnAnswer} />);
+    const buttonAnswerIncorrect = quizCardQuestion.find('TouchableOpacity').at(3)
+    buttonAnswerIncorrect.props().onPress()
+    expect(spyOnAnswer).toHaveBeenCalled()
+});
