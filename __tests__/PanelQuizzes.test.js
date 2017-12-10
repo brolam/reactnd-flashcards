@@ -7,6 +7,7 @@ import { getNewDeck, fetchDecks, getNewQuiz } from '../storage/index';
 import { receiveDecks, selectQuiz, setAppState, APP_STATES } from '../actions/index';
 import { createStore } from 'redux'
 import reducer from '../reducers'
+import { Platform } from 'react-native'
 
 const quizzesDummy = [
   { question: 'One Quetion' },
@@ -17,6 +18,12 @@ const deckDummy = { key: 'one-item', title: 'One Deck', amountOfCards: 3, quizze
 
 test('renders without crashing', () => {
   const wrapper = shallow(<PanelQuizzes quizzes={quizzesDummy} />);
+  expect(wrapper).toMatchSnapshot();
+});
+
+test('renders without crashing - android', () => {
+  Platform.OS = 'Android'
+  const wrapper = mount(<PanelQuizzes quizzes={quizzesDummy} />);
   expect(wrapper).toMatchSnapshot();
 });
 

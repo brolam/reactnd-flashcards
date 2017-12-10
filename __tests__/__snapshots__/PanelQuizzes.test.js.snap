@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders without crashing - android 1`] = `
+<PanelQuizzes
+  quizzes={
+    Array [
+      Object {
+        "question": "One Quetion",
+      },
+      Object {
+        "question": "Two Quetion",
+      },
+      Object {
+        "question": "Three Quetion",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+        >
+          There are not quizzes
+        </Text>
+      </Text>
+    </View>
+  </View>
+</PanelQuizzes>
+`;
+
 exports[`renders without crashing 1`] = `
 <View
   style={
