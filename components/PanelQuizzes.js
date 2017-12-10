@@ -44,7 +44,9 @@ export default function PanelQuizzes(
   }
 
   function onSaveQuiz(question, answer, answerExpect) {
-    const quiz = getNewQuiz(question, answer, answerExpect)
+    const quiz = isEditCard
+      ? { ...deck.quizzes[selectedIndexQuiz], question, answer, answerExpect }
+      : getNewQuiz(question, answer, answerExpect)
     setQuiz(deck, quiz).then(decks => {
       dispatch(receiveDecks(decks))
       dispatch(selectDeck(deck.key, deck.quizzes))

@@ -62,7 +62,7 @@ test('save a quiz', () => {
       deck={deck}
       selectedIndexQuiz={-1}
       quizzes={[]}
-      isWriteCard={true}
+      appState={APP_STATES.ADDING_DECK_QUIZ}
       dispatch={spyDispatch}
     />);
   const quizCardWrite = panelQuizzes.find('QuizCardWrite')
@@ -101,6 +101,30 @@ test('press button edit card', () => {
   const quizCardQuestion = panelQuizzes.find('QuizCardQuestion')
   quizCardQuestion.find('TouchableOpacity').at(0).props().onPress()
   expect(spyDispatch).toHaveBeenCalledWith(setAppState(APP_STATES.EDITING_DECK_QUIZ))
+});
+
+test('save a edited quiz', () => {
+  mockImpl.clear()
+  const spyDispatch = jest.fn()
+  const newQuiz = getNewQuiz('New Question', 'New Answer', true)
+  const oneDeck = { ...getNewDeck('One Deck'), quizzes: [newQuiz] }
+  const panelQuizzes = mount(
+    <PanelQuizzes
+      deck={oneDeck}
+      selectedIndexQuiz={0}
+      quizzes={[oneDeck.quizzes]}
+      appState={APP_STATES.EDITING_DECK_QUIZ}
+      dispatch={spyDispatch}
+    />);
+  const quizCardWrite = panelQuizzes.find('QuizCardWrite')
+  fillQuziCardWriteInputs(quizCardWrite)
+  const buttonSaveCorrect = quizCardWrite.find('TouchableOpacity').at(0)
+  buttonSaveCorrect.props().onPress()
+  expect.assertions(1);
+  fetchDecks().then(decks => {
+    expect(decks.length).toEqual(1)
+    expect(spyDispatch).toHaveBeenCalled()
+  })
 });
 
 describe('navigate between cards', () => {
