@@ -6,6 +6,7 @@ export const SHOW_QUIZ_ANSWER = 'SHOW_QUIZ_ANSWER'
 export const APP_STATES = {
   NAVIGATE_DECK: 'navigate_deck',
   ADDING_DECK_QUIZ: 'adding_deck_quiz',
+  EDITING_DECK_QUIZ: 'editing_deck_quiz',
   STARTED_QUIZ: 'started_quiz'
 }
 

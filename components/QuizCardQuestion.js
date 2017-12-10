@@ -12,7 +12,8 @@ export default function QuizCardQuestion({
   selectedIndexQuiz = 0,
   onAnswer,
   showQuizAnswer = false,
-  dispatch = (action) => { console.log('dispatch') } }) {
+  dispatch = (action) => { console.log('dispatch') },
+  onEditQuiz = () => { console.log('Edit Card') } }) {
   const quiz = deck.quizzes[selectedIndexQuiz]
   return (
     <View style={[cardStyle, styles.container]}>
@@ -21,7 +22,7 @@ export default function QuizCardQuestion({
           {selectedIndexQuiz + 1}/{deck.amountOfCards}
         </Text>
         <TouchableOpacity style={styles.headerContainerItemRight}
-          onPress={() => console.log('Edit Card')}>
+          onPress={() => onEditQuiz()}>
           <FontAwesome style={styles.buttonEditCard} name='edit' />
         </TouchableOpacity>
       </View>

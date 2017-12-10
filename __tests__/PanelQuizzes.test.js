@@ -4,7 +4,7 @@ const mockImpl = new MockAsyncStorage()
 jest.mock('AsyncStorage', () => mockImpl)
 import PanelQuizzes, { nextQuiz } from '../components/PanelQuizzes'
 import { getNewDeck, fetchDecks, getNewQuiz } from '../storage/index';
-import { receiveDecks, selectQuiz } from '../actions/index';
+import { receiveDecks, selectQuiz, setAppState, APP_STATES } from '../actions/index';
 import { createStore } from 'redux'
 import reducer from '../reducers'
 
@@ -84,6 +84,22 @@ test('show edit card', () => {
     />);
   expect(panelQuizzes.find('QuizCardWrite').length).toEqual(1)
 });
+
+test('press button edit card', () => {
+  const spyDispatch = jest.fn()
+  const oneQuiz = getNewQuiz('One Question', 'One Answer', true)
+  const oneDeck = { ...getNewDeck('One Deck'), quizzes: [oneQuiz] }
+  const panelQuizzes = mount(
+    <PanelQuizzes
+      deck={oneDeck} quizzes={oneDeck.quizzes}
+      selectedIndexQuiz={0}
+      dispatch={spyDispatch}
+    />);
+  const quizCardQuestion = panelQuizzes.find('QuizCardQuestion')
+  quizCardQuestion.find('TouchableOpacity').at(0).props().onPress()
+  expect(spyDispatch).toHaveBeenCalledWith(setAppState(APP_STATES.EDITING_DECK_QUIZ))
+});
+
 
 describe('navigate between cards', () => {
   let panelQuizzes

@@ -34,6 +34,14 @@ export default function PanelQuizzes(
 
   }
 
+  function onAddQuiz() {
+    dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ))
+  }
+
+  function onEditQuiz() {
+    dispatch(setAppState(APP_STATES.EDITING_DECK_QUIZ))
+  }
+
   function onSaveQuiz(question, answer, answerExpect) {
     const quiz = getNewQuiz(question, answer, answerExpect)
     setQuiz(deck, quiz).then(decks => {
@@ -56,7 +64,7 @@ export default function PanelQuizzes(
         deck={deck}
         quizzes={quizzes}
         onStart={() => onStartQuiz()}
-        onAddQuiz={() => dispatch(setAppState(APP_STATES.ADDING_DECK_QUIZ))} />
+        onAddQuiz={() => onAddQuiz()} />
       :
       <QuizCardQuestion
         deck={deck}
@@ -65,6 +73,7 @@ export default function PanelQuizzes(
         onAnswer={onAnswerQuiz}
         dispatch={dispatch}
         showQuizAnswer={showQuizAnswer}
+        onEditQuiz={() => onEditQuiz()}
       />
   }
 
