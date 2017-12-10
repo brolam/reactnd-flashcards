@@ -86,3 +86,9 @@ describe('edit Deck with one panel', () => {
     expect(app.state().isEditingDeck).toBe(false)
   });
 })
+
+test('onLayoutChanged', () => {
+  const app = shallow(<App isTwoPanels={true} />);
+  app.instance().onLayoutChanged()
+  expect(app.instance().state).toEqual({ isTwoPanels: false, isAddingDeck: false, isEditingDeck: false })
+});
