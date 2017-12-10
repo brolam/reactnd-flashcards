@@ -46,7 +46,10 @@ test('first quiz', () => {
 });
 
 test('write card', () => {
-  const panelQuizzes = shallow(<PanelQuizzes quizzes={[]} isWriteCard={true} />);
+  const panelQuizzes = shallow(
+    <PanelQuizzes quizzes={[]}
+      appState={APP_STATES.ADDING_DECK_QUIZ}
+    />);
   expect(panelQuizzes.find('QuizCardWrite').length).toEqual(1)
 });
 
@@ -79,7 +82,7 @@ test('show edit card', () => {
   const panelQuizzes = shallow(
     <PanelQuizzes
       deck={oneDeck} quizzes={oneDeck.quizzes}
-      isEditCard={true}
+      appState={APP_STATES.EDITING_DECK_QUIZ}
       selectedIndexQuiz={0}
     />);
   expect(panelQuizzes.find('QuizCardWrite').length).toEqual(1)
@@ -99,7 +102,6 @@ test('press button edit card', () => {
   quizCardQuestion.find('TouchableOpacity').at(0).props().onPress()
   expect(spyDispatch).toHaveBeenCalledWith(setAppState(APP_STATES.EDITING_DECK_QUIZ))
 });
-
 
 describe('navigate between cards', () => {
   let panelQuizzes

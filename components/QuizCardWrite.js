@@ -12,12 +12,12 @@ export default function QuizCardWrite({
 
   const defaultQuestion = quiz.question ? quiz.question : ''
   const defaultAnswer = quiz.answer ? quiz.answer : ''
-  let textInputQuestion = { value: defaultQuestion }
-  let textInputAnswer = { value: defaultAnswer }
+  let textInputQuestion = {}
+  let textInputAnswer = {}
 
   function parseFields(answerExpect) {
-    const question = textInputQuestion.value
-    const answer = textInputAnswer.value
+    const question = textInputQuestion.value ? textInputQuestion.value : defaultQuestion
+    const answer = textInputAnswer.value ? textInputAnswer.value : defaultAnswer
     if (!question || question.length == 0) {
       textInputQuestion.focus()
       Alert.alert('Question is required!')

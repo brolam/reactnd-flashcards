@@ -11,14 +11,16 @@ import FadeInViewAnimate from '../components/FadeInViewAnimate'
 import { setReminderScheduledNotification, REMINDER_TYPES } from '../util/NotificationsHelper'
 
 export default function PanelQuizzes(
-  { deck,
+  { appState,
+    deck,
     quizzes,
     selectedIndexQuiz = -1,
-    isWriteCard = false,
-    isEditCard = false,
     dispatch = action => { },
     showQuizAnswer = false
   }) {
+
+  isWriteCard = (appState === APP_STATES.ADDING_DECK_QUIZ)
+  isEditCard = (appState === APP_STATES.EDITING_DECK_QUIZ)
 
   function hasQuiz() {
     return deck && quizzes && quizzes.length > 0
@@ -31,7 +33,6 @@ export default function PanelQuizzes(
       //Cancel today's reminder and will schedule the next day's reminder
       setReminderScheduledNotification(REMINDER_TYPES.ANSWER_A_QUIZ)
     })
-
   }
 
   function onAddQuiz() {

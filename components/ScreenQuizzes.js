@@ -33,7 +33,6 @@ function mapStateToProps(props) {
   return {
     deck,
     quizzes,
-    isWriteCard: props.appState === APP_STATES.ADDING_DECK_QUIZ,
     ...props
   }
 }
