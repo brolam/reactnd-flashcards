@@ -8,19 +8,19 @@ export const REMINDER_TYPES = {
 
 export const getReminderByType = (reminderType) => {
   if (reminderType === REMINDER_TYPES.ANSWER_A_QUIZ)
-    return ({
-      title: 'Keep learning!',
-      body: "Do not forget to answer a quiz today.",
-      ios: {
-        sound: true,
-      },
-      android: {
-        sound: true,
-        priority: 'high',
-        sticky: false,
-        vibrate: true,
-      }
-    })
+  return ({
+    title: 'Keep learning!',
+    body: "Do not forget to answer a quiz today.",
+    ios: {
+      sound: true,
+    },
+    android: {
+      sound: true,
+      priority: 'high',
+      sticky: false,
+      vibrate: true,
+    }
+  })
 }
 
 export function getNextDateReminder(reminderType) {

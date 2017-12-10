@@ -73,3 +73,10 @@ describe('reminder scheduled notification', () => {
     })
   })
 })
+
+test('undefined parameters', () => {
+  Permissions.askAsync = () => new Promise(function (then) { then({ status: 'undefined' }) })
+  expect(getReminderByType()).toEqual(undefined)
+  expect(getNextDateReminder()).toEqual(undefined)
+  expect(setReminderScheduledNotification('ANSWER_A_QUIZ')).toEqual(undefined)
+})
