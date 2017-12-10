@@ -1,7 +1,14 @@
 import React from 'react'
 import DeckWriteModal from '../components/DeckWriteModal'
+import { Platform } from 'react-native'
 
 test('renders without crashing', () => {
+  const wrapper = shallow(<DeckWriteModal />);
+  expect(wrapper).toMatchSnapshot();
+});
+
+test('renders without crashing - android', () => {
+  Platform.OS = 'Android'
   const wrapper = shallow(<DeckWriteModal />);
   expect(wrapper).toMatchSnapshot();
 });
