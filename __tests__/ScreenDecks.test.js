@@ -6,11 +6,29 @@ import { routes } from '../components/ScreenDecks'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from '../reducers'
+import { APP_STATES } from '../actions/index';
 
 test('renders without crashing', () => {
   const wrapper = shallow(<ScreenDecks decks={deckDummies} />);
   expect(wrapper).toMatchSnapshot();
 });
+
+test('componentWillMount - ADDING_DECK_QUIZ', () => {
+  testComponentWillMountByAppState(APP_STATES.ADDING_DECK_QUIZ)
+});
+
+test('componentWillMount - STARTED_QUIZ', () => {
+  testComponentWillMountByAppState(APP_STATES.STARTED_QUIZ)
+});
+
+/*
+ componentWillMount() {
+    const { appState, navigation, deck } = this.props
+    if ((appState === APP_STATES.ADDING_DECK_QUIZ) || (appState === APP_STATES.STARTED_QUIZ)) {
+      navigation.navigate('Quizzes', { title: deck.title })
+    }
+  }
+*/
 
 test('add button event', () => {
   const mockParams = {
@@ -52,3 +70,17 @@ const deckDummies = [
   { key: 'two-item', title: 'Two Deck', amountOfCards: 11 },
   { key: 'three-item', title: 'Three Deck', amountOfCards: 12 }
 ]
+
+function testComponentWillMountByAppState(appState) {
+  const mockProps = {
+    navigation: {
+      state: { params: { title: 'One Deck' } },
+      navigate: jest.fn()
+    },
+    deck: deckDummies,
+    appState: appState
+  }
+  const wrapper = shallow(<ScreenDecks {...mockProps} />);
+  expect(mockProps.navigation.navigate).toBeCalled()
+
+}

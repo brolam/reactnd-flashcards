@@ -36,7 +36,6 @@ export default class App extends React.Component {
     isReminderScheduled().then(setted => {
       if (!setted) setReminderScheduledNotification(REMINDER_TYPES.ANSWER_A_QUIZ)
     })
-
   }
 
   onLayoutChanged = event => {
