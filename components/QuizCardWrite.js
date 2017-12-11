@@ -7,11 +7,11 @@ import buttonStyle from '../styles/buttonStyles'
 import { white, blue, green, red } from '../styles/colors'
 
 export default function QuizCardWrite({
-  quiz = {},
+  quiz = { question: '', answer: '' },
   onSave = (question, answer, answerExpect) => { } }) {
 
-  const defaultQuestion = quiz.question ? quiz.question : ''
-  const defaultAnswer = quiz.answer ? quiz.answer : ''
+  const defaultQuestion = quiz.question
+  const defaultAnswer = quiz.answer
   let textInputQuestion = {}
   let textInputAnswer = {}
 

@@ -62,5 +62,6 @@ function fillQuziCardWriteInputs(quizCardWrite){
   const textInputQuestion = quizCardWrite.find('TextInput').at(0)
   const textInputAnswer = quizCardWrite.find('TextInput').at(2)
   textInputQuestion.props().onChangeText('One Question')
+  textInputQuestion.props().onSubmitEditing()
   textInputAnswer.props().onChangeText('One Answer')
 }
