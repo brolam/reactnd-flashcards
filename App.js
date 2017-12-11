@@ -32,7 +32,10 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    fetchDecks().then(decks => store.dispatch(receiveDecks(decks)))
+    fetchDecks().then(decks => {
+      store.dispatch(receiveDecks(decks))
+      if (decks.length === 0) this.onClickAddDeck()
+    })
     isReminderScheduled().then(setted => {
       if (!setted) setReminderScheduledNotification(REMINDER_TYPES.ANSWER_A_QUIZ)
     })
