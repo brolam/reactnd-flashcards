@@ -31,23 +31,7 @@ exports[`renders without crashing - android 1`] = `
           "flexDirection": "row",
         }
       }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-        >
-          There are not quizzes
-        </Text>
-      </Text>
-    </View>
+    />
   </View>
 </PanelQuizzes>
 `;
@@ -60,16 +44,7 @@ exports[`renders without crashing 1`] = `
       "flexDirection": "row",
     }
   }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-  >
-    There are not quizzes
-  </Text>
-</View>
+/>
 `;
 
 exports[`there are not quizzes 1`] = `
@@ -80,14 +55,5 @@ exports[`there are not quizzes 1`] = `
       "flexDirection": "row",
     }
   }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-  >
-    There are not quizzes
-  </Text>
-</View>
+/>
 `;

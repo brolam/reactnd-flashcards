@@ -9,7 +9,7 @@ import { isPossibleTwoPanels } from './util/ScreenHelper';
 import Dimensions from 'Dimensions';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import { receiveDecks } from './actions'
+import { receiveDecks, selectDeck } from './actions'
 import reducer from './reducers'
 import {
   fetchDecks,
@@ -59,11 +59,13 @@ export default class App extends React.Component {
   }
 
   onSaveDeck = (title) => {
-    const unSaveDeck = this.state.isEditingDeck
+    const { isAddingDeck, isEditingDeck } = this.state
+    const unSaveDeck = isEditingDeck
       ? { ...this.getSelectedDeck(), title }
       : getNewDeck(title)
     setDeck(unSaveDeck).then(decks => {
       store.dispatch(receiveDecks(decks))
+      if (isAddingDeck) store.dispatch(selectDeck(unSaveDeck.key))
       this.setState({
         isAddingDeck: false,
         isEditingDeck: false,

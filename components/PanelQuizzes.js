@@ -49,7 +49,7 @@ export default function PanelQuizzes(
       : getNewQuiz(question, answer, answerExpect)
     setQuiz(deck, quiz).then(decks => {
       dispatch(receiveDecks(decks))
-      dispatch(selectDeck(deck.key, deck.quizzes))
+      dispatch(selectDeck(deck.key))
     })
   }
 
@@ -110,7 +110,6 @@ export default function PanelQuizzes(
     )
   else return (
     <View style={styles.container}>
-      <Text>There are not quizzes</Text>
     </View>
   )
 }
