@@ -246,6 +246,20 @@ test('answer and save a quiz as incorrect', () => {
   })
 });
 
+test('show answer card', () => {
+  const oneQuiz = getNewQuiz('One Question', 'One Answer', true)
+  const oneDeck = { ...getNewDeck('One Deck'), quizzes: [oneQuiz] }
+  const panelQuizzes = shallow(
+    <PanelQuizzes
+      deck={oneDeck} 
+      quizzes={oneDeck.quizzes}
+      appState={APP_STATES.STARTED_QUIZ}
+      selectedIndexQuiz={0}
+      showQuizAnswer={true}
+    />);
+  expect(panelQuizzes.find('FadeInViewAnimate').length).toEqual(1)
+});
+
 function fillQuziCardWriteInputs(quizCardWrite) {
   const textInputQuestion = quizCardWrite.find('TextInput').at(0)
   const textInputAnswer = quizCardWrite.find('TextInput').at(2)
